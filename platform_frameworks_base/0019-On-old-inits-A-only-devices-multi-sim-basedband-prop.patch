@@ -1,0 +1,33 @@
+From 5ca31927b9804a6b074d58ae5c9f033329c25761 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Mon, 21 Sep 2020 10:30:18 +0200
+Subject: [PATCH 19/39] On old inits (A-only devices), multi-sim basedband
+ property too long, catch that and make it shorter
+
+Change-Id: I2f52595409f0d43b148063d5fd90c80d1182ff8c
+---
+ telephony/java/android/telephony/TelephonyManager.java | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/telephony/java/android/telephony/TelephonyManager.java b/telephony/java/android/telephony/TelephonyManager.java
+index 6764539db5b..3389e05b21d 100644
+--- a/telephony/java/android/telephony/TelephonyManager.java
++++ b/telephony/java/android/telephony/TelephonyManager.java
+@@ -10115,7 +10115,13 @@ public class TelephonyManager {
+         if (SubscriptionManager.isValidPhoneId(phoneId)) {
+             List<String> newList = Arrays.asList(updateTelephonyProperty(
+                     TelephonyProperties.baseband_version(), phoneId, version).get(0));
+-            TelephonyProperties.baseband_version(newList);
++            try {
++                TelephonyProperties.baseband_version(newList);
++            } catch(java.lang.IllegalArgumentException e) {
++                List<String> list = new ArrayList<>();
++                list.add(newList.get(0));
++                TelephonyProperties.baseband_version(list);
++            }
+         }
+     }
+ 
+-- 
+2.17.1
+

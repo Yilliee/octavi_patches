@@ -1,0 +1,33 @@
+From f3f39a67a19272bfd9f4bc62d7c376a4a2791dfd Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Tue, 2 Jul 2019 21:19:29 +0200
+Subject: [PATCH 11/39] Make Samsung fingerprint broken HAL overridable
+
+Change-Id: I8be38daa7c80fdb61e9209f12215e6daea171d03
+---
+ .../server/biometrics/fingerprint/FingerprintService.java   | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java b/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java
+index 690f2e9231d..b8f02a9aa6e 100644
+--- a/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java
++++ b/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java
+@@ -670,11 +670,13 @@ public class FingerprintService extends BiometricServiceBase {
+                 final Fingerprint fingerprint =
+                         new Fingerprint(getBiometricUtils().getUniqueName(getContext(), groupId),
+                                 groupId, fingerId, deviceId);
+-                FingerprintService.super.handleEnrollResult(fingerprint, remaining);
+                 int remaining2 = remaining;
++                int overrideSamsung = android.os.SystemProperties.getInt("persist.sys.phh.samsung_fingerprint", -1);
++
+                 String fp = android.os.SystemProperties.get("ro.vendor.build.fingerprint");
+-                if(fp != null && (fp.contains("starlte") || fp.contains("star2lte") || fp.contains("starqlte") || fp.contains("star2qlte")))
++                if(overrideSamsung == 1 || (overrideSamsung != 0 && fp != null && fp.startsWith("samsung/")))
+                     remaining2 = 100 - remaining2;
++                FingerprintService.super.handleEnrollResult(fingerprint, remaining2);
+                 if (remaining2 == 0 && mHasFod) {
+                     IFingerprintInscreen fodDaemon = getFingerprintInScreenDaemon();
+                     if (fodDaemon != null) {
+-- 
+2.17.1
+

@@ -1,0 +1,111 @@
+From 101b21e41fb11b97fff218d8d7f703bedb1ed531 Mon Sep 17 00:00:00 2001
+From: SzuWei Lin <szuweilin@google.com>
+Date: Thu, 31 Dec 2020 16:52:39 +0800
+Subject: [PATCH 09/12] Make ro.product.cpu.abilist* to be fetched dynamically
+
+Basically, ro.product.cpu.abilist* are defined by
+ro.vendor.cpu.abilist*. And they can be overried by
+ro.odm.cpu.abilist* and ro.product.cpu.abilist*.
+ro.system.cpu.abilist* are for fallback if others are no defined.
+
+Bug: 176520383
+Test: check the result by flashing aosp_arm64-userdebug on
+Test: aosp_blueline-user and aosp_blueline-user hacked by
+Test: 64-bits-only
+Change-Id: I01ae01af099a4ec8fe3d4525edecc233a477ff60
+---
+ init/.property_service.cpp.kate-swp | Bin 0 -> 159 bytes
+ init/property_service.cpp           |  64 ++++++++++++++++++++++++++++
+ 2 files changed, 64 insertions(+)
+ create mode 100644 init/.property_service.cpp.kate-swp
+
+diff --git a/init/.property_service.cpp.kate-swp b/init/.property_service.cpp.kate-swp
+new file mode 100644
+index 0000000000000000000000000000000000000000..92776cdaccaea4d86b6d0ca9fcf707dcbdd53602
+GIT binary patch
+literal 159
+zcmZQzU=Z?7EJ;-eE>A2_aLdd|RWQ;sU|?Vn`60x_k+o6nk+QOiO~LUx<5?=EHo=|@
+z3@oBRSrA}R00LLI5DQR9O`)JDzaX`!q%uA;FS8^wF(<PsHNGf6KDnSYJ~1gXC$qRj
+UL(@7OYKoR?a1fG#teB<)0C46Y#Q*>R
+
+literal 0
+HcmV?d00001
+
+diff --git a/init/property_service.cpp b/init/property_service.cpp
+index fa1c851b1..f81202086 100644
+--- a/init/property_service.cpp
++++ b/init/property_service.cpp
+@@ -898,6 +898,70 @@ static void property_initialize_ro_product_props() {
+     }
+ }
+ 
++// If the ro.product.cpu.abilist* properties have not been explicitly
++// set, derive them from ro.${partition}.product.cpu.abilist* properties.
++static void property_initialize_ro_cpu_abilist() {
++    // From high to low priority.
++    const char* kAbilistSources[] = {
++            "product",
++            "odm",
++            "vendor",
++            "system",
++    };
++    const std::string EMPTY = "";
++    const char* kAbilistProp = "ro.product.cpu.abilist";
++    const char* kAbilist32Prop = "ro.product.cpu.abilist32";
++    const char* kAbilist64Prop = "ro.product.cpu.abilist64";
++
++    // If the properties are defined explicitly, just use them.
++    if (GetProperty(kAbilistProp, EMPTY) != EMPTY) {
++        return;
++    }
++
++    // Find the first source defining these properties by order.
++    std::string abilist32_prop_val;
++    std::string abilist64_prop_val;
++    for (const auto& source : kAbilistSources) {
++        const auto abilist32_prop = std::string("ro.") + source + ".product.cpu.abilist32";
++        const auto abilist64_prop = std::string("ro.") + source + ".product.cpu.abilist64";
++        abilist32_prop_val = GetProperty(abilist32_prop, EMPTY);
++        abilist64_prop_val = GetProperty(abilist64_prop, EMPTY);
++        // The properties could be empty on 32-bit-only or 64-bit-only devices,
++        // but we cannot identify a property is empty or undefined by GetProperty().
++        // So, we assume both of these 2 properties are empty as undefined.
++        if (abilist32_prop_val != EMPTY || abilist64_prop_val != EMPTY) {
++            break;
++        }
++    }
++
++    // Merge ABI lists for ro.product.cpu.abilist
++    auto abilist_prop_val = abilist64_prop_val;
++    if (abilist32_prop_val != EMPTY) {
++        if (abilist_prop_val != EMPTY) {
++            abilist_prop_val += ",";
++        }
++        abilist_prop_val += abilist32_prop_val;
++    }
++
++    // Set these properties
++    const std::pair<const char*, const std::string&> set_prop_list[] = {
++            {kAbilistProp, abilist_prop_val},
++            {kAbilist32Prop, abilist32_prop_val},
++            {kAbilist64Prop, abilist64_prop_val},
++    };
++    for (const auto& [prop, prop_val] : set_prop_list) {
++        LOG(INFO) << "Setting property '" << prop << "' to '" << prop_val << "'";
++
++        std::string error;
++        uint32_t res = PropertySet(prop, prop_val, &error);
++        if (res != PROP_SUCCESS) {
++            LOG(ERROR) << "Error setting property '" << prop << "': err=" << res << " (" << error
++                       << ")";
++        }
++    }
++}
++
++
+ // If the ro.build.fingerprint property has not been set, derive it from constituent pieces
+ static void property_derive_build_fingerprint() {
+     std::string build_fingerprint = GetProperty("ro.build.fingerprint", "");
+-- 
+2.17.1
+

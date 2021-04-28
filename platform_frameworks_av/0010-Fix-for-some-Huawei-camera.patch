@@ -1,0 +1,40 @@
+From 292940779a0ece8aae04b5848e27d87760c8ef41 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Tue, 3 Dec 2019 14:04:17 +0100
+Subject: [PATCH 10/20] Fix for some Huawei camera
+
+---
+ services/camera/libcameraservice/CameraService.cpp | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/services/camera/libcameraservice/CameraService.cpp b/services/camera/libcameraservice/CameraService.cpp
+index 9b1d5f3f29..a946c2be34 100644
+--- a/services/camera/libcameraservice/CameraService.cpp
++++ b/services/camera/libcameraservice/CameraService.cpp
+@@ -16,7 +16,7 @@
+ 
+ #define LOG_TAG "CameraService"
+ #define ATRACE_TAG ATRACE_TAG_CAMERA
+-//#define LOG_NDEBUG 0
++#define LOG_NDEBUG 0
+ 
+ #include <algorithm>
+ #include <climits>
+@@ -240,10 +240,11 @@ status_t CameraService::enumerateProviders() {
+             if (!cameraFound) {
+                 addStates(id8);
+             }
+-        }
+-
+-        if (getCameraState(id8) == nullptr) {
+             onDeviceStatusChanged(id8, CameraDeviceStatus::PRESENT);
++        } else {
++            if (getCameraState(id8) == nullptr) {
++                onDeviceStatusChanged(id8, CameraDeviceStatus::PRESENT);
++            }
+         }
+     }
+ 
+-- 
+2.17.1
+

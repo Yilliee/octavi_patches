@@ -1,0 +1,123 @@
+From e29f3a25876648b808e7b8ea3cfcdd225379e814 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Wed, 20 May 2020 21:16:56 +0200
+Subject: [PATCH 04/12] Samsung + Xiaomi new FOD HBM controls
+
+Change-Id: I5ab27fa70882efa85f0c917bf31bb32adaa09bb1
+---
+ services/surfaceflinger/BufferQueueLayer.cpp  | 18 +++++++++++++++
+ .../CompositionEngine/src/OutputLayer.cpp     | 22 +++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+
+diff --git a/services/surfaceflinger/BufferQueueLayer.cpp b/services/surfaceflinger/BufferQueueLayer.cpp
+index 87be9a821..fdffcacb9 100644
+--- a/services/surfaceflinger/BufferQueueLayer.cpp
++++ b/services/surfaceflinger/BufferQueueLayer.cpp
+@@ -27,6 +27,7 @@
+ #include <compositionengine/FodExtension.h>
+ #include <gui/BufferQueueConsumer.h>
+ #include <system/window.h>
++#include <cutils/properties.h>
+ 
+ #include "LayerRejecter.h"
+ #include "SurfaceInterceptor.h"
+@@ -35,6 +36,15 @@
+ #include "Scheduler/LayerHistory.h"
+ #include "TimeStats/TimeStats.h"
+ 
++static bool sCheckedProps = false;
++static bool sSamsungFod = false;
++static void init_fod_props() {
++    if(sCheckedProps) return;
++    sCheckedProps = true;
++    sSamsungFod = property_get_bool("persist.sys.phh.fod.samsung", false);
++}
++
++
+ namespace android {
+ 
+ BufferQueueLayer::BufferQueueLayer(const LayerCreationArgs& args) : BufferLayer(args) {}
+@@ -492,6 +502,7 @@ void BufferQueueLayer::onFirstRef() {
+     mConsumer =
+             mFlinger->getFactory().createBufferLayerConsumer(consumer, mFlinger->getRenderEngine(),
+                                                              mTextureName, this);
++init_fod_props();
+     mConsumer->setConsumerUsageBits(getEffectiveUsage(0));
+ 
+     mContentsChangedListener = new ContentsChangedListener(this);
+@@ -523,8 +534,15 @@ status_t BufferQueueLayer::setDefaultBufferProperties(uint32_t w, uint32_t h, Pi
+         usageBits = getFodUsageBits(usageBits, true);
+     }
+ 
++    init_fod_props();
++
+     setDefaultBufferSize(w, h);
+     mConsumer->setDefaultBufferFormat(format);
++    uint64_t usageBits = getEffectiveUsage(0);
++    if(sSamsungFod && strstr(mName.c_str(), "Fingerprint on display.touched") != nullptr) {
++        ALOGE("Found on touched layer!");
++        usageBits |= 0x400000000LL;
++    }
+     mConsumer->setConsumerUsageBits(usageBits);
+ 
+     return NO_ERROR;
+diff --git a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
+index b01600ec1..794a66901 100644
+--- a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
++++ b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
+@@ -23,11 +23,16 @@
+ #include <compositionengine/impl/OutputCompositionState.h>
+ #include <compositionengine/impl/OutputLayer.h>
+ #include <compositionengine/impl/OutputLayerCompositionState.h>
++#include <cutils/properties.h>
+ 
+ // TODO(b/129481165): remove the #pragma below and fix conversion issues
+ #pragma clang diagnostic push
+ #pragma clang diagnostic ignored "-Wconversion"
+ 
++static bool sCheckedProps = false;
++static bool sBBKFod = false;
++static bool sXiaomiFod = false;
++
+ #include "DisplayHardware/HWComposer.h"
+ 
+ // TODO(b/129481165): remove the #pragma below and fix conversion issues
+@@ -371,6 +376,13 @@ void OutputLayer::writeOutputDependentGeometryStateToHWC(
+               static_cast<int32_t>(error));
+     }
+ 
++    if(!sCheckedProps) {
++        sCheckedProps = true;
++        sBBKFod = property_get_bool("persist.sys.phh.fod.bbk", false);
++        sXiaomiFod = property_get_bool("persist.sys.phh.fod.xiaomi", false);
++    }
++
++
+     uint32_t z = outputDependentState.z;
+     if (strcmp(getLayerFE().getDebugName(), FOD_LAYER_NAME) == 0) {
+         z = getFodZOrder(z, false);
+@@ -382,11 +394,21 @@ void OutputLayer::writeOutputDependentGeometryStateToHWC(
+     if(strstr(getLayerFE().getDebugName(), "Fingerprint on display") != nullptr) {
+         ALOGE("Found fingerprint on display!");
+         z = 0x41000031;
++        if(sBBKFod) {
++            z = 0x41000031;
++        } else if(sXiaomiFod) {
++            z |= 0x1000000;
++        }
+     }
+ 
+     if(strstr(getLayerFE().getDebugName(), "Fingerprint on display.touched") != nullptr) {
+         ALOGE("Found fingerprint on display touched!");
+         z = 0x41000033;
++        if(sBBKFod) {
++            z = 0x41000033;
++        } else if(sXiaomiFod) {
++            z |= 0x2000000;
++        }
+     }
+ 
+     if (auto error = hwcLayer->setZOrder(z); error != hal::Error::NONE) {
+-- 
+2.17.1
+

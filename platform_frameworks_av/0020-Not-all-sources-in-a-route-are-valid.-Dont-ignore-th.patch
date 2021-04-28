@@ -1,0 +1,31 @@
+From dce053335694b3b890c55b7eadf63df01a15d41c Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Sun, 28 Mar 2021 18:54:47 +0200
+Subject: [PATCH 20/20] Not all sources in a route are valid. Dont ignore the
+ whole route because of one broken source
+
+---
+ .../audiopolicy/common/managerdefinitions/src/Serializer.cpp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
+index 0bd8ffa69b..051aaf2c79 100644
+--- a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
++++ b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
+@@ -593,10 +593,11 @@ Return<RouteTraits::Element> RouteTraits::deserialize(const xmlNode *cur, PtrSer
+                 source = ctx->findPortByTagName(trim(devTag));
+                 if (source == NULL) {
+                     ALOGE("%s: no source found with name=%s", __func__, devTag);
+-                    return Status::fromStatusT(BAD_VALUE);
+                 }
+             }
+-            sources.add(source);
++            if(source != nullptr) {
++                sources.add(source);
++            }
+         }
+         devTag = strtok(NULL, ",");
+     }
+-- 
+2.17.1
+

@@ -1,0 +1,73 @@
+From 0a6eeb25c312a7916eedd611fbaca259c8639339 Mon Sep 17 00:00:00 2001
+From: Yilliee <m.taha6f@gmail.com>
+Date: Sun, 25 Apr 2021 17:31:12 +0000
+Subject: [PATCH 37/39] Revert "Fix Samsung Power HAL (switch/case was filled
+ with mines/returns), and cleanup code and add logs"
+
+This reverts commit e2a5df8ee714f9a6dc7d43287ba3f84bb5aba5f9.
+---
+ ...droid_server_power_PowerManagerService.cpp | 25 ++++++++-----------
+ 1 file changed, 11 insertions(+), 14 deletions(-)
+
+diff --git a/services/core/jni/com_android_server_power_PowerManagerService.cpp b/services/core/jni/com_android_server_power_PowerManagerService.cpp
+index 7b42c04fb53..996958cfb14 100644
+--- a/services/core/jni/com_android_server_power_PowerManagerService.cpp
++++ b/services/core/jni/com_android_server_power_PowerManagerService.cpp
+@@ -83,6 +83,7 @@ static sp<IPowerV1_1> gPowerHalHidlV1_1_ = nullptr;
+ static sp<IPowerAidl> gPowerHalAidl_ = nullptr;
+ static sp<ILineagePowerV1_0> gLineagePowerHalV1_0_ = nullptr;
+ static sp<ISehMiscPower> gSehMiscPower = nullptr;
++static bool gPowerHalExists = true;
+ static std::mutex gPowerHalMutex;
+ 
+ enum class HalVersion {
+@@ -128,11 +129,9 @@ static HalVersion connectPowerHalLocked() {
+             gPowerHalAidlExists = false;
+         }
+     }
+-    if (gPowerHalHidlExists && gPowerHalHidlV1_0_ == nullptr) {
+-       ALOGE("Trying to connect to Samsung Power HAL");
++    if (gPowerHalExists && gPowerHalHidlV1_0_ == nullptr) {
+         gSehMiscPower = ISehMiscPower::getService();
+         gPowerHalHidlV1_0_ = IPowerV1_0::getService("miscpower");
+-        ALOGE("Got miscpower = %d, SehMiscPower = %d", gPowerHalHidlV1_0_ != nullptr ? 1 : 0, gSehMiscPower ? 1 : 0);
+     }
+     if (gPowerHalHidlExists && gPowerHalHidlV1_0_ == nullptr) {
+         gPowerHalHidlV1_0_ = IPowerV1_0::getService();
+@@ -307,17 +306,7 @@ static bool setPowerMode(Mode mode, bool enabled) {
+ 
+ static void sendPowerHint(PowerHint hintId, uint32_t data) {
+     std::unique_lock<std::mutex> lock(gPowerHalMutex);
+-
+-    auto powerHalType = connectPowerHalLocked();
+-    if(gSehMiscPower != nullptr) {
+-        android::base::Timer t;
+-        Return<void> ret = gSehMiscPower->setInteractiveAsync(enable, 0);
+-        if(!ret.isOk()) {
+-            ALOGE("set interactive async() failed: seh misc setInteractiveAsync");
+-        }
+-    }
+-
+-    switch (powerHalType) {
++    switch (connectPowerHalLocked()) {
+         case HalVersion::NONE:
+             return;
+         case HalVersion::HIDL_1_0: {
+@@ -522,6 +511,14 @@ static void nativeSetInteractive(JNIEnv* /* env */, jclass /* clazz */, jboolean
+             return;
+         }
+     }
++    sp<ISehMiscPower> sehMiscPower = getSehMiscPower();
++    if(sehMiscPower != nullptr) {
++        android::base::Timer t;
++        Return<void> ret = sehMiscPower->setInteractiveAsync(enable, 0);
++        if(!ret.isOk()) {
++            ALOGE("set interactive async() failed: seh misc setInteractiveAsync");
++        }
++    }
+ }
+ 
+ static void nativeSetAutoSuspend(JNIEnv* /* env */, jclass /* clazz */, jboolean enable) {
+-- 
+2.17.1
+
