@@ -1,7 +1,7 @@
-From 4b6394ebd83a34fc968d125ea7d894c661cf58b2 Mon Sep 17 00:00:00 2001
+From 54793a82cbae0905cda4559875804f8152c6ddc2 Mon Sep 17 00:00:00 2001
 From: Alexander Pohl <pohl199885@gmail.com>
 Date: Fri, 15 Jun 2018 19:58:07 +0200
-Subject: [PATCH 01/20] Fix WiFi-Display on Huawei devices (EMUI 8.0)
+Subject: [PATCH 01/22] Fix WiFi-Display on Huawei devices (EMUI 8.0)
 
 Huaweis media stack doesn't handle intra-refresh-mode, so skip the error instead.
 
@@ -11,7 +11,7 @@ Thanks to Chris Vandomelen for pointing that out.
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/media/libstagefright/ACodec.cpp b/media/libstagefright/ACodec.cpp
-index 50ee7b56a3..037013aef1 100644
+index 50ee7b5..037013a 100644
 --- a/media/libstagefright/ACodec.cpp
 +++ b/media/libstagefright/ACodec.cpp
 @@ -4471,9 +4471,8 @@ status_t ACodec::setupAVCEncoderParameters(const sp<AMessage> &msg) {
@@ -27,5 +27,5 @@ index 50ee7b56a3..037013aef1 100644
      }
  
 -- 
-2.17.1
+2.31.1
 

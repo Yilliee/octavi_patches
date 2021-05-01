@@ -1,7 +1,7 @@
-From 0aed427b25c4a602c9ede27a6255956583b86fe0 Mon Sep 17 00:00:00 2001
+From 6514882056d9c9d45ec1bad31a5f5b66569a2f01 Mon Sep 17 00:00:00 2001
 From: David Stevens <stevensd@google.com>
 Date: Tue, 20 Oct 2020 15:00:41 +0900
-Subject: [PATCH 14/20] BufferPool: limit number of idle buffers in caches
+Subject: [PATCH 14/22] BufferPool: limit number of idle buffers in caches
 
 Some systems have limits on the total number of graphics buffers that
 can be allocated, not just the total size. When dealing with
@@ -22,7 +22,7 @@ Merged-In: If3f4433ba1794ccb624b864a56619c8613a315f2
  3 files changed, 25 insertions(+), 6 deletions(-)
 
 diff --git a/media/bufferpool/2.0/AccessorImpl.cpp b/media/bufferpool/2.0/AccessorImpl.cpp
-index 6111feafb9..1d2562e41d 100644
+index 6111fea..1d2562e 100644
 --- a/media/bufferpool/2.0/AccessorImpl.cpp
 +++ b/media/bufferpool/2.0/AccessorImpl.cpp
 @@ -39,6 +39,8 @@ namespace {
@@ -61,7 +61,7 @@ index 6111feafb9..1d2562e41d 100644
              }
              auto it = mBuffers.find(*freeIt);
 diff --git a/media/bufferpool/2.0/AccessorImpl.h b/media/bufferpool/2.0/AccessorImpl.h
-index cd1b4d08c1..3d39941337 100644
+index cd1b4d0..3d39941 100644
 --- a/media/bufferpool/2.0/AccessorImpl.h
 +++ b/media/bufferpool/2.0/AccessorImpl.h
 @@ -193,6 +193,12 @@ private:
@@ -78,7 +78,7 @@ index cd1b4d08c1..3d39941337 100644
              void onBufferAllocated(size_t allocSize) {
                  mSizeCached += allocSize;
 diff --git a/media/bufferpool/2.0/BufferPoolClient.cpp b/media/bufferpool/2.0/BufferPoolClient.cpp
-index 342fef6b9d..9308b8159b 100644
+index 342fef6..9308b81 100644
 --- a/media/bufferpool/2.0/BufferPoolClient.cpp
 +++ b/media/bufferpool/2.0/BufferPoolClient.cpp
 @@ -32,6 +32,8 @@ namespace implementation {
@@ -117,5 +117,5 @@ index 342fef6b9d..9308b8159b 100644
                  ++evicted;
              } else {
 -- 
-2.17.1
+2.31.1
 

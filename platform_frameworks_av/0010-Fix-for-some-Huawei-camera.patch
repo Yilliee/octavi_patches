@@ -1,14 +1,14 @@
-From 292940779a0ece8aae04b5848e27d87760c8ef41 Mon Sep 17 00:00:00 2001
+From ec716e5e9878fd6e73f18c31f5037f60697f13e6 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 3 Dec 2019 14:04:17 +0100
-Subject: [PATCH 10/20] Fix for some Huawei camera
+Subject: [PATCH 10/22] Fix for some Huawei camera
 
 ---
  services/camera/libcameraservice/CameraService.cpp | 9 +++++----
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/services/camera/libcameraservice/CameraService.cpp b/services/camera/libcameraservice/CameraService.cpp
-index 9b1d5f3f29..a946c2be34 100644
+index 9b1d5f3..a946c2b 100644
 --- a/services/camera/libcameraservice/CameraService.cpp
 +++ b/services/camera/libcameraservice/CameraService.cpp
 @@ -16,7 +16,7 @@
@@ -36,5 +36,5 @@ index 9b1d5f3f29..a946c2be34 100644
      }
  
 -- 
-2.17.1
+2.31.1
 

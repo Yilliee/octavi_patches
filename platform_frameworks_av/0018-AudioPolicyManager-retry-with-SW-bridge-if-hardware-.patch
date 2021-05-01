@@ -1,7 +1,7 @@
-From d8b5f7d2c2c57d9e0ea30fa9439bad4d5a2f2b8b Mon Sep 17 00:00:00 2001
+From f887a093cd6f116243bf0b51afc6bf7d0a8aa00a Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sun, 28 Mar 2021 16:17:36 +0800
-Subject: [PATCH 18/20] AudioPolicyManager: retry with SW bridge if hardware
+Subject: [PATCH 18/22] AudioPolicyManager: retry with SW bridge if hardware
  audio patch fails
 
 * On two of my MT6771 Q vendor devices, in-call audio is broken due to
@@ -37,7 +37,7 @@ createTelephonyPatch() error -38 creating RX audio patch
  2 files changed, 13 insertions(+), 4 deletions(-)
 
 diff --git a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
-index 50cdc93525..1c7c9f9232 100644
+index 50cdc93..1c7c9f9 100644
 --- a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
 +++ b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
 @@ -3488,7 +3488,8 @@ status_t AudioPolicyManager::getAudioPort(struct audio_port *port)
@@ -75,7 +75,7 @@ index 50cdc93525..1c7c9f9232 100644
          } else {
              return BAD_VALUE;
 diff --git a/services/audiopolicy/managerdefault/AudioPolicyManager.h b/services/audiopolicy/managerdefault/AudioPolicyManager.h
-index b2a670e6a4..c05f8a51d5 100644
+index b2a670e..c05f8a5 100644
 --- a/services/audiopolicy/managerdefault/AudioPolicyManager.h
 +++ b/services/audiopolicy/managerdefault/AudioPolicyManager.h
 @@ -910,12 +910,14 @@ protected:
@@ -95,5 +95,5 @@ index b2a670e6a4..c05f8a51d5 100644
           * @brief releaseAudioPatchInternal internal function to remove an audio patch
           * @param[in] handle of the patch to be removed
 -- 
-2.17.1
+2.31.1
 

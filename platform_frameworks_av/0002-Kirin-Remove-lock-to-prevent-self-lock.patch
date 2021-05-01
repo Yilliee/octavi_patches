@@ -1,7 +1,7 @@
-From fb1465ed30cd1e2945297fb9e6e393d67d8e125d Mon Sep 17 00:00:00 2001
+From 48a84363647a7232f12759707e2b0de3e7f8fed3 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Aug 2018 22:59:06 +0200
-Subject: [PATCH 02/20] Kirin:: Remove lock to prevent self-lock
+Subject: [PATCH 02/22] Kirin:: Remove lock to prevent self-lock
 
 With Huawei Camera HAL, we get the following call order:
 cameraserver CameraService::enumerateProviders (*)
@@ -19,7 +19,7 @@ Change-Id: I464255b5a3af8d75d72b1772ab55aa655f395a60
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/services/camera/libcameraservice/CameraService.cpp b/services/camera/libcameraservice/CameraService.cpp
-index 05f6021700..e14d4d2afd 100644
+index 05f6021..e14d4d2 100644
 --- a/services/camera/libcameraservice/CameraService.cpp
 +++ b/services/camera/libcameraservice/CameraService.cpp
 @@ -306,7 +306,7 @@ status_t CameraService::getSystemCameraKind(const String8& cameraId, SystemCamer
@@ -32,5 +32,5 @@ index 05f6021700..e14d4d2afd 100644
      // Excludes hidden secure cameras
      mNumberOfCameras =
 -- 
-2.17.1
+2.31.1
 

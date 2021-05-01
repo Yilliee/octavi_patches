@@ -1,7 +1,7 @@
-From 101b9ff04859a5180d2e37e1e48f779e92941e6d Mon Sep 17 00:00:00 2001
+From 7e4ba8f332453d37f40be4d3533786cdc8913f36 Mon Sep 17 00:00:00 2001
 From: wangchenyang <daniellingyx@gmail.com>
 Date: Thu, 24 Dec 2020 16:55:50 +0800
-Subject: [PATCH 12/20] Codec2: Initialize InputSurfaceWrapper::Config
+Subject: [PATCH 12/22] Codec2: Initialize InputSurfaceWrapper::Config
  structure fields
 
 Initialize the fields of Config structure of
@@ -19,7 +19,7 @@ Change-Id: Id5ac827df0c2ef6ad761ab5a235162a9358c1704
  1 file changed, 14 insertions(+), 14 deletions(-)
 
 diff --git a/media/codec2/sfplugin/InputSurfaceWrapper.h b/media/codec2/sfplugin/InputSurfaceWrapper.h
-index bb35763f41..479acb109b 100644
+index bb35763..479acb1 100644
 --- a/media/codec2/sfplugin/InputSurfaceWrapper.h
 +++ b/media/codec2/sfplugin/InputSurfaceWrapper.h
 @@ -61,24 +61,24 @@ public:
@@ -62,5 +62,5 @@ index bb35763f41..479acb109b 100644
  
      /**
 -- 
-2.17.1
+2.31.1
 

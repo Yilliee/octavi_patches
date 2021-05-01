@@ -1,7 +1,7 @@
-From c443a29741074e260dc826717ceab8aac97f1143 Mon Sep 17 00:00:00 2001
+From 952a756a3d9bc0266ec53f7f1afaf7c8a04eb4dc Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 1 Oct 2019 13:35:49 +0200
-Subject: [PATCH 06/20] Add (partial, cam id is hardcoded) support for Asus ZF6
+Subject: [PATCH 06/22] Add (partial, cam id is hardcoded) support for Asus ZF6
  motor camera
 
 Change-Id: Iea6e1370780a1d16f728748d1d948d092532d8fe
@@ -11,7 +11,7 @@ Change-Id: Iea6e1370780a1d16f728748d1d948d092532d8fe
  2 files changed, 29 insertions(+)
 
 diff --git a/services/camera/libcameraservice/CameraService.cpp b/services/camera/libcameraservice/CameraService.cpp
-index 776a217cdc..9b1d5f3f29 100644
+index 776a217..9b1d5f3 100644
 --- a/services/camera/libcameraservice/CameraService.cpp
 +++ b/services/camera/libcameraservice/CameraService.cpp
 @@ -25,6 +25,7 @@
@@ -76,7 +76,7 @@ index 776a217cdc..9b1d5f3f29 100644
      sCameraService->logDisconnected(mCameraIdStr, mClientPid, String8(mClientPackageName));
      sCameraService->mCameraProviderManager->removeRef(CameraProviderManager::DeviceMode::CAMERA,
 diff --git a/services/camera/libcameraservice/CameraService.h b/services/camera/libcameraservice/CameraService.h
-index a192202199..456c0feea2 100644
+index a192202..456c0fe 100644
 --- a/services/camera/libcameraservice/CameraService.h
 +++ b/services/camera/libcameraservice/CameraService.h
 @@ -203,6 +203,9 @@ public:
@@ -90,5 +90,5 @@ index a192202199..456c0feea2 100644
      // Client functionality
  
 -- 
-2.17.1
+2.31.1
 
