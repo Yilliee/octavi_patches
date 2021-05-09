@@ -1,7 +1,7 @@
-From 936e2e9e62ba6480a17af28f5e3248173fa204f6 Mon Sep 17 00:00:00 2001
+From 7e4d8b5b2f98031d40d0d8e4752763b8c663fd18 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 25 Mar 2021 16:46:23 +0000
-Subject: [PATCH 06/12] Revert "Move adbd's legacy USB implementation to
+Subject: [PATCH 06/15] Revert "Move adbd's legacy USB implementation to
  fastboot."
 
 This reverts commit 27831220711f5ab4ccb2fca6253786c13245559a.
@@ -21,7 +21,7 @@ This reverts commit 27831220711f5ab4ccb2fca6253786c13245559a.
  create mode 100644 adb/usb.h
 
 diff --git a/adb/adb.h b/adb/adb.h
-index 0a91eaca7..86d205c98 100644
+index 0a91eac..86d205c 100644
 --- a/adb/adb.h
 +++ b/adb/adb.h
 @@ -29,7 +29,7 @@
@@ -34,7 +34,7 @@ index 0a91eaca7..86d205c98 100644
  constexpr size_t MAX_PAYLOAD_V1 = 4 * 1024;
  constexpr size_t MAX_PAYLOAD = 1024 * 1024;
 diff --git a/adb/client/usb_dispatch.cpp b/adb/client/usb_dispatch.cpp
-index 7b97117de..73f3ba407 100644
+index 7b97117..73f3ba4 100644
 --- a/adb/client/usb_dispatch.cpp
 +++ b/adb/client/usb_dispatch.cpp
 @@ -16,7 +16,7 @@
@@ -47,7 +47,7 @@ index 7b97117de..73f3ba407 100644
  void usb_init() {
      if (should_use_libusb()) {
 diff --git a/adb/client/usb_libusb.cpp b/adb/client/usb_libusb.cpp
-index 07cbc9418..e649350ca 100644
+index 07cbc94..e649350 100644
 --- a/adb/client/usb_libusb.cpp
 +++ b/adb/client/usb_libusb.cpp
 @@ -16,7 +16,7 @@
@@ -60,7 +60,7 @@ index 07cbc9418..e649350ca 100644
  #include <stdint.h>
  #include <stdlib.h>
 diff --git a/adb/client/usb_linux.cpp b/adb/client/usb_linux.cpp
-index 95b1817dc..6d72c7f4f 100644
+index 95b1817..6d72c7f 100644
 --- a/adb/client/usb_linux.cpp
 +++ b/adb/client/usb_linux.cpp
 @@ -18,7 +18,7 @@
@@ -73,7 +73,7 @@ index 95b1817dc..6d72c7f4f 100644
  #include <ctype.h>
  #include <dirent.h>
 diff --git a/adb/client/usb_osx.cpp b/adb/client/usb_osx.cpp
-index a93fa3a6b..7207ca733 100644
+index a93fa3a..7207ca7 100644
 --- a/adb/client/usb_osx.cpp
 +++ b/adb/client/usb_osx.cpp
 @@ -18,8 +18,6 @@
@@ -86,7 +86,7 @@ index a93fa3a6b..7207ca733 100644
  
  #include <IOKit/IOKitLib.h>
 diff --git a/adb/client/usb_windows.cpp b/adb/client/usb_windows.cpp
-index e209230c7..197c6fa5c 100644
+index e209230..197c6fa 100644
 --- a/adb/client/usb_windows.cpp
 +++ b/adb/client/usb_windows.cpp
 @@ -18,8 +18,6 @@
@@ -99,7 +99,7 @@ index e209230c7..197c6fa5c 100644
  #include <winsock2.h>  // winsock.h *must* be included before windows.h.
  #include <windows.h>
 diff --git a/adb/daemon/include/adbd/usb.h b/adb/daemon/include/adbd/usb.h
-index 2204246c1..eb07e30dc 100644
+index 2204246..eb07e30 100644
 --- a/adb/daemon/include/adbd/usb.h
 +++ b/adb/daemon/include/adbd/usb.h
 @@ -39,6 +39,7 @@ struct usb_handle {
@@ -111,7 +111,7 @@ index 2204246c1..eb07e30dc 100644
      std::mutex lock;
      std::atomic<bool> kicked;
 diff --git a/adb/transport.h b/adb/transport.h
-index 761a0297a..895f63ee6 100644
+index 761a029..895f63e 100644
 --- a/adb/transport.h
 +++ b/adb/transport.h
 @@ -40,7 +40,7 @@
@@ -125,7 +125,7 @@ index 761a0297a..895f63ee6 100644
  
 diff --git a/adb/usb.h b/adb/usb.h
 new file mode 100644
-index 000000000..acd871f87
+index 0000000..acd871f
 --- /dev/null
 +++ b/adb/usb.h
 @@ -0,0 +1,63 @@
@@ -193,7 +193,7 @@ index 000000000..acd871f87
 +
 +bool should_use_libusb();
 diff --git a/fastboot/Android.bp b/fastboot/Android.bp
-index bd3d7c416..d6fc78e18 100644
+index bd3d7c4..d6fc78e 100644
 --- a/fastboot/Android.bp
 +++ b/fastboot/Android.bp
 @@ -115,7 +115,6 @@ cc_binary {
@@ -213,7 +213,7 @@ index bd3d7c416..d6fc78e18 100644
          "libbase",
          "libbootloader_message",
 diff --git a/fastboot/device/usb_client.h b/fastboot/device/usb_client.h
-index e702a0d22..e6a1a8b8c 100644
+index e702a0d..e6a1a8b 100644
 --- a/fastboot/device/usb_client.h
 +++ b/fastboot/device/usb_client.h
 @@ -17,7 +17,7 @@
@@ -226,5 +226,5 @@ index e702a0d22..e6a1a8b8c 100644
  #include "transport.h"
  
 -- 
-2.17.1
+2.19.0
 

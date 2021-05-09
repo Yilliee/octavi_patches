@@ -1,7 +1,7 @@
-From 27132fbcae90e5935f8e69874258beedfa649f7b Mon Sep 17 00:00:00 2001
+From fb1dcd4f7928b94a4ddba742781527f45a2792c2 Mon Sep 17 00:00:00 2001
 From: Nikita Ioffe <ioffe@google.com>
 Date: Mon, 7 Sep 2020 10:27:25 +0100
-Subject: [PATCH 10/12] Only store result of mount_all that mounted userdata
+Subject: [PATCH 10/15] Only store result of mount_all that mounted userdata
 
 During boot sequence there can be multiple calls to mount_all. For the
 userspace reboot to correctly remount userdata, we need to store the
@@ -22,7 +22,7 @@ Merged-In: Id0ae15f3bcf65fa54e4e72b76f64716c053af7fb
  3 files changed, 38 insertions(+), 14 deletions(-)
 
 diff --git a/fs_mgr/fs_mgr.cpp b/fs_mgr/fs_mgr.cpp
-index f3da35654..fdb352eae 100644
+index f3da356..fdb352e 100644
 --- a/fs_mgr/fs_mgr.cpp
 +++ b/fs_mgr/fs_mgr.cpp
 @@ -1307,14 +1307,15 @@ static bool IsMountPointMounted(const std::string& mount_point) {
@@ -110,7 +110,7 @@ index f3da35654..fdb352eae 100644
      return 0;
  }
 diff --git a/fs_mgr/include/fs_mgr.h b/fs_mgr/include/fs_mgr.h
-index 2a67b8c9f..11e36645e 100644
+index 2a67b8c..11e3664 100644
 --- a/fs_mgr/include/fs_mgr.h
 +++ b/fs_mgr/include/fs_mgr.h
 @@ -60,8 +60,20 @@ enum mount_mode {
@@ -136,7 +136,7 @@ index 2a67b8c9f..11e36645e 100644
  #define FS_MGR_DOMNT_FAILED (-1)
  #define FS_MGR_DOMNT_BUSY (-2)
 diff --git a/init/builtins.cpp b/init/builtins.cpp
-index 0ac66f272..789316621 100644
+index 0ac66f2..7893166 100644
 --- a/init/builtins.cpp
 +++ b/init/builtins.cpp
 @@ -666,18 +666,26 @@ static Result<void> do_mount_all(const BuiltinArguments& args) {
@@ -170,5 +170,5 @@ index 0ac66f272..789316621 100644
              return Error() << "queue_fs_event() failed: " << queue_fs_result.error();
          }
 -- 
-2.17.1
+2.19.0
 

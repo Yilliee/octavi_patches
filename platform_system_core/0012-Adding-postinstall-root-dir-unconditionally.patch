@@ -1,7 +1,7 @@
-From 70872ba661155b86e72b3f781a91036a84dc0b7b Mon Sep 17 00:00:00 2001
+From 86857b91c4b7f838960ebe59c9cee60fade195f8 Mon Sep 17 00:00:00 2001
 From: Bowgo Tsai <bowgotsai@google.com>
 Date: Fri, 4 Dec 2020 17:04:34 +0800
-Subject: [PATCH 12/12] Adding 'postinstall' root dir unconditionally.
+Subject: [PATCH 12/15] Adding 'postinstall' root dir unconditionally.
 
 It is required to pass update_engine_unittests in GSI
 compliance test. And it's clean to just add this mount
@@ -31,7 +31,7 @@ z3@oBRSrA}R00LLI5DQR9O`)JDzaX`!q%uA;FS8^wF(<PsHNGf6KDnSYJ~1gXC$qRj
 UL(@7OYKoR?a1fG#teB<)0C46Y#Q*>R
 
 diff --git a/init/property_service.cpp b/init/property_service.cpp
-index f81202086..d4c47f7e9 100644
+index f812020..d4c47f7 100644
 --- a/init/property_service.cpp
 +++ b/init/property_service.cpp
 @@ -1043,6 +1043,7 @@ void PropertyLoadBootDefaults() {
@@ -43,7 +43,7 @@ index f81202086..d4c47f7e9 100644
      // Workaround SafetyNet
      workaround_snet_properties();
 diff --git a/rootdir/Android.mk b/rootdir/Android.mk
-index a9d0ed08a..7d383f522 100644
+index a9d0ed0..7d383f5 100644
 --- a/rootdir/Android.mk
 +++ b/rootdir/Android.mk
 @@ -78,7 +78,7 @@ endif
@@ -68,5 +68,5 @@ index a9d0ed08a..7d383f522 100644
  # The init symlink must be a post install command of a file that is to TARGET_ROOT_OUT.
  # Since init.environ.rc is required for init and satisfies that requirement, we hijack it to create the symlink.
 -- 
-2.17.1
+2.19.0
 

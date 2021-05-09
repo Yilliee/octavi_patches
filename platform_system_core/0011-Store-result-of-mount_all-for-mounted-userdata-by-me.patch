@@ -1,7 +1,7 @@
-From ab31e0cccdb105e24f026a61e327793c48d3e972 Mon Sep 17 00:00:00 2001
+From cd9fb3867d7f6c3a775645b7e5af094244ba53d1 Mon Sep 17 00:00:00 2001
 From: Qilin Tan <qilin.tan@mediatek.com>
 Date: Mon, 2 Nov 2020 11:25:09 +0800
-Subject: [PATCH 11/12] Store result of mount_all for mounted userdata by
+Subject: [PATCH 11/15] Store result of mount_all for mounted userdata by
  metadata encryption
 
 When the userdata is mounted, its result will be stored and return.
@@ -16,7 +16,7 @@ Change-Id: I88b1b4f6a2b1ed81773e18243cb6c46244dc1ba5
  1 file changed, 2 insertions(+)
 
 diff --git a/fs_mgr/fs_mgr.cpp b/fs_mgr/fs_mgr.cpp
-index fdb352eae..fc70edd7f 100644
+index fdb352e..fc70edd 100644
 --- a/fs_mgr/fs_mgr.cpp
 +++ b/fs_mgr/fs_mgr.cpp
 @@ -1523,6 +1523,8 @@ MountAllResult fs_mgr_mount_all(Fstab* fstab, int mount_mode) {
@@ -29,5 +29,5 @@ index fdb352eae..fc70edd7f 100644
              encryptable = FS_MGR_MNTALL_DEV_IS_METADATA_ENCRYPTED;
              continue;
 -- 
-2.17.1
+2.19.0
 

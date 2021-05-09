@@ -1,7 +1,7 @@
-From 101b21e41fb11b97fff218d8d7f703bedb1ed531 Mon Sep 17 00:00:00 2001
+From 64b81d021070a624a50ba9e27eccf985ad7a6cd3 Mon Sep 17 00:00:00 2001
 From: SzuWei Lin <szuweilin@google.com>
 Date: Thu, 31 Dec 2020 16:52:39 +0800
-Subject: [PATCH 09/12] Make ro.product.cpu.abilist* to be fetched dynamically
+Subject: [PATCH 09/15] Make ro.product.cpu.abilist* to be fetched dynamically
 
 Basically, ro.product.cpu.abilist* are defined by
 ro.vendor.cpu.abilist*. And they can be overried by
@@ -32,7 +32,7 @@ literal 0
 HcmV?d00001
 
 diff --git a/init/property_service.cpp b/init/property_service.cpp
-index fa1c851b1..f81202086 100644
+index fa1c851..f812020 100644
 --- a/init/property_service.cpp
 +++ b/init/property_service.cpp
 @@ -898,6 +898,70 @@ static void property_initialize_ro_product_props() {
@@ -107,5 +107,5 @@ index fa1c851b1..f81202086 100644
  static void property_derive_build_fingerprint() {
      std::string build_fingerprint = GetProperty("ro.build.fingerprint", "");
 -- 
-2.17.1
+2.19.0
 
