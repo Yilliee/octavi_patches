@@ -1,0 +1,24 @@
+From d4c546848e7b189689d65ffbd97d6c20e8408902 Mon Sep 17 00:00:00 2001
+From: Yilliee <m.taha6f@gmail.com>
+Date: Sat, 8 May 2021 10:07:01 +0000
+Subject: [PATCH 6/6]  octavi.mk : Build Custom Doze
+
+---
+ octavi.mk | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/octavi.mk b/octavi.mk
+index c6787be..28f02d6 100644
+--- a/octavi.mk
++++ b/octavi.mk
+@@ -5,3 +5,7 @@ $(call inherit-product, device/octavi/sepolicy/common/sepolicy.mk)
+ TARGET_BOOT_ANIMATION_RES := 1080
+ OCTAVI_BUILD_TYPE := Official
+ OCTAVI_DEVICE_MAINTAINER := Yillié
++
++# Doze
++PRODUCT_PACKAGES += \
++    CustomDoze
+-- 
+2.19.0
+

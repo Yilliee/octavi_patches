@@ -1,0 +1,26 @@
+From a21eed794b6da741b80e107039ff020f824e564b Mon Sep 17 00:00:00 2001
+From: Yilliee <m.taha6f@gmail.com>
+Date: Fri, 7 May 2021 10:20:10 +0000
+Subject: [PATCH 4/6] sepolicy : commoent out ntfs as it gets included with
+ sepolicy.mk of rom
+
+---
+ sepolicy/file_contexts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sepolicy/file_contexts b/sepolicy/file_contexts
+index 7cfb226..86a9a92 100644
+--- a/sepolicy/file_contexts
++++ b/sepolicy/file_contexts
+@@ -7,7 +7,7 @@
+ /system/bin/asus-motor u:object_r:phhsu_exec:s0
+ 
+ #/system/bin/fsck\.exfat                 u:object_r:fsck_exec:s0
+-/system/bin/fsck\.ntfs                  u:object_r:fsck_exec:s0
++#/system/bin/fsck\.ntfs                  u:object_r:fsck_exec:s0
+ 
+ /bt_firmware(/.*)?      u:object_r:bt_firmware_file:s0
+ 
+-- 
+2.19.0
+

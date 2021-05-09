@@ -1,0 +1,28 @@
+From c6f518cd599f33a6fec5c11db7c7e71c55d5ba21 Mon Sep 17 00:00:00 2001
+From: Yillie <m.taha6f@gmail.com>
+Date: Tue, 4 May 2021 21:51:08 +0500
+Subject: [PATCH 2/6] Octavi.mk : Add necessary vars
+
+---
+ Octavi.mk => octavi.mk | 4 ++++
+ 1 file changed, 4 insertions(+)
+ rename Octavi.mk => octavi.mk (63%)
+
+diff --git a/Octavi.mk b/octavi.mk
+similarity index 63%
+rename from Octavi.mk
+rename to octavi.mk
+index 241ea78..c6787be 100644
+--- a/Octavi.mk
++++ b/octavi.mk
+@@ -1,3 +1,7 @@
+ $(call inherit-product, vendor/octavi/config/common_full_phone.mk)
+ $(call inherit-product, device/octavi/sepolicy/common/sepolicy.mk)
+ -include vendor/octavi/build/core/config.mk
++
++TARGET_BOOT_ANIMATION_RES := 1080
++OCTAVI_BUILD_TYPE := Official
++OCTAVI_DEVICE_MAINTAINER := Yillié
+-- 
+2.19.0
+

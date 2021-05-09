@@ -1,0 +1,36 @@
+From 9f1c5cef93153460d05e984b01b4af1714535224 Mon Sep 17 00:00:00 2001
+From: Yilliee <m.taha6f@gmail.com>
+Date: Fri, 7 May 2021 10:19:10 +0000
+Subject: [PATCH 3/6] Gapps.mk : Don't use gapps from vendor/gapps
+
+---
+ gapps.mk | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/gapps.mk b/gapps.mk
+index 15e12a9..88a7ab4 100644
+--- a/gapps.mk
++++ b/gapps.mk
+@@ -42,11 +42,11 @@ $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+ endif
+ 
+ #Pixel Experience gapps
+-ifneq ($(wildcard vendor/gapps),)
+-IS_PHONE := true
+-$(call inherit-product,vendor/gapps/config.mk)
+-PRODUCT_PACKAGES += \
+-       phh-overrides \
+-	   com.simplemobiletools.gallery.pro \
+-
+-endif
++#ifneq ($(wildcard vendor/gapps),)
++#IS_PHONE := true
++#$(call inherit-product,vendor/gapps/gapps.mk)
++#PRODUCT_PACKAGES += \
++#       phh-overrides \
++#	   com.simplemobiletools.gallery.pro \
++#
++#endif
+-- 
+2.19.0
+
