@@ -1,4 +1,4 @@
-From e29f3a25876648b808e7b8ea3cfcdd225379e814 Mon Sep 17 00:00:00 2001
+From 884e27dc9fe328eac54fe469cc7eac914cbc0e7b Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 20 May 2020 21:16:56 +0200
 Subject: [PATCH 04/12] Samsung + Xiaomi new FOD HBM controls
@@ -10,7 +10,7 @@ Change-Id: I5ab27fa70882efa85f0c917bf31bb32adaa09bb1
  2 files changed, 40 insertions(+)
 
 diff --git a/services/surfaceflinger/BufferQueueLayer.cpp b/services/surfaceflinger/BufferQueueLayer.cpp
-index 87be9a821..fdffcacb9 100644
+index 87be9a8..4da4c2a 100644
 --- a/services/surfaceflinger/BufferQueueLayer.cpp
 +++ b/services/surfaceflinger/BufferQueueLayer.cpp
 @@ -27,6 +27,7 @@
@@ -53,7 +53,7 @@ index 87be9a821..fdffcacb9 100644
 +
      setDefaultBufferSize(w, h);
      mConsumer->setDefaultBufferFormat(format);
-+    uint64_t usageBits = getEffectiveUsage(0);
++    usageBits = getEffectiveUsage(0);
 +    if(sSamsungFod && strstr(mName.c_str(), "Fingerprint on display.touched") != nullptr) {
 +        ALOGE("Found on touched layer!");
 +        usageBits |= 0x400000000LL;
@@ -62,7 +62,7 @@ index 87be9a821..fdffcacb9 100644
  
      return NO_ERROR;
 diff --git a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
-index b01600ec1..794a66901 100644
+index 73ecf95..94604ed 100644
 --- a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
 +++ b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
 @@ -23,11 +23,16 @@
@@ -119,5 +119,5 @@ index b01600ec1..794a66901 100644
  
      if (auto error = hwcLayer->setZOrder(z); error != hal::Error::NONE) {
 -- 
-2.17.1
+2.19.0
 

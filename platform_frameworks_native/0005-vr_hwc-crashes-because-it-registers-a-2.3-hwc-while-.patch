@@ -1,4 +1,4 @@
-From 972564be193bd53f649e34b0901d3a180e8ae530 Mon Sep 17 00:00:00 2001
+From 099917356c2ed5ec2e202a0371430ab0a82482b8 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 11 Sep 2020 21:33:05 +0200
 Subject: [PATCH 05/12] vr_hwc crashes because it registers a 2.3 hwc, while
@@ -10,7 +10,7 @@ Change-Id: Icfaea3e471209e5773f52f880ffbcf5de744737e
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/services/vr/hardware_composer/manifest_vr_hwc.xml b/services/vr/hardware_composer/manifest_vr_hwc.xml
-index 1068cac33..6694ac086 100644
+index 1068cac..6694ac0 100644
 --- a/services/vr/hardware_composer/manifest_vr_hwc.xml
 +++ b/services/vr/hardware_composer/manifest_vr_hwc.xml
 @@ -2,7 +2,7 @@
@@ -23,5 +23,5 @@ index 1068cac33..6694ac086 100644
            <name>IComposer</name>
            <instance>vr</instance>
 -- 
-2.17.1
+2.19.0
 

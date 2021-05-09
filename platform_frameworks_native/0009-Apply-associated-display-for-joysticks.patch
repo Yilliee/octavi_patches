@@ -1,4 +1,4 @@
-From fddffe9e4227b7e78f98082823313bc26578734e Mon Sep 17 00:00:00 2001
+From cd7c2f9d2a071dbd13f8b0f2fd5b77ba72f7de06 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 26 Oct 2020 23:16:30 +0100
 Subject: [PATCH 09/12] Apply associated display for joysticks
@@ -11,7 +11,7 @@ Change-Id: I5f6c237e6bf53312aff3dc02a46ce1c779063203
  3 files changed, 107 insertions(+), 2 deletions(-)
 
 diff --git a/services/inputflinger/reader/mapper/JoystickInputMapper.cpp b/services/inputflinger/reader/mapper/JoystickInputMapper.cpp
-index 030a84672..929bfc5f9 100644
+index 030a846..929bfc5 100644
 --- a/services/inputflinger/reader/mapper/JoystickInputMapper.cpp
 +++ b/services/inputflinger/reader/mapper/JoystickInputMapper.cpp
 @@ -196,6 +196,8 @@ void JoystickInputMapper::configure(nsecs_t when, const InputReaderConfiguration
@@ -33,7 +33,7 @@ index 030a84672..929bfc5f9 100644
                            &pointerProperties, &pointerCoords, 0, 0,
                            AMOTION_EVENT_INVALID_CURSOR_POSITION,
 diff --git a/services/inputflinger/reader/mapper/JoystickInputMapper.h b/services/inputflinger/reader/mapper/JoystickInputMapper.h
-index 823a096d6..0cb0b0ed7 100644
+index 823a096..0cb0b0e 100644
 --- a/services/inputflinger/reader/mapper/JoystickInputMapper.h
 +++ b/services/inputflinger/reader/mapper/JoystickInputMapper.h
 @@ -105,8 +105,10 @@ private:
@@ -50,7 +50,7 @@ index 823a096d6..0cb0b0ed7 100644
 \ No newline at end of file
 +#endif // _UI_INPUTREADER_JOYSTICK_INPUT_MAPPER_H
 diff --git a/services/inputflinger/tests/InputReader_test.cpp b/services/inputflinger/tests/InputReader_test.cpp
-index e9bb169d6..ab0106823 100644
+index e9bb169..ab01068 100644
 --- a/services/inputflinger/tests/InputReader_test.cpp
 +++ b/services/inputflinger/tests/InputReader_test.cpp
 @@ -20,6 +20,7 @@
@@ -176,5 +176,5 @@ index e9bb169d6..ab0106823 100644
      addConfigurationProperty("touch.deviceType", "touchScreen");
      prepareDisplay(DISPLAY_ORIENTATION_0);
 -- 
-2.17.1
+2.19.0
 

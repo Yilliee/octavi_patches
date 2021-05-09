@@ -1,4 +1,4 @@
-From 4e080febfea18c92b04c3d2f6e470312b0fd52c1 Mon Sep 17 00:00:00 2001
+From 4d4c92cbcf1e5b284769ba6f3bf8d629d28c79cd Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 12 Aug 2019 23:48:37 +0200
 Subject: [PATCH 01/12] Some Samsung devices requires lying colorspace
@@ -9,7 +9,7 @@ Change-Id: I4153b8e7abc10c519565e4e4386c6388621477b2
  1 file changed, 6 insertions(+)
 
 diff --git a/opengl/libs/EGL/egl_platform_entries.cpp b/opengl/libs/EGL/egl_platform_entries.cpp
-index aa24e8ee6..1c6380f6f 100644
+index aa24e8e..1c6380f 100644
 --- a/opengl/libs/EGL/egl_platform_entries.cpp
 +++ b/opengl/libs/EGL/egl_platform_entries.cpp
 @@ -454,8 +454,14 @@ EGLBoolean eglGetConfigAttribImpl(EGLDisplay dpy, EGLConfig config,
@@ -28,5 +28,5 @@ index aa24e8ee6..1c6380f6f 100644
      } else if (colorspace == EGL_GL_COLORSPACE_SRGB_KHR) {
          return HAL_DATASPACE_V0_SRGB;
 -- 
-2.17.1
+2.19.0
 

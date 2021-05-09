@@ -1,4 +1,4 @@
-From 940239df460c110af3663a4bc21932713608b4db Mon Sep 17 00:00:00 2001
+From 4e7146abc9222fd53fa2dd798b521dad25c79d0a Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 14 Aug 2019 23:37:10 +0200
 Subject: [PATCH 02/12] On Samsung, we need to send a hack-message to HAL to
@@ -11,7 +11,7 @@ Change-Id: Id6a1fa48340de61c418493668e9abd22c2599376
  2 files changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/opengl/libs/EGL/egl_platform_entries.cpp b/opengl/libs/EGL/egl_platform_entries.cpp
-index 1c6380f6f..6e810e592 100644
+index 1c6380f..6e810e5 100644
 --- a/opengl/libs/EGL/egl_platform_entries.cpp
 +++ b/opengl/libs/EGL/egl_platform_entries.cpp
 @@ -457,7 +457,7 @@ EGLBoolean eglGetConfigAttribImpl(EGLDisplay dpy, EGLConfig config,
@@ -24,7 +24,7 @@ index 1c6380f6f..6e810e592 100644
      if (colorspace == EGL_GL_COLORSPACE_LINEAR_KHR) {
          if(samsungColorspace)
 diff --git a/services/sensorservice/SensorDevice.cpp b/services/sensorservice/SensorDevice.cpp
-index e35559417..99b10faf5 100644
+index e355594..99b10fa 100644
 --- a/services/sensorservice/SensorDevice.cpp
 +++ b/services/sensorservice/SensorDevice.cpp
 @@ -34,7 +34,9 @@
@@ -47,5 +47,5 @@ index e35559417..99b10faf5 100644
              [&](const auto &list) {
                  const size_t count = list.size();
 -- 
-2.17.1
+2.19.0
 
