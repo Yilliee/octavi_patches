@@ -1,7 +1,7 @@
-From 4d6f28cb695c5edf253f03c373485a21cd43d19c Mon Sep 17 00:00:00 2001
+From f9de44f7bdc6042cf02b0df3f61c5e874bbfe3fa Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Tue, 10 Sep 2019 02:42:36 +0000
-Subject: [PATCH] treble: Don't specify config_wallpaperCropperPackage
+Subject: [PATCH 1/2] treble: Don't specify config_wallpaperCropperPackage
 
 Change-Id: I72b59def304779e4bd9a399c01cf1180d15bf444
 ---
@@ -9,7 +9,7 @@ Change-Id: I72b59def304779e4bd9a399c01cf1180d15bf444
  1 file changed, 1 deletion(-)
 
 diff --git a/overlay/frameworks/base/core/res/res/values/config.xml b/overlay/frameworks/base/core/res/res/values/config.xml
-index 28c7a28..48ca260 100644
+index 915e3e6..e33909f 100644
 --- a/overlay/frameworks/base/core/res/res/values/config.xml
 +++ b/overlay/frameworks/base/core/res/res/values/config.xml
 @@ -22,7 +22,6 @@

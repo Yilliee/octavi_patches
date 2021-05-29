@@ -1,0 +1,30 @@
+From 3068bdd2ce00ef7e92696097d13fccb861badb37 Mon Sep 17 00:00:00 2001
+From: Yilliee <m.taha6f@gmail.com>
+Date: Sat, 29 May 2021 06:11:53 +0000
+Subject: [PATCH 1/4] Initialize octavi.mk
+
+---
+ octavi.mk | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 octavi.mk
+
+diff --git a/octavi.mk b/octavi.mk
+new file mode 100644
+index 0000000..727b621
+--- /dev/null
++++ b/octavi.mk
+@@ -0,0 +1,11 @@
++# Doze
++PRODUCT_PACKAGES += \
++    CustomDoze
++
++TARGET_BOOT_ANIMATION_RES := 1080
++OCTAVI_BUILD_TYPE := Official
++OCTAVI_DEVICE_MAINTAINER := Yillié
++
++$(call inherit-product, vendor/octavi/config/common_full_phone.mk)
++$(call inherit-product, device/octavi/sepolicy/common/sepolicy.mk)
++-include vendor/octavi/build/core/config.mk
+-- 
+2.17.1
+
