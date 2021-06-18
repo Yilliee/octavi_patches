@@ -1,4 +1,4 @@
-From a9cf2b9afe5162c9e4462c895e3aa4affe06fe2a Mon Sep 17 00:00:00 2001
+From 0b472a5bcbb2b0c37943fa6ed8d291c5e3fd181c Mon Sep 17 00:00:00 2001
 From: Yilliee <m.taha6f@gmail.com>
 Date: Fri, 7 May 2021 10:19:10 +0000
 Subject: [PATCH 2/4] Gapps.mk : Don't use gapps from vendor/gapps
@@ -32,5 +32,5 @@ index 15e12a9..88a7ab4 100644
 +#
 +#endif
 -- 
-2.17.1
+2.25.1
 
