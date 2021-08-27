@@ -1,14 +1,14 @@
-From 8626d77435e4d4ec5ab9215a04ce2f5ff54a4c9f Mon Sep 17 00:00:00 2001
+From 5bdc80b7b4ec00c7ebfacc6289cc0d8b838ba825 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 23 Mar 2021 00:16:42 +0100
-Subject: [PATCH 17/22] Don't crash on unknown audio devices
+Subject: [PATCH 16/22] Don't crash on unknown audio devices
 
 ---
  .../common/managerdefinitions/src/Serializer.cpp           | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
-index e25dda0..0bd8ffa 100644
+index e25dda07c7..0bd8ffa69b 100644
 --- a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 +++ b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 @@ -760,7 +760,12 @@ Return<ModuleTraits::Element> ModuleTraits::deserialize(const xmlNode *cur, PtrS
@@ -26,5 +26,5 @@ index e25dda0..0bd8ffa 100644
                  }
              }
 -- 
-2.31.1
+2.33.0
 

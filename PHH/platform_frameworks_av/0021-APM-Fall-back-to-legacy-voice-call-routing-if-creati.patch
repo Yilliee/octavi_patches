@@ -1,7 +1,7 @@
-From 6f257f3eb543277776325cc46af8d9f6530f4793 Mon Sep 17 00:00:00 2001
+From c794167c9024a9fe1a7ab7947aa41636cb4d069d Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 14 Apr 2021 11:09:12 +0800
-Subject: [PATCH 22/22] APM: Fall back to legacy voice call routing if creating
+Subject: [PATCH 21/22] APM: Fall back to legacy voice call routing if creating
  audio patch failed
 
 * On some MT6771 Q vendor devices, in-call audio is broken due to APM
@@ -34,7 +34,7 @@ createTelephonyPatch() error -38 creating RX audio patch
  1 file changed, 18 insertions(+), 5 deletions(-)
 
 diff --git a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
-index 50cdc93..c892e12 100644
+index 50cdc93525..c892e12943 100644
 --- a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
 +++ b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
 @@ -573,17 +573,30 @@ uint32_t AudioPolicyManager::updateCallRouting(const DeviceVector &rxDevices, ui
@@ -74,5 +74,5 @@ index 50cdc93..c892e12 100644
          // terminate active capture if on the same HW module as the call TX source device
          // FIXME: would be better to refine to only inputs whose profile connects to the
 -- 
-2.31.1
+2.33.0
 

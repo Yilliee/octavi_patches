@@ -1,7 +1,7 @@
-From 02d0761a38803624a2436b2efe85e3a6d6a7c35c Mon Sep 17 00:00:00 2001
+From 519617dc3b462c8ddca644e3fc86cd14c1a9c1c5 Mon Sep 17 00:00:00 2001
 From: Wonsik Kim <wonsik@google.com>
 Date: Tue, 5 Jan 2021 18:58:15 -0800
-Subject: [PATCH 13/22] CCodec: store flushed config as work items
+Subject: [PATCH 12/22] CCodec: store flushed config as work items
 
 Store flushed config as work items and queue them to the component
 directly, instead of going through MediaCodecBuffer.
@@ -18,7 +18,7 @@ Change-Id: I19991101c388eca49226ad2abc37df9cea22dbb8
  2 files changed, 53 insertions(+), 68 deletions(-)
 
 diff --git a/media/codec2/sfplugin/CCodecBufferChannel.cpp b/media/codec2/sfplugin/CCodecBufferChannel.cpp
-index a8b5ea9..b2392b1 100644
+index a8b5ea9e7d..b2392b196a 100644
 --- a/media/codec2/sfplugin/CCodecBufferChannel.cpp
 +++ b/media/codec2/sfplugin/CCodecBufferChannel.cpp
 @@ -1315,54 +1315,30 @@ status_t CCodecBufferChannel::requestInitialInputBuffers() {
@@ -157,7 +157,7 @@ index a8b5ea9..b2392b1 100644
          Mutexed<Input>::Locked input(mInput);
          input->buffers->flush();
 diff --git a/media/codec2/sfplugin/CCodecBufferChannel.h b/media/codec2/sfplugin/CCodecBufferChannel.h
-index 046c5c3..e2c9aaa 100644
+index 046c5c3c49..e2c9aaa287 100644
 --- a/media/codec2/sfplugin/CCodecBufferChannel.h
 +++ b/media/codec2/sfplugin/CCodecBufferChannel.h
 @@ -277,7 +277,7 @@ private:
@@ -170,5 +170,5 @@ index 046c5c3..e2c9aaa 100644
      std::atomic_uint64_t mFrameIndex;
      std::atomic_uint64_t mFirstValidFrameIndex;
 -- 
-2.31.1
+2.33.0
 

@@ -1,4 +1,4 @@
-From ab76827f734f6c2f1d0bf6393454e703730de2ae Mon Sep 17 00:00:00 2001
+From bd016da32a26b9ae527e563c9f8bd7376c3db224 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 23 Jan 2020 11:13:43 +0800
 Subject: [PATCH 07/22] audiopolicy: try again with trimmed audio port name if
@@ -19,7 +19,7 @@ Change-Id: I993708b28e8404bc8c483d71a850ac69382231bd
  1 file changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
-index d85dbdf..e25dda0 100644
+index d85dbdf113..e25dda07c7 100644
 --- a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 +++ b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 @@ -539,6 +539,17 @@ Return<DevicePortTraits::Element> DevicePortTraits::deserialize(const xmlNode *c
@@ -55,5 +55,5 @@ index d85dbdf..e25dda0 100644
              sources.add(source);
          }
 -- 
-2.31.1
+2.33.0
 

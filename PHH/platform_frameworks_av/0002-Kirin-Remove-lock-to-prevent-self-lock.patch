@@ -1,4 +1,4 @@
-From 48a84363647a7232f12759707e2b0de3e7f8fed3 Mon Sep 17 00:00:00 2001
+From 6f0002c6a7d52927c30c2d24298ab3c72ae2d261 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Aug 2018 22:59:06 +0200
 Subject: [PATCH 02/22] Kirin:: Remove lock to prevent self-lock
@@ -19,10 +19,10 @@ Change-Id: I464255b5a3af8d75d72b1772ab55aa655f395a60
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/services/camera/libcameraservice/CameraService.cpp b/services/camera/libcameraservice/CameraService.cpp
-index 05f6021..e14d4d2 100644
+index f4011f8b73..7ee7539b3b 100644
 --- a/services/camera/libcameraservice/CameraService.cpp
 +++ b/services/camera/libcameraservice/CameraService.cpp
-@@ -306,7 +306,7 @@ status_t CameraService::getSystemCameraKind(const String8& cameraId, SystemCamer
+@@ -318,7 +318,7 @@ status_t CameraService::getSystemCameraKind(const String8& cameraId, SystemCamer
  }
  
  void CameraService::updateCameraNumAndIds() {
@@ -32,5 +32,5 @@ index 05f6021..e14d4d2 100644
      // Excludes hidden secure cameras
      mNumberOfCameras =
 -- 
-2.31.1
+2.33.0
 

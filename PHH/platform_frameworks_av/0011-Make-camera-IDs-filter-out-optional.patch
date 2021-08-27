@@ -1,4 +1,4 @@
-From 5e38930fc44490e3fa0b554c0d825888115ec08a Mon Sep 17 00:00:00 2001
+From 88ce4663a417e77f61fbbf8d46d17e42279b6161 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 21 Dec 2020 20:19:11 +0100
 Subject: [PATCH 11/22] Make camera IDs filter-out optional
@@ -11,7 +11,7 @@ Add a property for that.
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/services/camera/libcameraservice/common/CameraProviderManager.cpp b/services/camera/libcameraservice/common/CameraProviderManager.cpp
-index 0bff360..3e6ad1e 100644
+index 0bff3606df..3e6ad1ef52 100644
 --- a/services/camera/libcameraservice/common/CameraProviderManager.cpp
 +++ b/services/camera/libcameraservice/common/CameraProviderManager.cpp
 @@ -183,7 +183,9 @@ std::vector<std::string> CameraProviderManager::getAPI1CompatibleCameraDeviceIds
@@ -26,5 +26,5 @@ index 0bff360..3e6ad1e 100644
      }
      auto sortFunc =
 -- 
-2.31.1
+2.33.0
 

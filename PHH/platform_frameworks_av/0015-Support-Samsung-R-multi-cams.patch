@@ -1,7 +1,7 @@
-From 577b31479cdf8bef814f250f96d4321b238642e0 Mon Sep 17 00:00:00 2001
+From 3ad5074b28eae0120dcb1eb4ab1587df8aed0895 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 13 Mar 2021 14:20:03 -0500
-Subject: [PATCH 16/22] Support Samsung R multi-cams
+Subject: [PATCH 15/22] Support Samsung R multi-cams
 
 ---
  services/camera/libcameraservice/Android.bp               | 1 +
@@ -9,7 +9,7 @@ Subject: [PATCH 16/22] Support Samsung R multi-cams
  2 files changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/services/camera/libcameraservice/Android.bp b/services/camera/libcameraservice/Android.bp
-index 9e277ff..f8dd402 100644
+index 9e277ffae2..f8dd402f0d 100644
 --- a/services/camera/libcameraservice/Android.bp
 +++ b/services/camera/libcameraservice/Android.bp
 @@ -134,6 +134,7 @@ cc_library_shared {
@@ -21,7 +21,7 @@ index 9e277ff..f8dd402 100644
      ],
  
 diff --git a/services/camera/libcameraservice/common/CameraProviderManager.cpp b/services/camera/libcameraservice/common/CameraProviderManager.cpp
-index 3e6ad1e..1a73afc 100644
+index 3e6ad1ef52..1a73afc891 100644
 --- a/services/camera/libcameraservice/common/CameraProviderManager.cpp
 +++ b/services/camera/libcameraservice/common/CameraProviderManager.cpp
 @@ -22,6 +22,7 @@
@@ -62,5 +62,5 @@ index 3e6ad1e..1a73afc 100644
      else
          ret = interface->getCameraIdList(cb);
 -- 
-2.31.1
+2.33.0
 

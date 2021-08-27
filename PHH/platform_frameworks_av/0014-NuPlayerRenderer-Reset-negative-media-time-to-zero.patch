@@ -1,7 +1,7 @@
-From b4e9bfa12d53415df87ef6c18f47a1dce04059af Mon Sep 17 00:00:00 2001
+From 8655d9d33f17068bb9f12c473842c6d5ff30c2a9 Mon Sep 17 00:00:00 2001
 From: Paras Nagda <pnagda@codeaurora.org>
 Date: Tue, 27 Oct 2020 13:01:47 +0530
-Subject: [PATCH 15/22] NuPlayerRenderer: Reset negative media time to zero
+Subject: [PATCH 14/22] NuPlayerRenderer: Reset negative media time to zero
 
 Reset negative media time to zero before call is made to
 Mediaclock's setStartingTimeMedia().
@@ -19,7 +19,7 @@ Change-Id: I2c405007b38229038119760423156bd53a2701c0
  1 file changed, 5 insertions(+)
 
 diff --git a/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp b/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp
-index c30f048..7e8fe45 100644
+index c30f048c2d..7e8fe45121 100644
 --- a/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp
 +++ b/media/libmediaplayerservice/nuplayer/NuPlayerRenderer.cpp
 @@ -922,6 +922,11 @@ size_t NuPlayer::Renderer::fillAudioBuffer(void *buffer, size_t size) {
@@ -35,5 +35,5 @@ index c30f048..7e8fe45 100644
              setAudioFirstAnchorTimeIfNeeded_l(mediaTimeUs);
          }
 -- 
-2.31.1
+2.33.0
 

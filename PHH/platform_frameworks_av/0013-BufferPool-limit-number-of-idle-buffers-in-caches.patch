@@ -1,7 +1,7 @@
-From 6514882056d9c9d45ec1bad31a5f5b66569a2f01 Mon Sep 17 00:00:00 2001
+From d9007b286353080b65903cc0ac00cfeafc473637 Mon Sep 17 00:00:00 2001
 From: David Stevens <stevensd@google.com>
 Date: Tue, 20 Oct 2020 15:00:41 +0900
-Subject: [PATCH 14/22] BufferPool: limit number of idle buffers in caches
+Subject: [PATCH 13/22] BufferPool: limit number of idle buffers in caches
 
 Some systems have limits on the total number of graphics buffers that
 can be allocated, not just the total size. When dealing with
@@ -18,11 +18,11 @@ Merged-In: If3f4433ba1794ccb624b864a56619c8613a315f2
 ---
  media/bufferpool/2.0/AccessorImpl.cpp     | 13 +++++++++----
  media/bufferpool/2.0/AccessorImpl.h       |  6 ++++++
- media/bufferpool/2.0/BufferPoolClient.cpp | 12 ++++++++++--
- 3 files changed, 25 insertions(+), 6 deletions(-)
+ media/bufferpool/2.0/BufferPoolClient.cpp | 10 ++++++++--
+ 3 files changed, 23 insertions(+), 6 deletions(-)
 
 diff --git a/media/bufferpool/2.0/AccessorImpl.cpp b/media/bufferpool/2.0/AccessorImpl.cpp
-index 6111fea..1d2562e 100644
+index bab9e83a4c..5d56fca3cb 100644
 --- a/media/bufferpool/2.0/AccessorImpl.cpp
 +++ b/media/bufferpool/2.0/AccessorImpl.cpp
 @@ -39,6 +39,8 @@ namespace {
@@ -46,7 +46,7 @@ index 6111fea..1d2562e 100644
 +        if (mTimestampUs > mLastLogUs + kLogDurationUs ||
 +                mStats.buffersNotInUse() > kMaxUnusedBufferCount) {
              mLastLogUs = mTimestampUs;
-             ALOGD("bufferpool2 %p : %zu(%zu size) total buffers - "
+             ALOGV("bufferpool2 %p : %zu(%zu size) total buffers - "
                    "%zu(%zu size) used buffers - %zu/%zu (recycle/alloc) - "
 @@ -737,8 +741,9 @@ void Accessor::Impl::BufferPool::cleanUp(bool clearCache) {
                    mStats.mTotalFetches, mStats.mTotalTransfers);
@@ -61,7 +61,7 @@ index 6111fea..1d2562e 100644
              }
              auto it = mBuffers.find(*freeIt);
 diff --git a/media/bufferpool/2.0/AccessorImpl.h b/media/bufferpool/2.0/AccessorImpl.h
-index cd1b4d0..3d39941 100644
+index cd1b4d08c1..3d39941337 100644
 --- a/media/bufferpool/2.0/AccessorImpl.h
 +++ b/media/bufferpool/2.0/AccessorImpl.h
 @@ -193,6 +193,12 @@ private:
@@ -78,19 +78,10 @@ index cd1b4d0..3d39941 100644
              void onBufferAllocated(size_t allocSize) {
                  mSizeCached += allocSize;
 diff --git a/media/bufferpool/2.0/BufferPoolClient.cpp b/media/bufferpool/2.0/BufferPoolClient.cpp
-index 342fef6..9308b81 100644
+index 342fef6b9d..545d72e5d9 100644
 --- a/media/bufferpool/2.0/BufferPoolClient.cpp
 +++ b/media/bufferpool/2.0/BufferPoolClient.cpp
-@@ -32,6 +32,8 @@ namespace implementation {
- static constexpr int64_t kReceiveTimeoutUs = 1000000; // 100ms
- static constexpr int kPostMaxRetry = 3;
- static constexpr int kCacheTtlUs = 1000000; // TODO: tune
-+static constexpr size_t kMaxCachedBufferCount = 64;
-+static constexpr size_t kCachedBufferCountTarget = kMaxCachedBufferCount - 16;
- 
- class BufferPoolClient::Impl
-         : public std::enable_shared_from_this<BufferPoolClient::Impl> {
-@@ -136,6 +138,10 @@ private:
+@@ -136,6 +136,10 @@ private:
              --mActive;
              mLastChangeUs = getTimestampNow();
          }
@@ -101,7 +92,7 @@ index 342fef6..9308b81 100644
      } mCache;
  
      // FMQ - release notifier
-@@ -668,10 +674,12 @@ bool BufferPoolClient::Impl::syncReleased(uint32_t messageId) {
+@@ -668,10 +672,12 @@ bool BufferPoolClient::Impl::syncReleased(uint32_t messageId) {
  // should have mCache.mLock
  void BufferPoolClient::Impl::evictCaches(bool clearCache) {
      int64_t now = getTimestampNow();
@@ -112,10 +103,10 @@ index 342fef6..9308b81 100644
          for (auto it = mCache.mBuffers.begin(); it != mCache.mBuffers.end();) {
 -            if (!it->second->hasCache() && (it->second->expire() || clearCache)) {
 +            if (!it->second->hasCache() && (it->second->expire() ||
-+                        clearCache || mCache.cachedBufferCount() > kCachedBufferCountTarget)) {
++                       clearCache || mCache.cachedBufferCount() > kCachedBufferCountTarget)) {
                  it = mCache.mBuffers.erase(it);
                  ++evicted;
              } else {
 -- 
-2.31.1
+2.33.0
 

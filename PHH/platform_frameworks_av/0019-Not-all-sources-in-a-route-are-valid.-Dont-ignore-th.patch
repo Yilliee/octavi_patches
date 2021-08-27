@@ -1,7 +1,7 @@
-From 3b67dc58f17dfb14efb734ba41a2af8e916d65d8 Mon Sep 17 00:00:00 2001
+From 00c5b8ffd2e0b3ff849a9c5f090e48e580e90970 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 28 Mar 2021 18:54:47 +0200
-Subject: [PATCH 20/22] Not all sources in a route are valid. Dont ignore the
+Subject: [PATCH 19/22] Not all sources in a route are valid. Dont ignore the
  whole route because of one broken source
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 20/22] Not all sources in a route are valid. Dont ignore the
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
-index 0bd8ffa..051aaf2 100644
+index 0bd8ffa69b..051aaf2c79 100644
 --- a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 +++ b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 @@ -593,10 +593,11 @@ Return<RouteTraits::Element> RouteTraits::deserialize(const xmlNode *cur, PtrSer
@@ -27,5 +27,5 @@ index 0bd8ffa..051aaf2 100644
          devTag = strtok(NULL, ",");
      }
 -- 
-2.31.1
+2.33.0
 
