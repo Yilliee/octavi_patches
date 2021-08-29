@@ -1,7 +1,7 @@
-From 8cdc4ced2aec4f6a7f08298c7bfc1775dade2509 Mon Sep 17 00:00:00 2001
+From 4f3d767d08a1dd566bfcfa70fc7b92b2e4aae5b7 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 10 Mar 2020 23:30:17 +0100
-Subject: [PATCH 17/39] Allow disabling of fingerprint cleanups, needed on some
+Subject: [PATCH 17/36] Allow disabling of fingerprint cleanups, needed on some
  Realme devices that cant enumerate
 
 Change-Id: I8a486e707712b81711fb1a691faec029499fa897
@@ -10,10 +10,10 @@ Change-Id: I8a486e707712b81711fb1a691faec029499fa897
  1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/services/core/java/com/android/server/biometrics/BiometricServiceBase.java b/services/core/java/com/android/server/biometrics/BiometricServiceBase.java
-index 1e9b08efd2e..09f2b7afdf0 100644
+index 6f022f1d..02339d02 100644
 --- a/services/core/java/com/android/server/biometrics/BiometricServiceBase.java
 +++ b/services/core/java/com/android/server/biometrics/BiometricServiceBase.java
-@@ -349,6 +349,7 @@ public abstract class BiometricServiceBase extends SystemService
+@@ -363,6 +363,7 @@ public abstract class BiometricServiceBase extends SystemService
          private List<? extends BiometricAuthenticator.Identifier> mEnrolledList;
          // List of templates to remove from the HAL
          private List<BiometricAuthenticator.Identifier> mUnknownHALTemplates = new ArrayList<>();
@@ -21,7 +21,7 @@ index 1e9b08efd2e..09f2b7afdf0 100644
  
          InternalEnumerateClient(Context context,
                  DaemonWrapper daemon, long halDeviceId, IBinder token,
-@@ -394,8 +395,10 @@ public abstract class BiometricServiceBase extends SystemService
+@@ -408,8 +409,10 @@ public abstract class BiometricServiceBase extends SystemService
                  Slog.e(getTag(), "doTemplateCleanup(): Removing dangling template from framework: "
                          + identifier.getBiometricId() + " "
                          + identifier.getName());
@@ -35,5 +35,5 @@ index 1e9b08efd2e..09f2b7afdf0 100644
                          statsModality(),
                          BiometricsProtoEnums.ISSUE_UNKNOWN_TEMPLATE_ENROLLED_FRAMEWORK);
 -- 
-2.17.1
+2.25.1
 

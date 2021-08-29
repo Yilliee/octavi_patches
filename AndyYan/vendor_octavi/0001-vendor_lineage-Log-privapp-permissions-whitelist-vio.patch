@@ -1,4 +1,4 @@
-From 549c31baafefdecdc7a44afd9909bd291b362d0e Mon Sep 17 00:00:00 2001
+From 168b3598177c32bc4641d9576d089701d2f309f6 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Thu, 5 Sep 2019 02:08:22 +0000
 Subject: [PATCH 1/2] vendor_lineage: Log privapp-permissions whitelist
@@ -10,11 +10,11 @@ Change-Id: I49dba61f332253e291a65e79ca70d9a07d45bb07
  1 file changed, 4 insertions(+)
 
 diff --git a/config/common.mk b/config/common.mk
-index 7082649e..b7bc3901 100644
+index e8266b3..80e6d63 100644
 --- a/config/common.mk
 +++ b/config/common.mk
-@@ -80,6 +80,10 @@ PRODUCT_COPY_FILES += \
-     vendor/octavi/prebuilt/common/etc/permissions/privapp-permissions-elgoog.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-elgoog.xml \
+@@ -86,6 +86,10 @@ PRODUCT_COPY_FILES += \
+     vendor/octavi/config/permissions/privapp-permissions-livedisplay.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-livedisplay.xml \
      vendor/octavi/config/permissions/pixel_experience_2020.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020.xml
  
 +# Log privapp-permissions whitelist violations
@@ -25,5 +25,5 @@ index 7082649e..b7bc3901 100644
  PRODUCT_COPY_FILES += \
      vendor/octavi/bootanimation/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
 -- 
-2.19.0
+2.25.1
 

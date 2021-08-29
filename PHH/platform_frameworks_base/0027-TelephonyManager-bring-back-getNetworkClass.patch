@@ -1,7 +1,7 @@
-From 0cee85d17aa5944c01c9a4eee069ea15474454bb Mon Sep 17 00:00:00 2001
+From e5d6a9bee022b7570bbbd14ea9642d89c43734e8 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 16 Dec 2020 13:46:15 +0800
-Subject: [PATCH 27/39] TelephonyManager: bring back getNetworkClass()
+Subject: [PATCH 27/36] TelephonyManager: bring back getNetworkClass()
 
 This partially reverts commit c058cac051ab083dc7fb7ea6aa85699110b2e9bf.
 
@@ -11,7 +11,7 @@ This partially reverts commit c058cac051ab083dc7fb7ea6aa85699110b2e9bf.
  1 file changed, 58 insertions(+)
 
 diff --git a/telephony/java/android/telephony/TelephonyManager.java b/telephony/java/android/telephony/TelephonyManager.java
-index d2253ce6b84..bd4b303f7d6 100644
+index bec7d267..1af10cf9 100644
 --- a/telephony/java/android/telephony/TelephonyManager.java
 +++ b/telephony/java/android/telephony/TelephonyManager.java
 @@ -3146,6 +3146,64 @@ public class TelephonyManager {
@@ -80,5 +80,5 @@ index d2253ce6b84..bd4b303f7d6 100644
       * Returns a string representation of the radio technology (network type)
       * currently in use on the device.
 -- 
-2.17.1
+2.25.1
 

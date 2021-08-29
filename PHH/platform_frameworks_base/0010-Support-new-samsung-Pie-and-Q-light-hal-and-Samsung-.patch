@@ -1,7 +1,7 @@
-From 1ac3d79a48fa5809829abee6aac5f0a1605441a2 Mon Sep 17 00:00:00 2001
+From 48f271de12fdc01c743eedc7dcd948a1a7c57977 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 24 Mar 2019 23:05:14 +0100
-Subject: [PATCH 10/39] Support new samsung Pie and Q light hal and Samsung
+Subject: [PATCH 10/36] Support new samsung Pie and Q light hal and Samsung
  Power HALs
 
 Change-Id: I37dc7af3fbc6f9bfa2a4822d4dfba817e803945e
@@ -12,7 +12,7 @@ Change-Id: I37dc7af3fbc6f9bfa2a4822d4dfba817e803945e
  3 files changed, 77 insertions(+)
 
 diff --git a/services/core/jni/Android.bp b/services/core/jni/Android.bp
-index 785b8af09d2..a02c392d714 100644
+index 785b8af0..a02c392d 100644
 --- a/services/core/jni/Android.bp
 +++ b/services/core/jni/Android.bp
 @@ -168,6 +168,10 @@ cc_defaults {
@@ -27,7 +27,7 @@ index 785b8af09d2..a02c392d714 100644
  
      static_libs: [
 diff --git a/services/core/jni/com_android_server_lights_LightsService.cpp b/services/core/jni/com_android_server_lights_LightsService.cpp
-index 51a7886e9f9..0ee9ff56bcb 100644
+index 51a7886e..0ee9ff56 100644
 --- a/services/core/jni/com_android_server_lights_LightsService.cpp
 +++ b/services/core/jni/com_android_server_lights_LightsService.cpp
 @@ -22,6 +22,10 @@
@@ -105,7 +105,7 @@ index 51a7886e9f9..0ee9ff56bcb 100644
      LightState state = constructState(
          colorARGB, flashMode, onMS, offMS, brightnessMode);
 diff --git a/services/core/jni/com_android_server_power_PowerManagerService.cpp b/services/core/jni/com_android_server_power_PowerManagerService.cpp
-index 2780ee7cd98..996958cfb14 100644
+index 2780ee7c..996958cf 100644
 --- a/services/core/jni/com_android_server_power_PowerManagerService.cpp
 +++ b/services/core/jni/com_android_server_power_PowerManagerService.cpp
 @@ -24,6 +24,7 @@
@@ -173,5 +173,5 @@ index 2780ee7cd98..996958cfb14 100644
  
  static void nativeSetAutoSuspend(JNIEnv* /* env */, jclass /* clazz */, jboolean enable) {
 -- 
-2.17.1
+2.25.1
 

@@ -1,15 +1,15 @@
-From 4ab304845e99e40241709127d33f18530901740c Mon Sep 17 00:00:00 2001
+From 284e136e16109802ce412bddbd4b157493024797 Mon Sep 17 00:00:00 2001
 From: Yilliee <m.taha6f@gmail.com>
 Date: Sun, 25 Apr 2021 11:33:30 +0000
-Subject: [PATCH 35/39]  core : strings.xml : Remove duplicate entries which
- are already present in Octavi_strings
+Subject: [PATCH 33/36] core : strings.xml : Remove duplicate entries which are
+ already present in Octavi_strings
 
 ---
  core/res/res/values/strings.xml | 12 ------------
  1 file changed, 12 deletions(-)
 
 diff --git a/core/res/res/values/strings.xml b/core/res/res/values/strings.xml
-index d448b5bd5f9..d6ee28b93f9 100644
+index d448b5bd..d6ee28b9 100644
 --- a/core/res/res/values/strings.xml
 +++ b/core/res/res/values/strings.xml
 @@ -847,18 +847,6 @@
@@ -32,5 +32,5 @@ index d448b5bd5f9..d6ee28b93f9 100644
      <string name="permlab_statusBar">disable or modify status bar</string>
      <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 -- 
-2.17.1
+2.25.1
 

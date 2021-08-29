@@ -1,4 +1,4 @@
-From 06d9dc45feb2a5b97cf4978f7614ee2e17a1175e Mon Sep 17 00:00:00 2001
+From 42518045089f3f32544cbb3d5ef5c97981bcb0de Mon Sep 17 00:00:00 2001
 From: AndyCGYan <GeForce8800Ultra@gmail.com>
 Date: Sun, 3 Mar 2019 14:07:33 +0800
 Subject: [PATCH 2/2] build_soong: Disable generated_kernel_headers
@@ -11,7 +11,7 @@ Change-Id: I630857cec208f1830e776bf5031d7bb9bc4435d0
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/build/soong/Android.bp b/build/soong/Android.bp
-index 6454c5cb..8c220517 100644
+index 6454c5c..8c22051 100644
 --- a/build/soong/Android.bp
 +++ b/build/soong/Android.bp
 @@ -21,7 +21,7 @@ octavi_generator {
@@ -35,5 +35,5 @@ index 6454c5cb..8c220517 100644
  
  cc_library_headers {
 -- 
-2.19.0
+2.25.1
 

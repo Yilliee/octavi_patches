@@ -1,7 +1,7 @@
-From fe79cddcfd65ab06cb098afc62874af2e3ed9385 Mon Sep 17 00:00:00 2001
+From 0976ee784d89abb6b18fb62248a65cee778ef97e Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 20 Mar 2021 14:30:17 +0100
-Subject: [PATCH 32/39] Handle another type of Samsung proximity sensor: Hover
+Subject: [PATCH 30/36] Handle another type of Samsung proximity sensor: Hover
  Proximity Sensor, with yet another behavior (seen on S20 FE)
 
 ---
@@ -9,10 +9,10 @@ Subject: [PATCH 32/39] Handle another type of Samsung proximity sensor: Hover
  1 file changed, 14 insertions(+)
 
 diff --git a/services/core/java/com/android/server/display/DisplayPowerController.java b/services/core/java/com/android/server/display/DisplayPowerController.java
-index 3cb86784db7..e21917efb60 100644
+index 082eeb42..2b21fa14 100644
 --- a/services/core/java/com/android/server/display/DisplayPowerController.java
 +++ b/services/core/java/com/android/server/display/DisplayPowerController.java
-@@ -564,6 +564,13 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
+@@ -569,6 +569,13 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                          mProximitySensor = sensor;
                  }
              }
@@ -26,7 +26,7 @@ index 3cb86784db7..e21917efb60 100644
              if(mProximitySensor == null) {
                  List<Sensor> sensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
                  for(Sensor sensor: sensors) {
-@@ -2158,6 +2165,13 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
+@@ -2165,6 +2172,13 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                      handleProximitySensorEvent(time, positive);
                      return;
                  }
@@ -41,5 +41,5 @@ index 3cb86784db7..e21917efb60 100644
                  boolean positive = distance >= 0.0f && distance < mProximityThreshold;
                  handleProximitySensorEvent(time, positive);
 -- 
-2.17.1
+2.25.1
 

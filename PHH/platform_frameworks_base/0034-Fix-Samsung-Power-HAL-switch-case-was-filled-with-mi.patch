@@ -1,15 +1,15 @@
-From e2a5df8ee714f9a6dc7d43287ba3f84bb5aba5f9 Mon Sep 17 00:00:00 2001
+From d64fbd77f2fc39c12df25c807b7f92b47e62a759 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 18 Dec 2020 16:38:58 -0500
-Subject: [PATCH 29/39] Fix Samsung Power HAL (switch/case was filled with
+Subject: [PATCH 34/36] Fix Samsung Power HAL (switch/case was filled with
  mines/returns), and cleanup code and add logs
 
 ---
- ...droid_server_power_PowerManagerService.cpp | 25 +++++++++++--------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ ...droid_server_power_PowerManagerService.cpp | 24 ++++++++++---------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
 
 diff --git a/services/core/jni/com_android_server_power_PowerManagerService.cpp b/services/core/jni/com_android_server_power_PowerManagerService.cpp
-index 996958cfb14..7b42c04fb53 100644
+index 996958cf..c16c8585 100644
 --- a/services/core/jni/com_android_server_power_PowerManagerService.cpp
 +++ b/services/core/jni/com_android_server_power_PowerManagerService.cpp
 @@ -83,7 +83,6 @@ static sp<IPowerV1_1> gPowerHalHidlV1_1_ = nullptr;
@@ -26,19 +26,18 @@ index 996958cfb14..7b42c04fb53 100644
      }
 -    if (gPowerHalExists && gPowerHalHidlV1_0_ == nullptr) {
 +    if (gPowerHalHidlExists && gPowerHalHidlV1_0_ == nullptr) {
-+       ALOGE("Trying to connect to Samsung Power HAL");
++        ALOGE("Trying to connect to Samsung Power HAL");
          gSehMiscPower = ISehMiscPower::getService();
          gPowerHalHidlV1_0_ = IPowerV1_0::getService("miscpower");
-+        ALOGE("Got miscpower = %d, SehMiscPower = %d", gPowerHalHidlV1_0_ != nullptr ? 1 : 0, gSehMiscPower ? 1 : 0);
++	ALOGE("Got miscpower = %d, SehMiscPower = %d", gPowerHalHidlV1_0_ != nullptr ? 1 : 0, gSehMiscPower ? 1 : 0);
      }
      if (gPowerHalHidlExists && gPowerHalHidlV1_0_ == nullptr) {
          gPowerHalHidlV1_0_ = IPowerV1_0::getService();
-@@ -306,7 +307,17 @@ static bool setPowerMode(Mode mode, bool enabled) {
+@@ -483,7 +484,16 @@ static void nativeReleaseSuspendBlocker(JNIEnv *env, jclass /* clazz */, jstring
  
- static void sendPowerHint(PowerHint hintId, uint32_t data) {
+ static void nativeSetInteractive(JNIEnv* /* env */, jclass /* clazz */, jboolean enable) {
      std::unique_lock<std::mutex> lock(gPowerHalMutex);
 -    switch (connectPowerHalLocked()) {
-+
 +    auto powerHalType = connectPowerHalLocked();
 +    if(gSehMiscPower != nullptr) {
 +        android::base::Timer t;
@@ -51,8 +50,8 @@ index 996958cfb14..7b42c04fb53 100644
 +    switch (powerHalType) {
          case HalVersion::NONE:
              return;
-         case HalVersion::HIDL_1_0: {
-@@ -511,14 +522,6 @@ static void nativeSetInteractive(JNIEnv* /* env */, jclass /* clazz */, jboolean
+         case HalVersion::HIDL_1_0:
+@@ -511,14 +521,6 @@ static void nativeSetInteractive(JNIEnv* /* env */, jclass /* clazz */, jboolean
              return;
          }
      }
@@ -68,5 +67,5 @@ index 996958cfb14..7b42c04fb53 100644
  
  static void nativeSetAutoSuspend(JNIEnv* /* env */, jclass /* clazz */, jboolean enable) {
 -- 
-2.17.1
+2.25.1
 

@@ -1,7 +1,7 @@
-From 5bbd0ed005deaccd074d9c496a872e40d9f092bf Mon Sep 17 00:00:00 2001
+From b16bf389ec2cc9f3a54d2691cc3b12fe61b7d590 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 25 Oct 2020 23:57:26 +0100
-Subject: [PATCH 21/39] Re-implement fnmatch-like behaviour for RRO java-side
+Subject: [PATCH 21/36] Re-implement fnmatch-like behaviour for RRO java-side
 
 Change-Id: Id38292a9a1453aa87b8401c1fdb390fa4e63c7d1
 ---
@@ -9,7 +9,7 @@ Change-Id: Id38292a9a1453aa87b8401c1fdb390fa4e63c7d1
  1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/core/java/android/content/pm/PackageParser.java b/core/java/android/content/pm/PackageParser.java
-index a137e97830f..a0d803aed76 100644
+index a137e978..a0d803ae 100644
 --- a/core/java/android/content/pm/PackageParser.java
 +++ b/core/java/android/content/pm/PackageParser.java
 @@ -2476,8 +2476,17 @@ public class PackageParser {
@@ -33,5 +33,5 @@ index a137e97830f..a0d803aed76 100644
          }
          return true;
 -- 
-2.17.1
+2.25.1
 

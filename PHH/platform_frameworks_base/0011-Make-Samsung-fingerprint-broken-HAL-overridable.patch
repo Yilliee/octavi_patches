@@ -1,7 +1,7 @@
-From f3f39a67a19272bfd9f4bc62d7c376a4a2791dfd Mon Sep 17 00:00:00 2001
+From 645154b386a5eaf123a12ca51c772820643dc9f7 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 2 Jul 2019 21:19:29 +0200
-Subject: [PATCH 11/39] Make Samsung fingerprint broken HAL overridable
+Subject: [PATCH 11/36] Make Samsung fingerprint broken HAL overridable
 
 Change-Id: I8be38daa7c80fdb61e9209f12215e6daea171d03
 ---
@@ -9,10 +9,10 @@ Change-Id: I8be38daa7c80fdb61e9209f12215e6daea171d03
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java b/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java
-index 690f2e9231d..b8f02a9aa6e 100644
+index ac4561af..de0391f1 100644
 --- a/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java
 +++ b/services/core/java/com/android/server/biometrics/fingerprint/FingerprintService.java
-@@ -670,11 +670,13 @@ public class FingerprintService extends BiometricServiceBase {
+@@ -678,11 +678,13 @@ public class FingerprintService extends BiometricServiceBase {
                  final Fingerprint fingerprint =
                          new Fingerprint(getBiometricUtils().getUniqueName(getContext(), groupId),
                                  groupId, fingerId, deviceId);
@@ -29,5 +29,5 @@ index 690f2e9231d..b8f02a9aa6e 100644
                      IFingerprintInscreen fodDaemon = getFingerprintInScreenDaemon();
                      if (fodDaemon != null) {
 -- 
-2.17.1
+2.25.1
 
