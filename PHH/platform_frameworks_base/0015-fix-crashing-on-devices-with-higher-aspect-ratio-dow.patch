@@ -1,4 +1,4 @@
-From 6e877046b68eb515d54a711c84e95d1b9cd6a14e Mon Sep 17 00:00:00 2001
+From 3b1b6d652b051757d9db95e28b13fde1ef5a2367 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 2 Jan 2020 10:16:49 +0800
 Subject: [PATCH 15/36] fix crashing on devices with higher aspect ratio down

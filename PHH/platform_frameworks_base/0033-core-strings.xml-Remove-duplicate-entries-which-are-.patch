@@ -1,4 +1,4 @@
-From 284e136e16109802ce412bddbd4b157493024797 Mon Sep 17 00:00:00 2001
+From 0570216a00e52818af02f4bde21bd7ddd5906d93 Mon Sep 17 00:00:00 2001
 From: Yilliee <m.taha6f@gmail.com>
 Date: Sun, 25 Apr 2021 11:33:30 +0000
 Subject: [PATCH 33/36] core : strings.xml : Remove duplicate entries which are
@@ -9,10 +9,10 @@ Subject: [PATCH 33/36] core : strings.xml : Remove duplicate entries which are
  1 file changed, 12 deletions(-)
 
 diff --git a/core/res/res/values/strings.xml b/core/res/res/values/strings.xml
-index d448b5bd..d6ee28b9 100644
+index de3f90da..7da1b0da 100644
 --- a/core/res/res/values/strings.xml
 +++ b/core/res/res/values/strings.xml
-@@ -847,18 +847,6 @@
+@@ -857,18 +857,6 @@
  
      <!--  Permissions -->
  

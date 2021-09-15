@@ -1,4 +1,4 @@
-From 96b4a6015bdfe3662a6b824bd9bbf6fbf82a7999 Mon Sep 17 00:00:00 2001
+From ecca8dac85fd3b479802457bcaae4f416e12bd36 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 13 Dec 2020 01:38:50 +0100
 Subject: [PATCH 25/36] Ignore DUN required and always use main APN
@@ -8,7 +8,7 @@ Subject: [PATCH 25/36] Ignore DUN required and always use main APN
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java b/packages/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java
-index e1771a56..65d17ffa 100644
+index 409bd1f1..a40bb44b 100644
 --- a/packages/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java
 +++ b/packages/Tethering/src/com/android/networkstack/tethering/TetheringConfiguration.java
 @@ -132,7 +132,7 @@ public class TetheringConfiguration {

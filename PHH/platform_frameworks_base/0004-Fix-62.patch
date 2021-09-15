@@ -1,4 +1,4 @@
-From 75b7b2e6e797dc483756cdec08efec0992a5844d Mon Sep 17 00:00:00 2001
+From 38a822ed24c1b64e47ccd7f1587c4164f980b85d Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 30 May 2018 14:05:30 +0200
 Subject: [PATCH 04/36] Fix(?) #62

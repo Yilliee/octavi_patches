@@ -1,4 +1,4 @@
-From 51f4b647cbb23d8bbfd2f6e26d791518189d1b14 Mon Sep 17 00:00:00 2001
+From 7f311c0416cc4405ec357749377c9c6cabd63fd3 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 10 Aug 2021 19:09:56 -0400
 Subject: [PATCH 36/36] Import back FacolaView for under-display fingerprint

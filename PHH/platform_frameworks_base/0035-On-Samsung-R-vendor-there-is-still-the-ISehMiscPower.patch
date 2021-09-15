@@ -1,4 +1,4 @@
-From bc2fc5e79ef9d5bef3ca2906fad30c1791203109 Mon Sep 17 00:00:00 2001
+From 9d833c35b95328eb462503de5bc871606d12fb26 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 13 Mar 2021 13:21:46 -0500
 Subject: [PATCH 35/36] On Samsung R vendor, there is still the ISehMiscPower

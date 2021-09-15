@@ -1,4 +1,4 @@
-From 4f3d767d08a1dd566bfcfa70fc7b92b2e4aae5b7 Mon Sep 17 00:00:00 2001
+From 59b3b4a9b46ec23def2148d1f1ae34e7b453bc7b Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 10 Mar 2020 23:30:17 +0100
 Subject: [PATCH 17/36] Allow disabling of fingerprint cleanups, needed on some

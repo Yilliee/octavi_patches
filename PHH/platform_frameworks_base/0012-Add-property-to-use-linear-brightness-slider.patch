@@ -1,4 +1,4 @@
-From b5a34ea31a6fca7e50e7802e6fd4cd83c20af897 Mon Sep 17 00:00:00 2001
+From 9533b0e0d94dd500afde702e2c56e9d2960d8131 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 11 Aug 2019 10:30:37 +0200
 Subject: [PATCH 12/36] Add property to use linear brightness slider
