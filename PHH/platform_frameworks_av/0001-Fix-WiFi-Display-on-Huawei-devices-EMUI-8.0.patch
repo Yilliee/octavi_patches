@@ -1,7 +1,7 @@
-From dd2edb3c0b6e0d9afd57472482f29d0e43c6c82c Mon Sep 17 00:00:00 2001
+From 5f6ef6a1ab636ec188bae0de5001a8e748d6a356 Mon Sep 17 00:00:00 2001
 From: Alexander Pohl <pohl199885@gmail.com>
 Date: Fri, 15 Jun 2018 19:58:07 +0200
-Subject: [PATCH 01/22] Fix WiFi-Display on Huawei devices (EMUI 8.0)
+Subject: [PATCH 01/24] Fix WiFi-Display on Huawei devices (EMUI 8.0)
 
 Huaweis media stack doesn't handle intra-refresh-mode, so skip the error instead.
 
@@ -27,5 +27,5 @@ index 50ee7b56a3..037013aef1 100644
      }
  
 -- 
-2.33.0
+2.25.1
 

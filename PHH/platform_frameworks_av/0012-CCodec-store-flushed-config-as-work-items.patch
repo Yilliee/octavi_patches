@@ -1,7 +1,7 @@
-From 519617dc3b462c8ddca644e3fc86cd14c1a9c1c5 Mon Sep 17 00:00:00 2001
+From 15e92af62a95814178fab49b762e051c054158b6 Mon Sep 17 00:00:00 2001
 From: Wonsik Kim <wonsik@google.com>
 Date: Tue, 5 Jan 2021 18:58:15 -0800
-Subject: [PATCH 12/22] CCodec: store flushed config as work items
+Subject: [PATCH 12/24] CCodec: store flushed config as work items
 
 Store flushed config as work items and queue them to the component
 directly, instead of going through MediaCodecBuffer.
@@ -170,5 +170,5 @@ index 046c5c3c49..e2c9aaa287 100644
      std::atomic_uint64_t mFrameIndex;
      std::atomic_uint64_t mFirstValidFrameIndex;
 -- 
-2.33.0
+2.25.1
 

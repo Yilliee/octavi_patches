@@ -1,0 +1,165 @@
+From 147fe9699874aea782eb76cdbba003784b144cdc Mon Sep 17 00:00:00 2001
+From: Vladimir Oltean <olteanv@gmail.com>
+Date: Wed, 9 Jan 2019 01:43:08 +0200
+Subject: [PATCH 24/24] libstagefright_wfd: compilation fixes
+
+* Among others, adapt to the ABuffer API changes in
+  "f03606d9 Move MediaBufferXXX from foundation to libmediaextractor"
+
+Change-Id: Ie92fc035c6430f1458d45995a5b2627d0bc75122
+Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
+Signed-off-by: DennySPb <dennyspb@gmail.com>
+
+libstagefright_wfd: Adapt to A11 changes
+
+Change-Id: I69f13c93a68b1ad60e085000361331a3fdc98049
+Signed-off-by: DennySPb <dennyspb@gmail.com>
+
+libstagefright: Remove libmediaextractor dependency
+
+Change-Id: Ifb564aafcf6f9bd45010500a589050b6577c0f7a
+Signed-off-by: DennySPb <dennyspb@gmail.com>
+
+Remove libmediaextractor dependency from libstagefright_wfd
+
+Change-Id: I3d417d2f2ce468eb9d45f55f7818bb9a46348667
+Signed-off-by: DennySPb <dennyspb@gmail.com>
+
+libstagefright_wfd: Log MediaExtractor entry point to MediaMetrics
+
+Change-Id: Ic8fac2cd5ee4d3bb59804e69efc1d5c482aa2417
+
+Change-Id: Ie92fc035c6430f1458d45995a5b2627d0bc75122
+---
+ media/libstagefright/tests/DummyRecorder.cpp                 | 2 +-
+ media/libstagefright/wifi-display/MediaSender.cpp            | 3 +--
+ media/libstagefright/wifi-display/rtp/RTPSender.cpp          | 5 ++---
+ media/libstagefright/wifi-display/source/Converter.cpp       | 2 +-
+ media/libstagefright/wifi-display/source/MediaPuller.cpp     | 2 +-
+ media/libstagefright/wifi-display/source/PlaybackSession.cpp | 2 +-
+ media/libstagefright/wifi-display/source/TSPacketizer.cpp    | 2 +-
+ 7 files changed, 8 insertions(+), 10 deletions(-)
+
+diff --git a/media/libstagefright/tests/DummyRecorder.cpp b/media/libstagefright/tests/DummyRecorder.cpp
+index b08aad9282..58cdabd017 100644
+--- a/media/libstagefright/tests/DummyRecorder.cpp
++++ b/media/libstagefright/tests/DummyRecorder.cpp
+@@ -17,7 +17,7 @@
+ #define LOG_TAG "DummyRecorder"
+ // #define LOG_NDEBUG 0
+ 
+-#include <media/MediaSource.h>
++#include <media/stagefright/MediaSource.h>
+ #include <media/stagefright/MediaBuffer.h>
+ #include "DummyRecorder.h"
+ 
+diff --git a/media/libstagefright/wifi-display/MediaSender.cpp b/media/libstagefright/wifi-display/MediaSender.cpp
+index e85b91bf9e..94470477bc 100644
+--- a/media/libstagefright/wifi-display/MediaSender.cpp
++++ b/media/libstagefright/wifi-display/MediaSender.cpp
+@@ -23,9 +23,8 @@
+ #include "rtp/RTPSender.h"
+ #include "source/TSPacketizer.h"
+ 
+-#include <media/stagefright/foundation/avc_utils.h>
+-
+ #include <media/IHDCP.h>
++#include <media/stagefright/foundation/avc_utils.h>
+ #include <media/stagefright/foundation/ABuffer.h>
+ #include <media/stagefright/foundation/ADebug.h>
+ #include <media/stagefright/foundation/AMessage.h>
+diff --git a/media/libstagefright/wifi-display/rtp/RTPSender.cpp b/media/libstagefright/wifi-display/rtp/RTPSender.cpp
+index 4cfe1bd4ee..b576dc52d6 100644
+--- a/media/libstagefright/wifi-display/rtp/RTPSender.cpp
++++ b/media/libstagefright/wifi-display/rtp/RTPSender.cpp
+@@ -20,17 +20,16 @@
+ 
+ #include "RTPSender.h"
+ 
++#include <media/stagefright/foundation/avc_utils.h>
+ #include <media/stagefright/foundation/ABuffer.h>
+ #include <media/stagefright/foundation/ADebug.h>
+ #include <media/stagefright/foundation/AMessage.h>
++#include <media/stagefright/foundation/ByteUtils.h>
+ #include <media/stagefright/foundation/hexdump.h>
+ #include <media/stagefright/ANetworkSession.h>
+ #include <media/stagefright/MediaErrors.h>
+ #include <media/stagefright/Utils.h>
+ 
+-#include <media/stagefright/foundation/avc_utils.h>
+-#include <media/stagefright/foundation/ByteUtils.h>
+-
+ namespace android {
+ 
+ RTPSender::RTPSender(
+diff --git a/media/libstagefright/wifi-display/source/Converter.cpp b/media/libstagefright/wifi-display/source/Converter.cpp
+index 0d10c51aec..f101078ed9 100644
+--- a/media/libstagefright/wifi-display/source/Converter.cpp
++++ b/media/libstagefright/wifi-display/source/Converter.cpp
+@@ -26,6 +26,7 @@
+ #include <gui/Surface.h>
+ #include <mediadrm/ICrypto.h>
+ #include <media/MediaCodecBuffer.h>
++#include <media/stagefright/foundation/avc_utils.h>
+ #include <media/stagefright/foundation/ABuffer.h>
+ #include <media/stagefright/foundation/ADebug.h>
+ #include <media/stagefright/foundation/AMessage.h>
+@@ -34,7 +35,6 @@
+ #include <media/stagefright/MediaDefs.h>
+ #include <media/stagefright/MediaErrors.h>
+ #include <media/MediaBufferHolder.h>
+-#include <media/stagefright/foundation/avc_utils.h>
+ 
+ #include <arpa/inet.h>
+ 
+diff --git a/media/libstagefright/wifi-display/source/MediaPuller.cpp b/media/libstagefright/wifi-display/source/MediaPuller.cpp
+index 3f7431bd6e..4f48d4f11d 100644
+--- a/media/libstagefright/wifi-display/source/MediaPuller.cpp
++++ b/media/libstagefright/wifi-display/source/MediaPuller.cpp
+@@ -24,9 +24,9 @@
+ #include <media/stagefright/foundation/ADebug.h>
+ #include <media/stagefright/foundation/AMessage.h>
+ #include <media/stagefright/MediaBufferBase.h>
+-#include <media/MediaBufferHolder.h>
+ #include <media/stagefright/MediaSource.h>
+ #include <media/stagefright/MetaData.h>
++#include <media/MediaBufferHolder.h>
+ 
+ namespace android {
+ 
+diff --git a/media/libstagefright/wifi-display/source/PlaybackSession.cpp b/media/libstagefright/wifi-display/source/PlaybackSession.cpp
+index cc29211a33..f93f9f3b23 100644
+--- a/media/libstagefright/wifi-display/source/PlaybackSession.cpp
++++ b/media/libstagefright/wifi-display/source/PlaybackSession.cpp
+@@ -23,13 +23,13 @@
+ #include "Converter.h"
+ #include "MediaPuller.h"
+ #include "RepeaterSource.h"
+-#include <media/stagefright/foundation/avc_utils.h>
+ #include "WifiDisplaySource.h"
+ 
+ #include <binder/IServiceManager.h>
+ #include <cutils/properties.h>
+ #include <media/IHDCP.h>
+ #include <media/IMediaHTTPService.h>
++#include <media/stagefright/foundation/avc_utils.h>
+ #include <media/stagefright/foundation/ABitReader.h>
+ #include <media/stagefright/foundation/ABuffer.h>
+ #include <media/stagefright/foundation/ADebug.h>
+diff --git a/media/libstagefright/wifi-display/source/TSPacketizer.cpp b/media/libstagefright/wifi-display/source/TSPacketizer.cpp
+index 5be0fd3eb1..1897f25582 100644
+--- a/media/libstagefright/wifi-display/source/TSPacketizer.cpp
++++ b/media/libstagefright/wifi-display/source/TSPacketizer.cpp
+@@ -19,8 +19,8 @@
+ #include <utils/Log.h>
+ 
+ #include "TSPacketizer.h"
+-#include <media/stagefright/foundation/avc_utils.h>
+ 
++#include <media/stagefright/foundation/avc_utils.h>
+ #include <media/stagefright/foundation/ABuffer.h>
+ #include <media/stagefright/foundation/ADebug.h>
+ #include <media/stagefright/foundation/AMessage.h>
+-- 
+2.25.1
+

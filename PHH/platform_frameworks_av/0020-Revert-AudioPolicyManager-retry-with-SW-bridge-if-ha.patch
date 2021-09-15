@@ -1,7 +1,7 @@
-From e5b93fe6e3eddbcf9ae9b8552eb666248839e909 Mon Sep 17 00:00:00 2001
+From 0396c25641c8145811102c14e778a2f61801ecea Mon Sep 17 00:00:00 2001
 From: Yilliee <m.taha6f@gmail.com>
 Date: Sat, 1 May 2021 12:15:34 +0500
-Subject: [PATCH 20/22] Revert "AudioPolicyManager: retry with SW bridge if
+Subject: [PATCH 20/24] Revert "AudioPolicyManager: retry with SW bridge if
  hardware audio patch fails"
 
 This reverts commit f887a093cd6f116243bf0b51afc6bf7d0a8aa00a.
@@ -69,5 +69,5 @@ index c05f8a51d5..b2a670e6a4 100644
           * @brief releaseAudioPatchInternal internal function to remove an audio patch
           * @param[in] handle of the patch to be removed
 -- 
-2.33.0
+2.25.1
 

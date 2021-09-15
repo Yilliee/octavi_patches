@@ -1,7 +1,7 @@
-From d9007b286353080b65903cc0ac00cfeafc473637 Mon Sep 17 00:00:00 2001
+From bf3c7b308f854937088e4119474f57eda4e6d5fe Mon Sep 17 00:00:00 2001
 From: David Stevens <stevensd@google.com>
 Date: Tue, 20 Oct 2020 15:00:41 +0900
-Subject: [PATCH 13/22] BufferPool: limit number of idle buffers in caches
+Subject: [PATCH 13/24] BufferPool: limit number of idle buffers in caches
 
 Some systems have limits on the total number of graphics buffers that
 can be allocated, not just the total size. When dealing with
@@ -18,8 +18,8 @@ Merged-In: If3f4433ba1794ccb624b864a56619c8613a315f2
 ---
  media/bufferpool/2.0/AccessorImpl.cpp     | 13 +++++++++----
  media/bufferpool/2.0/AccessorImpl.h       |  6 ++++++
- media/bufferpool/2.0/BufferPoolClient.cpp | 10 ++++++++--
- 3 files changed, 23 insertions(+), 6 deletions(-)
+ media/bufferpool/2.0/BufferPoolClient.cpp | 13 +++++++++++--
+ 3 files changed, 26 insertions(+), 6 deletions(-)
 
 diff --git a/media/bufferpool/2.0/AccessorImpl.cpp b/media/bufferpool/2.0/AccessorImpl.cpp
 index bab9e83a4c..5d56fca3cb 100644
@@ -78,10 +78,20 @@ index cd1b4d08c1..3d39941337 100644
              void onBufferAllocated(size_t allocSize) {
                  mSizeCached += allocSize;
 diff --git a/media/bufferpool/2.0/BufferPoolClient.cpp b/media/bufferpool/2.0/BufferPoolClient.cpp
-index 342fef6b9d..545d72e5d9 100644
+index 342fef6b9d..4ab9832f06 100644
 --- a/media/bufferpool/2.0/BufferPoolClient.cpp
 +++ b/media/bufferpool/2.0/BufferPoolClient.cpp
-@@ -136,6 +136,10 @@ private:
+@@ -32,6 +32,9 @@ namespace implementation {
+ static constexpr int64_t kReceiveTimeoutUs = 1000000; // 100ms
+ static constexpr int kPostMaxRetry = 3;
+ static constexpr int kCacheTtlUs = 1000000; // TODO: tune
++static constexpr size_t kMaxCachedBufferCount = 64;
++static constexpr size_t kCachedBufferCountTarget = kMaxCachedBufferCount - 16;
++
+ 
+ class BufferPoolClient::Impl
+         : public std::enable_shared_from_this<BufferPoolClient::Impl> {
+@@ -136,6 +139,10 @@ private:
              --mActive;
              mLastChangeUs = getTimestampNow();
          }
@@ -92,7 +102,7 @@ index 342fef6b9d..545d72e5d9 100644
      } mCache;
  
      // FMQ - release notifier
-@@ -668,10 +672,12 @@ bool BufferPoolClient::Impl::syncReleased(uint32_t messageId) {
+@@ -668,10 +675,12 @@ bool BufferPoolClient::Impl::syncReleased(uint32_t messageId) {
  // should have mCache.mLock
  void BufferPoolClient::Impl::evictCaches(bool clearCache) {
      int64_t now = getTimestampNow();
@@ -108,5 +118,5 @@ index 342fef6b9d..545d72e5d9 100644
                  ++evicted;
              } else {
 -- 
-2.33.0
+2.25.1
 

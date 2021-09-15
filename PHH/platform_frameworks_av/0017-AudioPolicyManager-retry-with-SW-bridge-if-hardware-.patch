@@ -1,7 +1,7 @@
-From c04c443f08b5de2f7a6d307444ce23b3ccc38152 Mon Sep 17 00:00:00 2001
+From 0061a5eeb2de208fe4a8058fb26a759ac455278d Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sun, 28 Mar 2021 16:17:36 +0800
-Subject: [PATCH 17/22] AudioPolicyManager: retry with SW bridge if hardware
+Subject: [PATCH 17/24] AudioPolicyManager: retry with SW bridge if hardware
  audio patch fails
 
 * On two of my MT6771 Q vendor devices, in-call audio is broken due to
@@ -95,5 +95,5 @@ index b2a670e6a4..c05f8a51d5 100644
           * @brief releaseAudioPatchInternal internal function to remove an audio patch
           * @param[in] handle of the patch to be removed
 -- 
-2.33.0
+2.25.1
 

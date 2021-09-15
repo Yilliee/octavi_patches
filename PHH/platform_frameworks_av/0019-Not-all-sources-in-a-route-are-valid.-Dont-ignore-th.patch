@@ -1,7 +1,7 @@
-From 00c5b8ffd2e0b3ff849a9c5f090e48e580e90970 Mon Sep 17 00:00:00 2001
+From 545e7182848fd574ba0a807e4aa1f01b1db36f36 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 28 Mar 2021 18:54:47 +0200
-Subject: [PATCH 19/22] Not all sources in a route are valid. Dont ignore the
+Subject: [PATCH 19/24] Not all sources in a route are valid. Dont ignore the
  whole route because of one broken source
 
 ---
@@ -27,5 +27,5 @@ index 0bd8ffa69b..051aaf2c79 100644
          devTag = strtok(NULL, ",");
      }
 -- 
-2.33.0
+2.25.1
 

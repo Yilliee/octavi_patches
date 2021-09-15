@@ -1,7 +1,7 @@
-From 3ad5074b28eae0120dcb1eb4ab1587df8aed0895 Mon Sep 17 00:00:00 2001
+From 91efe0c791d72a784c21aa843438aad6b4327c9f Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 13 Mar 2021 14:20:03 -0500
-Subject: [PATCH 15/22] Support Samsung R multi-cams
+Subject: [PATCH 15/24] Support Samsung R multi-cams
 
 ---
  services/camera/libcameraservice/Android.bp               | 1 +
@@ -62,5 +62,5 @@ index 3e6ad1ef52..1a73afc891 100644
      else
          ret = interface->getCameraIdList(cb);
 -- 
-2.33.0
+2.25.1
 

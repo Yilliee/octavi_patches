@@ -1,7 +1,7 @@
-From c794167c9024a9fe1a7ab7947aa41636cb4d069d Mon Sep 17 00:00:00 2001
+From 6b06f82f16d09d23c7def0df1e3810f7169c3f7c Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 14 Apr 2021 11:09:12 +0800
-Subject: [PATCH 21/22] APM: Fall back to legacy voice call routing if creating
+Subject: [PATCH 21/24] APM: Fall back to legacy voice call routing if creating
  audio patch failed
 
 * On some MT6771 Q vendor devices, in-call audio is broken due to APM
@@ -74,5 +74,5 @@ index 50cdc93525..c892e12943 100644
          // terminate active capture if on the same HW module as the call TX source device
          // FIXME: would be better to refine to only inputs whose profile connects to the
 -- 
-2.33.0
+2.25.1
 
