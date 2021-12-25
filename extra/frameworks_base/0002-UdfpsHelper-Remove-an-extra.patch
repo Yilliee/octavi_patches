@@ -1,0 +1,24 @@
+From ce55e3bb9176710acabc3e552938a03cfcbca0dd Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
+Date: Fri, 24 Dec 2021 09:42:06 +0000
+Subject: [PATCH 2/2] UdfpsHelper : Remove an extra '{'
+
+---
+ .../server/biometrics/sensors/fingerprint/UdfpsHelper.java       | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java b/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java
+index ccecab81..7ae20853 100644
+--- a/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java
++++ b/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java
+@@ -153,7 +153,6 @@ public class UdfpsHelper {
+         }
+ 
+         Slog.v(TAG, "onFingerUp | failed to cast the HIDL to V2_3");
+-        }
+     }
+ 
+     public static int getReasonFromEnrollReason(@FingerprintManager.EnrollReason int reason) {
+-- 
+2.17.1
+

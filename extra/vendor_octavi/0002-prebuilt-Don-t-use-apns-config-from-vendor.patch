@@ -1,0 +1,50 @@
+From d2216a27fa251d46dbfdd59a988cbace717f14c9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
+Date: Fri, 24 Dec 2021 09:31:52 +0000
+Subject: [PATCH 2/2] prebuilt : Don't use apns config from vendor
+
+---
+ prebuilt/common/Android.mk | 30 ------------------------------
+ 1 file changed, 30 deletions(-)
+
+diff --git a/prebuilt/common/Android.mk b/prebuilt/common/Android.mk
+index 118fde0..946ef9d 100644
+--- a/prebuilt/common/Android.mk
++++ b/prebuilt/common/Android.mk
+@@ -19,33 +19,3 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+ LOCAL_DEX_PREOPT := false
+ LOCAL_PRODUCT_MODULE := true
+ include $(BUILD_PREBUILT)
+-
+-################################
+-# Copies the APN list file into $(TARGET_COPY_OUT_PRODUCT)/etc for the product as apns-conf.xml.
+-# In the case where $(CUSTOM_APNS_FILE) is defined, the content of $(CUSTOM_APNS_FILE)
+-# is added or replaced to the $(DEFAULT_APNS_FILE).
+-include $(CLEAR_VARS)
+-
+-LOCAL_MODULE := apns-conf.xml
+-LOCAL_MODULE_CLASS := ETC
+-
+-DEFAULT_APNS_FILE := vendor/octavi/prebuilt/common/etc/apns-conf.xml
+-
+-ifdef CUSTOM_APNS_FILE
+-CUSTOM_APNS_SCRIPT := vendor/octavi/tools/custom_apns.py
+-FINAL_APNS_FILE := $(local-generated-sources-dir)/apns-conf.xml
+-
+-$(FINAL_APNS_FILE): PRIVATE_SCRIPT := $(CUSTOM_APNS_SCRIPT)
+-$(FINAL_APNS_FILE): PRIVATE_CUSTOM_APNS_FILE := $(CUSTOM_APNS_FILE)
+-$(FINAL_APNS_FILE): $(CUSTOM_APNS_SCRIPT) $(DEFAULT_APNS_FILE)
+-	rm -f $@
+-	python $(PRIVATE_SCRIPT) $@ $(PRIVATE_CUSTOM_APNS_FILE)
+-else
+-FINAL_APNS_FILE := $(DEFAULT_APNS_FILE)
+-endif
+-
+-LOCAL_PREBUILT_MODULE_FILE := $(FINAL_APNS_FILE)
+-
+-LOCAL_PRODUCT_MODULE := true
+-
+-include $(BUILD_PREBUILT)
+-- 
+2.17.1
+
