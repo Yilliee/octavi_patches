@@ -1,27 +1,37 @@
-From 0fb99864ccc53b5db67ced182fa3ef0374fc227e Mon Sep 17 00:00:00 2001
+From 445bd85c5623ec813cb985bbb468ab7288fb8805 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
 Date: Thu, 23 Dec 2021 12:00:39 +0500
 Subject: [PATCH] Create octavi.mk using lineage.mk as a base
 
 Co-authored-by: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 ---
- octavi.mk | 7 +++++++
- 1 file changed, 7 insertions(+)
+ octavi.mk | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
  create mode 100644 octavi.mk
 
 diff --git a/octavi.mk b/octavi.mk
 new file mode 100644
-index 0000000..aef9b10
+index 0000000..814c8b2
 --- /dev/null
 +++ b/octavi.mk
-@@ -0,0 +1,7 @@
+@@ -0,0 +1,17 @@
 +$(call inherit-product, vendor/octavi/config/common_full_phone.mk)
++$(call inherit-product, device/sepolicy/octavi/common/sepolicy.mk)
 +
 +TARGET_NO_KERNEL_OVERRIDE := true
 +SELINUX_IGNORE_NEVERALLOWS := true
 +
++TARGET_USES_PREBUILT_SEPOLICY := true
++TARGET_HAS_FUSEBLK_SEPOLICY_ON_VENDOR := true
++
++TARGET_FACE_UNLOCK_SUPPORTED := true
++TARGET_USES_BLUR := true
++TARGET_WANTS_FOD_ANIMATIONS := true
++USE_PIXEL_CHARGER := true
++OCTAVI_DEVICE_MAINTAINER := Yillié
++
 +-include vendor/octavi/build/core/config.mk
 +-include vendor/octavi/build/core/apicheck.mk
 -- 
-2.33.1
+2.31.1
 

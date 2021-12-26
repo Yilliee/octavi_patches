@@ -1,4 +1,4 @@
-From d2ceaa8d6942d74ce40e7cb7a7ba0ea18d0b6df3 Mon Sep 17 00:00:00 2001
+From 35d228f1f8df146677c283bc85842c954c3d24f7 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 17 Dec 2021 17:16:14 -0500
 Subject: [PATCH 21/23] Reduce the size of udfps enroll progress bar. Some
@@ -11,7 +11,7 @@ Change-Id: I1609ad9ca316293dcaaf07f7e681d11aadfcd29c
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SystemUI/res/values/config.xml b/packages/SystemUI/res/values/config.xml
-index 45f3f55b..a29d70b5 100644
+index 52ef3dc7..4a5e8584 100644
 --- a/packages/SystemUI/res/values/config.xml
 +++ b/packages/SystemUI/res/values/config.xml
 @@ -637,7 +637,7 @@
@@ -24,5 +24,5 @@ index 45f3f55b..a29d70b5 100644
  
      <!-- package name of a built-in camera app to use to restrict implicit intent resolution
 -- 
-2.33.1
+2.31.1
 

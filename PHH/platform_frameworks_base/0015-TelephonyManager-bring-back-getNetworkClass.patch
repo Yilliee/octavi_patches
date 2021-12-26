@@ -1,4 +1,4 @@
-From 7e4c0490f3a788ba040e055bc3d21bf81fdef8c8 Mon Sep 17 00:00:00 2001
+From 653e23a9a0f0c8281c826fc78ccf3968c9b15a6b Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 16 Dec 2020 13:46:15 +0800
 Subject: [PATCH 15/23] TelephonyManager: bring back getNetworkClass()
@@ -80,5 +80,5 @@ index b6c00584..131c298f 100644
       * Returns a string representation of the radio technology (network type)
       * currently in use on the device.
 -- 
-2.33.1
+2.31.1
 

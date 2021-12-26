@@ -1,4 +1,4 @@
-From e78b296b9c094faffc6498cf8f6a3602062f48f6 Mon Sep 17 00:00:00 2001
+From 4ddbced0f7d22cb8be32c88777856155b7a06a7a Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 6 Dec 2020 12:20:08 +0100
 Subject: [PATCH 12/23] Make rounded corners padding overridable with
@@ -85,5 +85,5 @@ index fe1f63a3..3ee8c688 100644
          val minDotWidth = rotatedResources
                  .getDimensionPixelSize(R.dimen.ongoing_appops_dot_min_padding)
 -- 
-2.33.1
+2.31.1
 

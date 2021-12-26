@@ -238,9 +238,9 @@ fi
 
 #frameworks_base
 cp -r $Andy/frameworks_base $SOURCE_DIR/frameworks/base/andy && cd $SOURCE_DIR/frameworks/base
-#apply_patches frameworks/base andy 01
+#apply_patches frameworks/base andy 02
 if [ "$PWD" == "$SOURCE_DIR/frameworks/base" ]; then
-   for i in {01..01}; do git am andy/00$i* ; done
+   for i in {01..02}; do git am andy/00$i* ; done
 else
    echo "Current Directory: $PWD ≠ $SOURCE_DIR/frameworks/base"
    echo "Skipping patches for frameworks/base"
@@ -305,15 +305,6 @@ if [ "$PWD" == "$SOURCE_DIR/build/make" ]; then
 else
    echo "Current Directory: $PWD ≠ $SOURCE_DIR/build/make"
    echo "Skipping patches for build/make"
-fi
-
-cp -r $extra/frameworks_base $SOURCE_DIR/frameworks/base/extra && cd $SOURCE_DIR/frameworks/base
-apply_patches frameworks/base extra 02
-if [ "$PWD" == "$SOURCE_DIR/frameworks/base" ]; then
-   for i in {01..02}; do git am extra/00$i* ; done
-else
-   echo "Current Directory: $PWD ≠ $SOURCE_DIR/frameworks/base"
-   echo "Skipping patches for frameworks/base"
 fi
 
 cp -r $extra/vendor_octavi $SOURCE_DIR/vendor/octavi/extra && cd $SOURCE_DIR/vendor/octavi

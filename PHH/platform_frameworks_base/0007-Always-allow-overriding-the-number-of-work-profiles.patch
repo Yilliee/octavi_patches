@@ -1,4 +1,4 @@
-From a1c4c38c6b88462f14cec529389ebf9d1deaed11 Mon Sep 17 00:00:00 2001
+From e2ecf7673f0d7e6b738eef8abc487502384f6411 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 5 Apr 2020 16:32:46 +0200
 Subject: [PATCH 07/23] Always allow overriding the number of work profiles
@@ -28,5 +28,5 @@ index b1bd7b13..96d77507 100644
          return defaultMax;
      }
 -- 
-2.33.1
+2.31.1
 

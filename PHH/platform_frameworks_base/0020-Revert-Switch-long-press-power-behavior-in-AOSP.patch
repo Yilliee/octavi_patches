@@ -1,4 +1,4 @@
-From cbfc5d80133fcbf24ee6766a821b6c2db3874862 Mon Sep 17 00:00:00 2001
+From 2ec2891674dbc9b829dc13aef07e57c6ba290705 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sat, 4 Sep 2021 08:26:30 +0000
 Subject: [PATCH 20/23] Revert "Switch long-press power behavior in AOSP."
@@ -31,5 +31,5 @@ index bf8cdb52..c85b7caa 100644
      <!-- Control the behavior when the user long presses the back button.  Non-zero values are only
           valid for watches as part of CDD/CTS.
 -- 
-2.33.1
+2.31.1
 

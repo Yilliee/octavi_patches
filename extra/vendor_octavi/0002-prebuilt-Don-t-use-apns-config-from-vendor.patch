@@ -1,12 +1,41 @@
-From d2216a27fa251d46dbfdd59a988cbace717f14c9 Mon Sep 17 00:00:00 2001
+From 8770b54e7bd545847fe5b127f165d71936c2fef7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
 Date: Fri, 24 Dec 2021 09:31:52 +0000
-Subject: [PATCH 2/2] prebuilt : Don't use apns config from vendor
+Subject: [PATCH 2/2] prebuilt : Don't use apns-config from vendor
 
 ---
+ config/data_only.mk        |  4 ----
+ config/telephony.mk        |  4 ----
  prebuilt/common/Android.mk | 30 ------------------------------
- 1 file changed, 30 deletions(-)
+ 3 files changed, 38 deletions(-)
 
+diff --git a/config/data_only.mk b/config/data_only.mk
+index 5ff877c..0cddffb 100644
+--- a/config/data_only.mk
++++ b/config/data_only.mk
+@@ -1,7 +1,3 @@
+-# World APN list
+-PRODUCT_PACKAGES += \
+-    apns-conf.xml
+-
+ # Telephony packages
+ PRODUCT_PACKAGES += \
+     Stk
+diff --git a/config/telephony.mk b/config/telephony.mk
+index e05df7d..67841a6 100644
+--- a/config/telephony.mk
++++ b/config/telephony.mk
+@@ -2,10 +2,6 @@
+ PRODUCT_COPY_FILES += \
+     vendor/octavi/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
+ 
+-# World APN list
+-PRODUCT_PACKAGES += \
+-    apns-conf.xml
+-
+ # Telephony packages
+ PRODUCT_PACKAGES += \
+     messaging \
 diff --git a/prebuilt/common/Android.mk b/prebuilt/common/Android.mk
 index 118fde0..946ef9d 100644
 --- a/prebuilt/common/Android.mk
@@ -46,5 +75,5 @@ index 118fde0..946ef9d 100644
 -
 -include $(BUILD_PREBUILT)
 -- 
-2.17.1
+2.31.1
 

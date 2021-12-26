@@ -1,4 +1,4 @@
-From 18a23dc1cfa8400ccaac4c22e1295eac5c78ed49 Mon Sep 17 00:00:00 2001
+From 1b888a81b7fe1bf0fed1662a73260eba88b60169 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 24 Mar 2018 08:01:48 +0100
 Subject: [PATCH 19/23] backlight: Fix backlight control on Galaxy S9(+)
@@ -117,5 +117,5 @@ index 91f14de0..8fa9c4f3 100644
                  color = 0xff000000 | (color << 16) | (color << 8) | color;
                  setLightLocked(color, LIGHT_FLASH_NONE, 0, 0, brightnessMode);
 -- 
-2.33.1
+2.31.1
 

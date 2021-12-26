@@ -1,4 +1,4 @@
-From 56dc12fcd961301ea7fcc5ffd805eacfb5d96ad7 Mon Sep 17 00:00:00 2001
+From 99c81f507237f2dc566490fc338a2de304368c1e Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 16 Dec 2020 21:24:12 +0800
 Subject: [PATCH 14/23] Revert "Remove unused SystemProperties.set"
@@ -91,5 +91,5 @@ index 7b3d281e..b6c00584 100644
       * Inserts or updates a list property. Expands the list if its length is not enough.
       */
 -- 
-2.33.1
+2.31.1
 
