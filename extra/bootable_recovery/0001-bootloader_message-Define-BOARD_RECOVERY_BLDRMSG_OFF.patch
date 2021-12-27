@@ -1,0 +1,28 @@
+From 4c1fe0776f30229da94431fe618b987bae9e41a5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
+Date: Mon, 27 Dec 2021 06:50:49 +0000
+Subject: [PATCH] bootloader_message : Define BOARD_RECOVERY_BLDRMSG_OFFSET as
+ 0 if it han't been defined before
+
+---
+ .../include/bootloader_message/bootloader_message.h           | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/bootloader_message/include/bootloader_message/bootloader_message.h b/bootloader_message/include/bootloader_message/bootloader_message.h
+index 387692b..382a304 100644
+--- a/bootloader_message/include/bootloader_message/bootloader_message.h
++++ b/bootloader_message/include/bootloader_message/bootloader_message.h
+@@ -29,6 +29,10 @@
+ // 32K - 64K    System space, used for miscellanious AOSP features. See below.
+ // Note that these offsets are admitted by bootloader,recovery and uncrypt, so they
+ // are not configurable without changing all of them.
++#ifndef BOARD_RECOVERY_BLDRMSG_OFFSET
++#define BOARD_RECOVERY_BLDRMSG_OFFSET 0
++#endif
++
+ constexpr size_t BOOTLOADER_MESSAGE_OFFSET_IN_MISC = BOARD_RECOVERY_BLDRMSG_OFFSET;
+ constexpr size_t VENDOR_SPACE_OFFSET_IN_MISC = 2 * 1024 + BOARD_RECOVERY_BLDRMSG_OFFSET;
+ constexpr size_t WIPE_PACKAGE_OFFSET_IN_MISC = 16 * 1024 + BOARD_RECOVERY_BLDRMSG_OFFSET;
+-- 
+2.17.1
+

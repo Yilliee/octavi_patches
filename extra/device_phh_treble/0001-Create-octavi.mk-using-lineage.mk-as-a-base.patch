@@ -1,4 +1,4 @@
-From 445bd85c5623ec813cb985bbb468ab7288fb8805 Mon Sep 17 00:00:00 2001
+From 75962ef55fa0101b72ea706144b72c4e40cd6920 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
 Date: Thu, 23 Dec 2021 12:00:39 +0500
 Subject: [PATCH] Create octavi.mk using lineage.mk as a base
@@ -11,17 +11,17 @@ Co-authored-by: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 
 diff --git a/octavi.mk b/octavi.mk
 new file mode 100644
-index 0000000..814c8b2
+index 0000000..4d30c12
 --- /dev/null
 +++ b/octavi.mk
 @@ -0,0 +1,17 @@
 +$(call inherit-product, vendor/octavi/config/common_full_phone.mk)
-+$(call inherit-product, device/sepolicy/octavi/common/sepolicy.mk)
++$(call inherit-product, device/octavi/sepolicy/common/sepolicy.mk)
 +
 +TARGET_NO_KERNEL_OVERRIDE := true
 +SELINUX_IGNORE_NEVERALLOWS := true
 +
-+TARGET_USES_PREBUILT_SEPOLICY := true
++TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
 +TARGET_HAS_FUSEBLK_SEPOLICY_ON_VENDOR := true
 +
 +TARGET_FACE_UNLOCK_SUPPORTED := true
@@ -33,5 +33,5 @@ index 0000000..814c8b2
 +-include vendor/octavi/build/core/config.mk
 +-include vendor/octavi/build/core/apicheck.mk
 -- 
-2.31.1
+2.17.1
 

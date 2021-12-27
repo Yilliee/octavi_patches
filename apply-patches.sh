@@ -299,7 +299,7 @@ else
 fi
 
 cp -r $extra/build_make $SOURCE_DIR/build/make/extra && cd $SOURCE_DIR/build/make
-apply_patches build/make extra 01
+#apply_patches build/make extra 01
 if [ "$PWD" == "$SOURCE_DIR/build/make" ]; then
    for i in {01..01}; do git am extra/00$i* ; done
 else
@@ -307,8 +307,17 @@ else
    echo "Skipping patches for build/make"
 fi
 
+cp -r $extra/bootable_recovery $SOURCE_DIR/bootable/recovery/extra && cd $SOURCE_DIR/bootable/recovery
+#apply_patches bootable/recovery extra 01
+if [ "$PWD" == "$SOURCE_DIR/bootable/recovery" ]; then
+   for i in {01..01}; do git am extra/00$i* ; done
+else
+   echo "Current Directory: $PWD ≠ $SOURCE_DIR/bootable/recovery"
+   echo "Skipping patches for bootable/recovery"
+fi
+
 cp -r $extra/vendor_octavi $SOURCE_DIR/vendor/octavi/extra && cd $SOURCE_DIR/vendor/octavi
-apply_patches vendor/octavi extra 02
+#apply_patches vendor/octavi extra 02
 if [ "$PWD" == "$SOURCE_DIR/vendor/octavi" ]; then
    for i in {01..02}; do git am extra/00$i* ; done
 else

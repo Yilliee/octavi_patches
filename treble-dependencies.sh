@@ -7,7 +7,6 @@ git clone https://github.com/phhusson/vendor_interfaces -b android-11.0 vendor/i
 
 git clone https://github.com/phhusson/vendor_lptools vendor/lptools -b master
 git clone https://github.com/phhusson/vendor_magisk vendor/magisk -b android-10.0
-git clone https://github.com/relan/exfat external/exfat -b master
 
 # gapps.xml
 git clone https://gitlab.com/davi.sh/gms-android-12 vendor/partner_gms
