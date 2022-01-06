@@ -1,7 +1,7 @@
-From 7ad8dfc13a04a2771a124b90879f3c62913d6de5 Mon Sep 17 00:00:00 2001
+From 7e33b8441aa4bff2ea37320090117be9cf5fed65 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 10 Mar 2020 23:26:55 +0100
-Subject: [PATCH 02/11] Use BKK's hwcomposer hacks to properly display FOD
+Subject: [PATCH 02/12] Use BKK's hwcomposer hacks to properly display FOD
  layers
 
 Insecure hack: Set FOD layers to magical Z values to trigger
@@ -35,5 +35,5 @@ index 87be750..bfaade4 100644
      uint32_t z_udfps = z;
      if ((strcmp(getLayerFE().getDebugName(), UDFPS_LAYER_NAME) == 0)
 -- 
-2.33.1
+2.34.1
 

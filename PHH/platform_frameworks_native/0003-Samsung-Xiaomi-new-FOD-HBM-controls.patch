@@ -1,7 +1,7 @@
-From 20a214ed9f06ce03081957b7c55b1910a42c9f36 Mon Sep 17 00:00:00 2001
+From 5354cd44539c8bdded9f36ce164373990b01a1fd Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 20 May 2020 21:16:56 +0200
-Subject: [PATCH 03/11] Samsung + Xiaomi new FOD HBM controls
+Subject: [PATCH 03/12] Samsung + Xiaomi new FOD HBM controls
 
 Change-Id: I5ab27fa70882efa85f0c917bf31bb32adaa09bb1
 ---
@@ -115,5 +115,5 @@ index bfaade4..e7dd87d 100644
  
      uint32_t z_udfps = z;
 -- 
-2.33.1
+2.34.1
 

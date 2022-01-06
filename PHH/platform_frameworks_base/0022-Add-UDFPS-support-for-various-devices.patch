@@ -1,7 +1,7 @@
-From 8b5d527d78fdc8770b0e797ee9d107ff84ef0e53 Mon Sep 17 00:00:00 2001
+From 165ed2033399eea44698678dc40653116e026d8a Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Dec 2021 17:08:22 -0500
-Subject: [PATCH 22/23] Add UDFPS support for various devices
+Subject: [PATCH 22/24] Add UDFPS support for various devices
 
 Successfully tested on Galaxy A51, Xiaomi Mi 9, and OnePlus Nord 2
 
@@ -605,5 +605,5 @@ index ff139e73..7ae20853 100644
  
      public static int getReasonFromEnrollReason(@FingerprintManager.EnrollReason int reason) {
 -- 
-2.31.1
+2.34.1
 

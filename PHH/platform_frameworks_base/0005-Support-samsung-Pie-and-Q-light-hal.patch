@@ -1,7 +1,7 @@
-From 03011332290cf421a997a852801cf13291edb080 Mon Sep 17 00:00:00 2001
+From e35adb4606bc9b856d74ac52b609e31ff611a287 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 24 Mar 2019 23:05:14 +0100
-Subject: [PATCH 05/23] Support samsung Pie and Q light hal
+Subject: [PATCH 05/24] Support samsung Pie and Q light hal
 
 Change-Id: I01f94acd7d0672733e48854d80368f9ac6f861c6
 ---
@@ -101,5 +101,5 @@ index 26f6d742..268b59a5 100644
      LightState state = constructState(
          colorARGB, flashMode, onMS, offMS, brightnessMode);
 -- 
-2.31.1
+2.34.1
 

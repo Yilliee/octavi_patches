@@ -1,7 +1,7 @@
-From 274d42d196b5954ae8def37c886dd988bb9d7ff2 Mon Sep 17 00:00:00 2001
+From 4fb41145d78dc5a7355be74d0f6ad28258d46af4 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Dec 2021 16:54:31 -0500
-Subject: [PATCH 10/11] Update FOD/HBM method Xiaomi/Oplus
+Subject: [PATCH 10/12] Update FOD/HBM method Xiaomi/Oplus
 
 Change-Id: If99362db18d8eace487e52716a138e15d1dcfab4
 ---
@@ -50,5 +50,5 @@ index e7dd87d..480dc53 100644
              z = 0x41000033;
          } else if(sXiaomiFod) {
 -- 
-2.33.1
+2.34.1
 

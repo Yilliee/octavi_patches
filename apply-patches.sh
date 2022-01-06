@@ -40,13 +40,13 @@ done
 
 #platform_frameworks_base
 cp -r $PHH/platform_frameworks_base $SOURCE_DIR/frameworks/base/phh && cd $SOURCE_DIR/frameworks/base
-for i in {0001..0023}
+for i in {0001..0024}
 do apply_patches frameworks/base phh $i
 done
 
 #platform_frameworks_native
 cp -r $PHH/platform_frameworks_native $SOURCE_DIR/frameworks/native/phh && cd $SOURCE_DIR/frameworks/native
-for i in {0001..0011}
+for i in {0001..0012}
 do apply_patches frameworks/native phh $i
 done
 
@@ -58,7 +58,7 @@ done
 
 #platform_frameworks_opt_telephony
 cp -r $PHH/platform_frameworks_opt_telephony $SOURCE_DIR/frameworks/opt/telephony/phh && cd $SOURCE_DIR/frameworks/opt/telephony
-for i in {0001..0003}
+for i in {0001..0004}
 do apply_patches frameworks/opt/telephony phh $i
 done
 
@@ -196,7 +196,7 @@ done
 
 #device_phh_treble
 cp -r $extra/device_phh_treble $SOURCE_DIR/device/phh/treble/extra && cd $SOURCE_DIR/device/phh/treble
-for i in {0001..0001}
+for i in {0001..0002}
 do apply_patches device/phh/treble extra $i
 done
 

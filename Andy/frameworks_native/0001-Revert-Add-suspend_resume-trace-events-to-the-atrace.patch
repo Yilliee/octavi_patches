@@ -1,4 +1,4 @@
-From b8fe8d580c02cc6c4d3b9514e76900358c56321c Mon Sep 17 00:00:00 2001
+From 67638eab59e5de363efa1c079127f95a0a9d0cd1 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sun, 8 Aug 2021 01:43:40 +0000
 Subject: [PATCH] Revert "Add suspend_resume trace events to the atrace 'freq'
@@ -38,5 +38,5 @@ index e3c4ede..94e4796 100644
      chmod 0666 /sys/kernel/tracing/events/cpufreq_interactive/enable
      chmod 0666 /sys/kernel/debug/tracing/events/vmscan/mm_vmscan_direct_reclaim_begin/enable
 -- 
-2.33.1
+2.34.1
 

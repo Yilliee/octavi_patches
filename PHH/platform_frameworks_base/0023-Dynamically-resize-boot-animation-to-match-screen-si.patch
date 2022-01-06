@@ -1,7 +1,7 @@
-From 4dedec39316523d8842b9915ddc065a2ffb48bee Mon Sep 17 00:00:00 2001
+From 6e3413c4f3185fabc2345d9c1746ce5f2ad4fd5f Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 20 Dec 2021 15:01:41 -0500
-Subject: [PATCH 23/23] Dynamically resize boot animation to match screen size
+Subject: [PATCH 23/24] Dynamically resize boot animation to match screen size
 
 Change-Id: I54e49fc6b8c670103852e212d1416e27ff976205
 ---
@@ -40,5 +40,5 @@ index 3109c5c1..6557b214 100644
  
      // Register a display event receiver
 -- 
-2.31.1
+2.34.1
 
