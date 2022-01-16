@@ -46,7 +46,7 @@ done
 
 #platform_frameworks_native
 cp -r $PHH/platform_frameworks_native $SOURCE_DIR/frameworks/native/phh && cd $SOURCE_DIR/frameworks/native
-for i in {0001..0012}
+for i in {0001..0013}
 do apply_patches frameworks/native phh $i
 done
 
