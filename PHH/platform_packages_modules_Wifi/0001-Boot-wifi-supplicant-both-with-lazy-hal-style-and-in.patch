@@ -1,4 +1,4 @@
-From 441be3227ca74c98ad951d6343f3623e98e87cb6 Mon Sep 17 00:00:00 2001
+From 3b77f36d1a05b6d3ce532dd347b83dfb4d4e6012 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 14 Oct 2021 15:32:19 -0400
 Subject: [PATCH] Boot wifi supplicant both with lazy-hal style and init style
@@ -11,7 +11,7 @@ Change-Id: Id6b93c43df84e7453aaca47d752d26b868235fed
  1 file changed, 1 insertion(+)
 
 diff --git a/service/java/com/android/server/wifi/SupplicantStaIfaceHal.java b/service/java/com/android/server/wifi/SupplicantStaIfaceHal.java
-index ed0c0cc51..7fc59e043 100644
+index ed0c0cc..7fc59e0 100644
 --- a/service/java/com/android/server/wifi/SupplicantStaIfaceHal.java
 +++ b/service/java/com/android/server/wifi/SupplicantStaIfaceHal.java
 @@ -719,6 +719,7 @@ public class SupplicantStaIfaceHal {
@@ -23,5 +23,5 @@ index ed0c0cc51..7fc59e043 100644
              } else {
                  Log.i(TAG, "Starting supplicant using init");
 -- 
-2.25.1
+2.37.0
 

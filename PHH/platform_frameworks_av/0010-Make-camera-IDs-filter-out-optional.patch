@@ -1,7 +1,7 @@
-From acc07af3759f9620027d010523cee68ab2aa9744 Mon Sep 17 00:00:00 2001
+From ad68e03c868ba61464daa50b083e9022f51ed074 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 21 Dec 2020 20:19:11 +0100
-Subject: [PATCH 10/18] Make camera IDs filter-out optional
+Subject: [PATCH 10/19] Make camera IDs filter-out optional
 
 Nowadays most people have Camera 2 apps, and would like to have all
 cameras, rather than limit which cameras are available.
@@ -26,5 +26,5 @@ index 3b7fedd..fd00357 100644
      }
      auto sortFunc =
 -- 
-2.34.1
+2.37.0
 

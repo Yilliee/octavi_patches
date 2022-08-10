@@ -1,4 +1,4 @@
-From 594a7eacc2aa58560ab3d14c871b5a744ec1611f Mon Sep 17 00:00:00 2001
+From 471063ff78a1ec68ec42ff58e2df9c36cb0d8933 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Mon, 5 Oct 2020 01:29:18 +0000
 Subject: [PATCH] Revert "sepolicy: Relabel wifi. properties as wifi_prop"
@@ -38,5 +38,5 @@ index 82b2a1f..3fa7fe4 100644
  get_prop(system_server, incremental_prop)
  
 -- 
-2.33.1
+2.37.0
 

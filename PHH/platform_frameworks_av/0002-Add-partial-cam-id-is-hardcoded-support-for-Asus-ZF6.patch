@@ -1,7 +1,7 @@
-From edf33479fc21ca0da24a16e1b72d9c0db37d0837 Mon Sep 17 00:00:00 2001
+From 74228e3ef38092580a9873fdba69e6e63b52111c Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 1 Oct 2019 13:35:49 +0200
-Subject: [PATCH 02/18] Add (partial, cam id is hardcoded) support for Asus ZF6
+Subject: [PATCH 02/19] Add (partial, cam id is hardcoded) support for Asus ZF6
  motor camera
 
 Change-Id: Iea6e1370780a1d16f728748d1d948d092532d8fe
@@ -11,7 +11,7 @@ Change-Id: Iea6e1370780a1d16f728748d1d948d092532d8fe
  2 files changed, 29 insertions(+)
 
 diff --git a/services/camera/libcameraservice/CameraService.cpp b/services/camera/libcameraservice/CameraService.cpp
-index 50d6bc5..a9c3cc4 100644
+index cbe6ad5..4df3b38 100644
 --- a/services/camera/libcameraservice/CameraService.cpp
 +++ b/services/camera/libcameraservice/CameraService.cpp
 @@ -30,6 +30,7 @@
@@ -30,7 +30,7 @@ index 50d6bc5..a9c3cc4 100644
          mEventLog(DEFAULT_EVENT_LOG_LENGTH),
          mNumberOfCameras(0),
          mNumberOfCamerasWithoutSystemCamera(0),
-@@ -1889,6 +1891,7 @@ Status CameraService::connectHelper(const sp<CALLBACK>& cameraCb, const String8&
+@@ -1891,6 +1893,7 @@ Status CameraService::connectHelper(const sp<CALLBACK>& cameraCb, const String8&
              mServiceLock.lock();
          } else {
              // Otherwise, add client to active clients list
@@ -38,7 +38,7 @@ index 50d6bc5..a9c3cc4 100644
              finishConnectLocked(client, partial, oomScoreOffset);
  
              sp<ICameraMotor> cameraMotor = ICameraMotor::getService();
-@@ -1983,6 +1986,27 @@ status_t CameraService::addOfflineClient(String8 cameraId, sp<BasicClient> offli
+@@ -1985,6 +1988,27 @@ status_t CameraService::addOfflineClient(String8 cameraId, sp<BasicClient> offli
      return OK;
  }
  
@@ -66,7 +66,7 @@ index 50d6bc5..a9c3cc4 100644
  Status CameraService::setTorchMode(const String16& cameraId, bool enabled,
          const sp<IBinder>& clientBinder) {
      Mutex::Autolock lock(mServiceLock);
-@@ -3079,6 +3103,8 @@ binder::Status CameraService::BasicClient::disconnect() {
+@@ -3081,6 +3105,8 @@ binder::Status CameraService::BasicClient::disconnect() {
          cameraMotor->onDisconnect(mCameraIdStr.string());
      }
  
@@ -76,7 +76,7 @@ index 50d6bc5..a9c3cc4 100644
      sCameraService->logDisconnected(mCameraIdStr, mClientPid, String8(mClientPackageName));
      sCameraService->mCameraProviderManager->removeRef(CameraProviderManager::DeviceMode::CAMERA,
 diff --git a/services/camera/libcameraservice/CameraService.h b/services/camera/libcameraservice/CameraService.h
-index 69e753b..13bc96e 100644
+index d5feeeb..11a906a 100644
 --- a/services/camera/libcameraservice/CameraService.h
 +++ b/services/camera/libcameraservice/CameraService.h
 @@ -219,6 +219,9 @@ public:
@@ -90,5 +90,5 @@ index 69e753b..13bc96e 100644
      // Client functionality
  
 -- 
-2.34.1
+2.37.0
 

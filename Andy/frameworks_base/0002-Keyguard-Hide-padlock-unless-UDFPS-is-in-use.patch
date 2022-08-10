@@ -1,4 +1,4 @@
-From 2a962af43432697b26af4fcdb894a8fb798325c9 Mon Sep 17 00:00:00 2001
+From 3f9fb5676fec06e4e8e33ae7bb4b2d7699ab712b Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sat, 2 Nov 2019 06:41:03 +0000
 Subject: [PATCH 2/2] Keyguard: Hide padlock unless UDFPS is in use
@@ -55,5 +55,5 @@ index 52ebf2fa..0ed36b4f 100644
              mView.setVisibility(View.VISIBLE);
              mView.setContentDescription(mUnlockedLabel);
 -- 
-2.34.1
+2.37.0
 

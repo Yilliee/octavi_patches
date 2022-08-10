@@ -1,4 +1,4 @@
-From b9a29dcb827f7438b81d0325a19dfebfd672092d Mon Sep 17 00:00:00 2001
+From ba6b0f973381e34bf6599a23597d5eadc062c84f Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 10 Mar 2020 23:26:55 +0100
 Subject: [PATCH 02/13] Use BKK's hwcomposer hacks to properly display FOD
@@ -35,5 +35,5 @@ index 87be750..bfaade4 100644
      uint32_t z_udfps = z;
      if ((strcmp(getLayerFE().getDebugName(), UDFPS_LAYER_NAME) == 0)
 -- 
-2.34.1
+2.37.0
 

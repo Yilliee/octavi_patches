@@ -1,4 +1,4 @@
-From 8770b54e7bd545847fe5b127f165d71936c2fef7 Mon Sep 17 00:00:00 2001
+From a86bd1484195336f304411c88a3455f98c24b83c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
 Date: Fri, 24 Dec 2021 09:31:52 +0000
 Subject: [PATCH 2/2] prebuilt : Don't use apns-config from vendor
@@ -75,5 +75,5 @@ index 118fde0..946ef9d 100644
 -
 -include $(BUILD_PREBUILT)
 -- 
-2.31.1
+2.37.0
 

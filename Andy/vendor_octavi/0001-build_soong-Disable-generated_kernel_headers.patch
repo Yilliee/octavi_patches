@@ -1,4 +1,4 @@
-From e43531d276c97b86b72de89079d6742405c9b4e5 Mon Sep 17 00:00:00 2001
+From ea68b22dc19c6ccd333fbf704de18ee2d699247a Mon Sep 17 00:00:00 2001
 From: AndyCGYan <GeForce8800Ultra@gmail.com>
 Date: Sun, 3 Mar 2019 14:07:33 +0800
 Subject: [PATCH] build_soong: Disable generated_kernel_headers
@@ -41,5 +41,5 @@ index 01d5f77..b227829 100644
  
  cc_library_headers {
 -- 
-2.33.1
+2.37.0
 

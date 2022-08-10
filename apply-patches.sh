@@ -34,13 +34,13 @@ done
 
 #platform_frameworks_av
 cp -r $PHH/platform_frameworks_av $SOURCE_DIR/frameworks/av/phh && cd $SOURCE_DIR/frameworks/av
-for i in {0001..0018}
+for i in {0001..0019}
 do apply_patches frameworks/av phh $i
 done
 
 #platform_frameworks_base
 cp -r $PHH/platform_frameworks_base $SOURCE_DIR/frameworks/base/phh && cd $SOURCE_DIR/frameworks/base
-for i in {0001..0024}
+for i in {0001..0023}
 do apply_patches frameworks/base phh $i
 done
 
@@ -58,7 +58,7 @@ done
 
 #platform_frameworks_opt_telephony
 cp -r $PHH/platform_frameworks_opt_telephony $SOURCE_DIR/frameworks/opt/telephony/phh && cd $SOURCE_DIR/frameworks/opt/telephony
-for i in {0001..0004}
+for i in {0001..0005}
 do apply_patches frameworks/opt/telephony phh $i
 done
 
@@ -204,12 +204,6 @@ done
 cp -r $extra/packages_apps_Nfc $SOURCE_DIR/packages/apps/Nfc/extra && cd $SOURCE_DIR/packages/apps/Nfc
 for i in {0001..0001}
 do apply_patches packages/apps/Nfc extra $i
-done
-
-#system_vold
-cp -r $extra/system_vold $SOURCE_DIR/system/vold/extra && cd $SOURCE_DIR/system/vold
-for i in {0001..0007}
-do apply_patches system/vold extra $i
 done
 
 #vendor/octavi

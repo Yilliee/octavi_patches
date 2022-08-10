@@ -1,7 +1,7 @@
-From 165ed2033399eea44698678dc40653116e026d8a Mon Sep 17 00:00:00 2001
+From 83170b272b4f1390e843be05187f73631817d66f Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Dec 2021 17:08:22 -0500
-Subject: [PATCH 22/24] Add UDFPS support for various devices
+Subject: [PATCH 21/23] Add UDFPS support for various devices
 
 Successfully tested on Galaxy A51, Xiaomi Mi 9, and OnePlus Nord 2
 
@@ -20,7 +20,7 @@ Change-Id: I9448f06a46c178652f5b216717d914b8db55c993
  5 files changed, 422 insertions(+), 21 deletions(-)
 
 diff --git a/packages/SystemUI/res/values/octavi_config.xml b/packages/SystemUI/res/values/octavi_config.xml
-index 052baaa2..ac99a9fc 100644
+index efddc68d..ad86f123 100644
 --- a/packages/SystemUI/res/values/octavi_config.xml
 +++ b/packages/SystemUI/res/values/octavi_config.xml
 @@ -18,13 +18,13 @@
@@ -134,10 +134,10 @@ index ac391f63..f7c670f3 100644
      }
  }
 diff --git a/services/core/Android.bp b/services/core/Android.bp
-index 55b982b4..5af7770f 100644
+index f5280fa1..306aecef 100644
 --- a/services/core/Android.bp
 +++ b/services/core/Android.bp
-@@ -155,6 +155,10 @@ java_library_static {
+@@ -158,6 +158,10 @@ java_library_static {
          "android.hardware.soundtrigger-V2.3-java",
          "android.hardware.power.stats-V1-java",
          "android.hidl.manager-V1.2-java",
@@ -605,5 +605,5 @@ index ff139e73..7ae20853 100644
  
      public static int getReasonFromEnrollReason(@FingerprintManager.EnrollReason int reason) {
 -- 
-2.34.1
+2.37.0
 

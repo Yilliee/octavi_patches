@@ -1,4 +1,4 @@
-From 0946417d367dcdfcc4d62d3624583eb98e5ae440 Mon Sep 17 00:00:00 2001
+From dd8d23d50da375add57bdb98bd96f4921697a916 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Dec 2021 17:03:15 -0500
 Subject: [PATCH] Add a vendor800 command, to be able to call vendor-specific
@@ -27,5 +27,5 @@ index 499d3b9..4895784 100644
       template <typename T>
       void beginCommand(T command, uint16_t length) {
 -- 
-2.33.1
+2.37.0
 

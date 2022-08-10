@@ -1,4 +1,4 @@
-From 95b0e30345038be4d35e48aede8451a005b158c9 Mon Sep 17 00:00:00 2001
+From 2be1e84048749d9ecee4dafc09a4e52b032f12dd Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 2 Mar 2018 22:49:55 +0100
 Subject: [PATCH 7/7] Enable multipl_decls by default. This is needed because
@@ -23,5 +23,5 @@ index 71a0f68..a7e2e53 100644
  	int preserve_tunables = 0;
  	int handle_unknown = -1;
 -- 
-2.25.1
+2.37.0
 

@@ -1,4 +1,4 @@
-From 220184a44d118ba636f7aa97fe3416a0af3165e6 Mon Sep 17 00:00:00 2001
+From 831b6c312b404eee4c62f1511884722c69a84afe Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Yilli=C3=A9?= <yilliee@protonmail.com>
 Date: Fri, 24 Dec 2021 09:47:08 +0000
 Subject: [PATCH] core : Don't enable adb auth : Don't set ro.secure to 1
@@ -29,5 +29,5 @@ index bbce37a..0090c53 100644
    ifeq ($(user_variant),userdebug)
      # Pick up some extra useful tools
 -- 
-2.17.1
+2.37.0
 

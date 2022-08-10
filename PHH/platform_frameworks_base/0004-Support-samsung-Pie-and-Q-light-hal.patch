@@ -1,7 +1,7 @@
-From e35adb4606bc9b856d74ac52b609e31ff611a287 Mon Sep 17 00:00:00 2001
+From 08c5dc89ebf4e0f7c79e6459458d1517eabd1cf4 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 24 Mar 2019 23:05:14 +0100
-Subject: [PATCH 05/24] Support samsung Pie and Q light hal
+Subject: [PATCH 04/23] Support samsung Pie and Q light hal
 
 Change-Id: I01f94acd7d0672733e48854d80368f9ac6f861c6
 ---
@@ -23,7 +23,7 @@ index 53401fd4..59256cc7 100644
  
      static_libs: [
 diff --git a/services/core/jni/com_android_server_lights_LightsService.cpp b/services/core/jni/com_android_server_lights_LightsService.cpp
-index 26f6d742..268b59a5 100644
+index 51a7886e..bc77365a 100644
 --- a/services/core/jni/com_android_server_lights_LightsService.cpp
 +++ b/services/core/jni/com_android_server_lights_LightsService.cpp
 @@ -22,6 +22,10 @@
@@ -101,5 +101,5 @@ index 26f6d742..268b59a5 100644
      LightState state = constructState(
          colorARGB, flashMode, onMS, offMS, brightnessMode);
 -- 
-2.34.1
+2.37.0
 

@@ -1,7 +1,7 @@
-From f213d208dda9ee62469b4be49ec12b14064790dd Mon Sep 17 00:00:00 2001
+From be6338f87fc483dbeda8364b77f429e13a46832a Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Tue, 19 Oct 2021 21:16:55 -0400
-Subject: [PATCH 17/18] APM: Restore R and Q behavior respectively for
+Subject: [PATCH 17/19] APM: Restore R and Q behavior respectively for
  telephony audio
 
 This conditionally reverts part of 51c9cc (S) and afd4ce (R) when the
@@ -34,7 +34,7 @@ Change-Id: I56d36d2aef4319935cb88a3e4771b23c6d5b2145
  2 files changed, 28 insertions(+), 4 deletions(-)
 
 diff --git a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
-index 8340c42..9f4b975 100644
+index 90e761b..8ff5d82 100644
 --- a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
 +++ b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp
 @@ -601,6 +601,11 @@ status_t AudioPolicyManager::updateCallRoutingInternal(
@@ -102,5 +102,5 @@ index b6a4000..357aac4 100644
          HwAudioOutputCollection mHwOutputs;
          SourceClientCollection mAudioSources;
 -- 
-2.34.1
+2.37.0
 

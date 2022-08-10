@@ -1,4 +1,4 @@
-From 3725d7212c961aa7500eb0f91091e76583ab4bc0 Mon Sep 17 00:00:00 2001
+From 8689ddb258f022259e01af12f1f497724decf200 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 22 Oct 2020 23:22:46 +0200
 Subject: [PATCH 04/13] Matching an input with a display uses uniqueId
@@ -31,5 +31,5 @@ index 7af014c..53ef86f 100644
                  const std::unordered_map<std::string, uint8_t>& ports = config->portAssociations;
                  const auto& displayPort = ports.find(inputPort);
 -- 
-2.34.1
+2.37.0
 

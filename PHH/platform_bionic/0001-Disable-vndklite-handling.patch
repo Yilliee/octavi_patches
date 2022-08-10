@@ -1,4 +1,4 @@
-From 462e411152d6a1b0e05ce0d34d160de7d0184184 Mon Sep 17 00:00:00 2001
+From 839572071360d999746fe0da9cf9308f4eb07eab Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 27 Oct 2021 14:39:29 -0400
 Subject: [PATCH] Disable vndklite handling
@@ -32,5 +32,5 @@ index 3488f5c..c32ea84 100644
    size_t insert_pos = ld_config_file_vndk.find_last_of('.');
    if (insert_pos == std::string::npos) {
 -- 
-2.25.1
+2.37.0
 

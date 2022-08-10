@@ -1,4 +1,4 @@
-From 92feba598acb7accd53ceb656720edae8f9206c3 Mon Sep 17 00:00:00 2001
+From 6d46f965ee9888bac32b5d1370ad967553354985 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 24 Nov 2021 15:50:30 -0500
 Subject: [PATCH 6/7] Log support for exfat/texfat FS driver names
@@ -24,5 +24,5 @@ index 4a418d5..ceaec63 100644
      VolumeManager* vm;
      NetlinkManager* nm;
 -- 
-2.34.1
+2.37.0
 
