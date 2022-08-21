@@ -1,4 +1,4 @@
-From 1063878da54a2f4ccfca7de1864bd28d2a452cbb Mon Sep 17 00:00:00 2001
+From b655a8cf90a4a1dd4967ceaaa80059402bfc5ff9 Mon Sep 17 00:00:00 2001
 From: Artem Borisov <dedsa2002@gmail.com>
 Date: Sat, 10 Nov 2018 17:19:17 +0000
 Subject: [PATCH 2/5] Telephony: Don not call onUssdRelease for Huawei RIL
@@ -30,5 +30,5 @@ index aebd916..de27887 100644
                  found.onUssdFinishedError();
              } else {
 -- 
-2.37.0
+2.37.1
 

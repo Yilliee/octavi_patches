@@ -1,4 +1,4 @@
-From f390d12473632b57192e90be01e6c7156609edc0 Mon Sep 17 00:00:00 2001
+From c39accf0deec3a937f5cf84329684f046d03b615 Mon Sep 17 00:00:00 2001
 From: Andreas Schneider <asn@cryptomilk.org>
 Date: Mon, 7 Jun 2021 13:23:02 -0400
 Subject: [PATCH] On Samsung devices, we need to tell Audio HAL if we're
@@ -50,5 +50,5 @@ index 03ba99a..20267d0 100644
                  break;
              default:
 -- 
-2.37.0
+2.37.1
 

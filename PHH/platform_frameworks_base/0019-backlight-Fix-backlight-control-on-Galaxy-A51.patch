@@ -1,0 +1,25 @@
+From c2e476be521feca14f1f262265b6f6c3aaeee9dc Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Sun, 21 Aug 2022 16:42:09 +0500
+Subject: [PATCH 19/31] backlight: Fix backlight control on Galaxy A51
+
+---
+ services/core/java/com/android/server/lights/LightsService.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/core/java/com/android/server/lights/LightsService.java b/services/core/java/com/android/server/lights/LightsService.java
+index 8fa9c4f3..d211ebe7 100644
+--- a/services/core/java/com/android/server/lights/LightsService.java
++++ b/services/core/java/com/android/server/lights/LightsService.java
+@@ -298,7 +298,7 @@ public class LightsService extends SystemService {
+ 
+                 if(mHwLight.id == 0) {
+                     String fp = SystemProperties.get("ro.vendor.build.fingerprint", "hello");
+-                    if(fp.matches(".*astarqlte.*")) {
++                    if(fp.matches(".*astarqlte.*") || fp.matches("*samsung/a51*") {
+                         int newBrightness = brightnessInt;
+                         if(SystemProperties.getBoolean("persist.sys.samsung.full_brightness", false)) {
+                             newBrightness = (int) (brightnessInt * 365.0 / 255.0);
+-- 
+2.37.1
+

@@ -1,7 +1,7 @@
-From 83170b272b4f1390e843be05187f73631817d66f Mon Sep 17 00:00:00 2001
+From 36ff90cd97d0831644fdc55d2fd4dcd5c45f0cb4 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Dec 2021 17:08:22 -0500
-Subject: [PATCH 21/23] Add UDFPS support for various devices
+Subject: [PATCH 23/31] Add UDFPS support for various devices
 
 Successfully tested on Galaxy A51, Xiaomi Mi 9, and OnePlus Nord 2
 
@@ -13,14 +13,14 @@ Successfully tested on Galaxy A51, Xiaomi Mi 9, and OnePlus Nord 2
 Change-Id: I9448f06a46c178652f5b216717d914b8db55c993
 ---
  .../SystemUI/res/values/octavi_config.xml     |   4 +-
- .../systemui/biometrics/UdfpsView.java        |  56 +++-
+ .../systemui/biometrics/UdfpsView.java        |  58 +++-
  services/core/Android.bp                      |   4 +
  .../server/biometrics/AuthService.java        | 262 +++++++++++++++++-
- .../sensors/fingerprint/UdfpsHelper.java      | 117 +++++++-
- 5 files changed, 422 insertions(+), 21 deletions(-)
+ .../sensors/fingerprint/UdfpsHelper.java      | 115 +++++++-
+ 5 files changed, 423 insertions(+), 20 deletions(-)
 
 diff --git a/packages/SystemUI/res/values/octavi_config.xml b/packages/SystemUI/res/values/octavi_config.xml
-index efddc68d..ad86f123 100644
+index efddc68d..c2583f36 100644
 --- a/packages/SystemUI/res/values/octavi_config.xml
 +++ b/packages/SystemUI/res/values/octavi_config.xml
 @@ -18,13 +18,13 @@
@@ -28,7 +28,7 @@ index efddc68d..ad86f123 100644
  
      <!-- Color of the UDFPS pressed view -->
 -    <color name="config_udfpsColor">#ffffffff</color>
-+    <color name="config_udfpsColor">#00ff00</color>
++    <color name="config_udfpsColor">#00ff00ff</color>
  
      <!-- HBM type of UDFPS overlay.
              0 - GLOBAL HBM
@@ -40,10 +40,10 @@ index efddc68d..ad86f123 100644
      <!-- Navbar -->
      <string name="config_navBarLayoutHandleArrows" translatable="false">back[1.7WC];home_handle;ime_switcher[1.7WC]</string>
 diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.java b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.java
-index ac391f63..f7c670f3 100644
+index ac391f63..838bf760 100644
 --- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.java
 +++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.java
-@@ -41,6 +41,11 @@ import com.android.systemui.R;
+@@ -41,6 +41,12 @@ import com.android.systemui.R;
  import com.android.systemui.biometrics.UdfpsHbmTypes.HbmType;
  import com.android.systemui.doze.DozeReceiver;
  
@@ -52,59 +52,61 @@ index ac391f63..f7c670f3 100644
 +import java.io.FileReader;
 +import java.io.PrintWriter;
 +
++
  /**
   * A view containing 1) A SurfaceView for HBM, and 2) A normal drawable view for all other
   * animations.
-@@ -70,6 +75,48 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
+@@ -70,6 +76,49 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
      @Nullable private String mDebugMessage;
      private boolean mIlluminationRequested;
  
 +    public static void samsungCmd(String cmd) {
-+           try {
-+                   writeFile("/sys/devices/virtual/sec/tsp/cmd", cmd);
++	    try {
++		    writeFile("/sys/devices/virtual/sec/tsp/cmd", cmd);
 +
-+                   String status = readFile("/sys/devices/virtual/sec/tsp/cmd_status");
-+                   String ret = readFile("/sys/devices/virtual/sec/tsp/cmd_result");
++		    String status = readFile("/sys/devices/virtual/sec/tsp/cmd_status");
++		    String ret = readFile("/sys/devices/virtual/sec/tsp/cmd_result");
 +
-+                   android.util.Log.d("PHH", "Sending command " + cmd + " returned " + ret + ":" + status);
-+           } catch(Exception e) {
-+                   android.util.Log.d("PHH", "Failed sending command " + cmd, e);
-+           }
++		    android.util.Log.d("PHH", "Sending command " + cmd + " returned " + ret + ":" + status);
++	    } catch(Exception e) {
++		    android.util.Log.d("PHH", "Failed sending command " + cmd, e);
++	    }
 +    }
 +    private static void writeFile(String path, String value) {
-+           try {
-+                   PrintWriter writer = new PrintWriter(path, "UTF-8");
-+                   writer.println(value);
-+                   writer.close();
-+           } catch(Exception e) {
-+                   android.util.Log.d("PHH", "Failed writing to " + path + ": " + value);
-+           }
++	    try {
++		    PrintWriter writer = new PrintWriter(path, "UTF-8");
++		    writer.println(value);
++		    writer.close();
++	    } catch(Exception e) {
++		    android.util.Log.d("PHH", "Failed writing to " + path + ": " + value);
++	    }
 +    }
 +
 +    private static void writeFile(File file, String value) {
-+           try {
-+                   PrintWriter writer = new PrintWriter(file, "UTF-8");
-+                   writer.println(value);
-+                   writer.close();
-+           } catch(Exception e) {
-+                   android.util.Log.d("PHH", "Failed writing to " + file + ": " + value);
-+           }
++	    try {
++		    PrintWriter writer = new PrintWriter(file, "UTF-8");
++		    writer.println(value);
++		    writer.close();
++	    } catch(Exception e) {
++		    android.util.Log.d("PHH", "Failed writing to " + file + ": " + value);
++	    }
 +    }
 +    private static String readFile(String path) {
-+           try {
-+                   File f = new File(path);
++	    try {
++		    File f = new File(path);
 +
-+                   BufferedReader b = new BufferedReader(new FileReader(f));
-+                   return b.readLine();
-+           } catch(Exception e) {
-+                   return null;
-+           }
++		    BufferedReader b = new BufferedReader(new FileReader(f));
++		    return b.readLine();
++	    } catch(Exception e) {
++		    return null;
++	    }
 +    }
++
 +
      public UdfpsView(Context context, AttributeSet attrs) {
          super(context, attrs);
  
-@@ -240,7 +287,7 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
+@@ -240,7 +289,7 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
          if (mGhbmView != null && surface == null) {
              Log.e(TAG, "doIlluminate | surface must be non-null for GHBM");
          }
@@ -113,19 +115,19 @@ index ac391f63..f7c670f3 100644
              if (mGhbmView != null) {
                  mGhbmView.drawIlluminationDot(mSensorRect);
              }
-@@ -252,6 +299,11 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
+@@ -252,6 +301,11 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
                  Log.w(TAG, "doIlluminate | onIlluminatedRunnable is null");
              }
          });
-+        else {
-+               if (mGhbmView != null) {
-+                       mGhbmView.drawIlluminationDot(mSensorRect);
-+               }
-+        }
++	else {
++		if (mGhbmView != null) {
++			mGhbmView.drawIlluminationDot(mSensorRect);
++		}
++	}
      }
  
      @Override
-@@ -264,6 +316,6 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
+@@ -264,6 +318,6 @@ public class UdfpsView extends FrameLayout implements DozeReceiver, UdfpsIllumin
              mGhbmView.setGhbmIlluminationListener(null);
              mGhbmView.setVisibility(View.INVISIBLE);
          }
@@ -149,7 +151,7 @@ index f5280fa1..306aecef 100644
          "icu4j_calendar_astronomer",
          "netd-client",
 diff --git a/services/core/java/com/android/server/biometrics/AuthService.java b/services/core/java/com/android/server/biometrics/AuthService.java
-index b42f8980..6efc73a2 100644
+index b42f8980..41a04b8b 100644
 --- a/services/core/java/com/android/server/biometrics/AuthService.java
 +++ b/services/core/java/com/android/server/biometrics/AuthService.java
 @@ -72,6 +72,21 @@ import com.android.server.SystemService;
@@ -257,7 +259,7 @@ index b42f8980..6efc73a2 100644
                  ? modality : (modality & ~BiometricAuthenticator.TYPE_CREDENTIAL);
      }
  
-+    private static String readFile(String path) {
++        private static String readFile(String path) {
 +        try {
 +            File f = new File(path);
 +
@@ -273,23 +275,23 @@ index b42f8980..6efc73a2 100644
 +            File f = new File("/sys/devices/virtual/sec/tsp/cmd_list");
 +            if(!f.exists()) return false;
 +
-+           android.util.Log.d("PHH", "Managed to grab cmd list, checking...");
++	    android.util.Log.d("PHH", "Managed to grab cmd list, checking...");
 +            BufferedReader b = new BufferedReader(new FileReader(f));
 +            String line = null;
 +            while( (line = b.readLine()) != null) {
 +                if(line.equals(cmd)) return true;
 +            }
-+           android.util.Log.d("PHH", "... nope");
++	    android.util.Log.d("PHH", "... nope");
 +            return false;
 +        } catch(Exception e) {
-+           android.util.Log.d("PHH", "Failed reading cmd_list", e);
++	    android.util.Log.d("PHH", "Failed reading cmd_list", e);
 +            return false;
 +        }
 +    }
 +
 +        public static void samsungCmd(String cmd) {
 +        try {
-+           writeFile("/sys/devices/virtual/sec/tsp/cmd", cmd);
++	    writeFile("/sys/devices/virtual/sec/tsp/cmd", cmd);
 +
 +            String status = readFile("/sys/devices/virtual/sec/tsp/cmd_status");
 +            String ret = readFile("/sys/devices/virtual/sec/tsp/cmd_result");
@@ -446,15 +448,15 @@ index b42f8980..6efc73a2 100644
 +            isUdfps = true;
 +        }
 +
-+       if(udfpsProps.length > 0) {
-+           Slog.d("PHH-Enroll", "Samsung got udfps infos " + udfpsProps[0] + ", " + udfpsProps[1] + ", " + udfpsProps[2]);
-+       }
++	if(udfpsProps.length > 0) {
++	    Slog.d("PHH-Enroll", "Samsung got udfps infos " + udfpsProps[0] + ", " + udfpsProps[1] + ", " + udfpsProps[2]);
++	}
 +
          final @FingerprintSensorProperties.SensorType int sensorType;
          if (isUdfps) {
              sensorType = FingerprintSensorProperties.TYPE_UDFPS_OPTICAL;
 diff --git a/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java b/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java
-index ff139e73..7ae20853 100644
+index ff139e73..36bcaf15 100644
 --- a/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java
 +++ b/services/core/java/com/android/server/biometrics/sensors/fingerprint/UdfpsHelper.java
 @@ -28,6 +28,10 @@ import android.util.Slog;
@@ -482,6 +484,7 @@ index ff139e73..7ae20853 100644
 +        }
 +    }
 +
++
      public static void onFingerDown(IBiometricsFingerprint daemon, int x, int y, float minor,
              float major) {
          android.hardware.biometrics.fingerprint.V2_3.IBiometricsFingerprint extension =
@@ -489,7 +492,6 @@ index ff139e73..7ae20853 100644
 -                        daemon);
 -        if (extension == null) {
 -            Slog.v(TAG, "onFingerDown | failed to cast the HIDL to V2_3");
--            return;
 +            android.hardware.biometrics.fingerprint.V2_3.IBiometricsFingerprint.castFrom(
 +                    daemon);
 +        if (extension != null) {
@@ -499,12 +501,9 @@ index ff139e73..7ae20853 100644
 +            } catch (RemoteException e) {
 +                Slog.e(TAG, "onFingerDown | RemoteException: ", e);
 +            }
-         }
- 
-         try {
--            extension.onFingerDown(x, y, minor, major);
--        } catch (RemoteException e) {
--            Slog.e(TAG, "onFingerDown | RemoteException: ", e);
++        }
++
++        try {
 +            // Asus goodix commands
 +            IGoodixFingerprintDaemon goodixDaemon = IGoodixFingerprintDaemon.getService();
 +            if(android.os.SystemProperties.get("ro.vendor.build.fingerprint").contains("ASUS")) {
@@ -520,19 +519,22 @@ index ff139e73..7ae20853 100644
 +                    Slog.e(TAG, "Goodix send command returned code "+ returnCode);
 +                });
 +            }
-+             return;
+             return;
 +        } catch(Throwable t) {
 +            Slog.e(TAG, "Tried sending goodix daemon cmd failed", t);
          }
-+
-+        try {
+ 
+         try {
+-            extension.onFingerDown(x, y, minor, major);
+-        } catch (RemoteException e) {
+-            Slog.e(TAG, "onFingerDown | RemoteException: ", e);
 +            vendor.oplus.hardware.biometrics.fingerprint.V2_1.IBiometricsFingerprint fp = vendor.oplus.hardware.biometrics.fingerprint.V2_1.IBiometricsFingerprint.getService();
 +            writeFile("/sys/kernel/oppo_display/notify_fppress", "1");
 +            writeFile("/sys/kernel/oplus_display/oplus_notify_fppress", "1");
 +            fp.touchDown();
 +        } catch(Throwable t) {
 +            Slog.e(TAG, "Tried sending oplus daemon cmd failed", t);
-+        }
+         }
 +
 +        try {
 +            vendor.oppo.hardware.biometrics.fingerprint.V2_1.IBiometricsFingerprint fp = vendor.oppo.hardware.biometrics.fingerprint.V2_1.IBiometricsFingerprint.getService();
@@ -540,7 +542,7 @@ index ff139e73..7ae20853 100644
 +            writeFile("/sys/kernel/oplus_display/oplus_notify_fppress", "1");
 +            fp.touchDown();
 +        } catch(Throwable t) {
-+            Slog.e(TAG, "Tried sending oppo daemon cmd failed", t);
++            Slog.e(TAG, "Tried sending oplus daemon cmd failed", t);
 +        }
 +
 +        Slog.v(TAG, "onFingerDown | failed to cast the HIDL to V2_3");
@@ -589,7 +591,7 @@ index ff139e73..7ae20853 100644
 +            fp.touchUp();
 +        } catch(Throwable t) {
 +            Slog.e(TAG, "Tried sending oplus daemon cmd failed", t);
-         }
++        }
 +
 +        try {
 +            vendor.oppo.hardware.biometrics.fingerprint.V2_1.IBiometricsFingerprint fp = vendor.oppo.hardware.biometrics.fingerprint.V2_1.IBiometricsFingerprint.getService();
@@ -597,13 +599,12 @@ index ff139e73..7ae20853 100644
 +            writeFile("/sys/kernel/oplus_display/oplus_notify_fppress", "0");
 +            fp.touchUp();
 +        } catch(Throwable t) {
-+            Slog.e(TAG, "Tried sending oppo daemon cmd failed", t);
-+        }
-+
++            Slog.e(TAG, "Tried sending oplus daemon cmd failed", t);
+         }
 +        Slog.v(TAG, "onFingerUp | failed to cast the HIDL to V2_3");
      }
  
      public static int getReasonFromEnrollReason(@FingerprintManager.EnrollReason int reason) {
 -- 
-2.37.0
+2.37.1
 

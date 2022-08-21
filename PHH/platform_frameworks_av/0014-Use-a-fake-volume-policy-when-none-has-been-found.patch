@@ -1,7 +1,7 @@
-From bc6bdbee9620bff31d387df2124828b624d6d67c Mon Sep 17 00:00:00 2001
+From 4f7580f2ccdca2e1c84e77c51c4f818bdb2be2a2 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 28 Mar 2021 14:48:49 +0200
-Subject: [PATCH 14/19] Use a fake volume policy when none has been found
+Subject: [PATCH 14/23] Use a fake volume policy when none has been found
 
 This is useful, because on Samsung devices, the "real"
 (=non-gsi-cheating) audio policy doesn't have any volume policy.
@@ -33,5 +33,5 @@ index 81e803f..340eb1b 100644
          ALOGE("No readable audio policy config file found");
          return BAD_VALUE;
 -- 
-2.37.0
+2.37.1
 

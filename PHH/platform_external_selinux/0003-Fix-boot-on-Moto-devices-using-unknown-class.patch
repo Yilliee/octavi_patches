@@ -1,4 +1,4 @@
-From 3a9684f13f76cf108111181ade182c28b4860de3 Mon Sep 17 00:00:00 2001
+From bfcb2804bfa8e9d8caa0269a9c9a767a020e8676 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 25 Oct 2019 13:29:20 +0200
 Subject: [PATCH 3/7] Fix boot on Moto devices using unknown class
@@ -80,5 +80,5 @@ index 94d55d7..e5f7674 100644
  	if (rc != SEPOL_OK) {
  		goto exit;
 -- 
-2.37.0
+2.37.1
 

@@ -1,0 +1,49 @@
+From 0b8edacc17f0706c7a5e3deba0984220b7d1bd5c Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Thu, 9 Jun 2022 14:08:46 -0400
+Subject: [PATCH 31/31] Allow FOD color to be customized with
+ persist.sys.phh.fod_color
+
+---
+ .../systemui/biometrics/UdfpsSurfaceView.java      | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsSurfaceView.java b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsSurfaceView.java
+index 71e33a69..7bfc2646 100644
+--- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsSurfaceView.java
++++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsSurfaceView.java
+@@ -21,9 +21,11 @@ import android.annotation.Nullable;
+ import android.content.Context;
+ import android.graphics.drawable.Drawable;
+ import android.graphics.Canvas;
++import android.graphics.Color;
+ import android.graphics.Paint;
+ import android.graphics.PixelFormat;
+ import android.graphics.RectF;
++import android.os.SystemProperties;
+ import android.util.AttributeSet;
+ import android.util.Log;
+ import android.view.Surface;
+@@ -74,7 +76,19 @@ public class UdfpsSurfaceView extends SurfaceView implements SurfaceHolder.Callb
+ 
+         mSensorPaint = new Paint(0 /* flags */);
+         mSensorPaint.setAntiAlias(true);
++
++	String colorStr = SystemProperties.get("persist.sys.phh.fod_color", "00ff00");
+         mSensorPaint.setColor(context.getColor(R.color.config_udfpsColor));
++	try {
++		int parsedColor = Color.parseColor("#" + colorStr);
++		int r = (parsedColor >> 16) & 0xff;
++		int g = (parsedColor >>  8) & 0xff;
++		int b = (parsedColor >>  0) & 0xff;
++		mSensorPaint.setARGB(255, r, g, b);
++	} catch(Throwable t) {
++		Log.d("PHH", "Failed parsing color #" + colorStr, t);
++	}
++
+         mSensorPaint.setStyle(Paint.Style.FILL);
+ 
+         mUdfpsIconPressed = context.getDrawable(R.drawable.udfps_icon_pressed);
+-- 
+2.37.1
+

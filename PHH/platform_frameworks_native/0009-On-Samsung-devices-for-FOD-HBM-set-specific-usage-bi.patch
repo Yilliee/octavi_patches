@@ -1,18 +1,18 @@
-From 7b9b487984c69d139a4a54b4b200161c6a7e0749 Mon Sep 17 00:00:00 2001
+From 18cd0232ebc1acf100e04bc451a0b3c67f5d7b52 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 17 Dec 2021 17:18:20 -0500
-Subject: [PATCH 09/13] On Samsung devices for FOD HBM, set specific usage bits
+Subject: [PATCH 09/15] On Samsung devices for FOD HBM, set specific usage bits
 
 Change-Id: Ibe71e291c6fba9ce48e83a5fd93f1beae3a63bc7
 ---
- libs/gui/BLASTBufferQueue.cpp | 19 +++++++++++++++++--
+ libs/gui/BLASTBufferQueue.cpp | 21 +++++++++++++++++++--
  libs/ui/Gralloc2.cpp          |  2 +-
  libs/ui/Gralloc3.cpp          |  2 +-
  libs/ui/Gralloc4.cpp          |  2 +-
- 4 files changed, 20 insertions(+), 5 deletions(-)
+ 4 files changed, 22 insertions(+), 5 deletions(-)
 
 diff --git a/libs/gui/BLASTBufferQueue.cpp b/libs/gui/BLASTBufferQueue.cpp
-index 94e1ae1..d23fb53 100644
+index 94e1ae1..f7055c9 100644
 --- a/libs/gui/BLASTBufferQueue.cpp
 +++ b/libs/gui/BLASTBufferQueue.cpp
 @@ -32,9 +32,19 @@
@@ -35,20 +35,22 @@ index 94e1ae1..d23fb53 100644
  using namespace std::chrono_literals;
  
  namespace {
-@@ -144,9 +154,14 @@ BLASTBufferQueue::BLASTBufferQueue(const std::string& name, const sp<SurfaceCont
+@@ -144,9 +154,16 @@ BLASTBufferQueue::BLASTBufferQueue(const std::string& name, const sp<SurfaceCont
  
      // safe default, most producers are expected to override this
      mProducer->setMaxDequeuedBufferCount(2);
++
 +    uint64_t usage = GraphicBuffer::USAGE_HW_COMPOSER |
 +        GraphicBuffer::USAGE_HW_TEXTURE;
 +    init_fod_props();
 +    if(sSamsungFod && name.find("SurfaceView[UdfpsController]") != std::string::npos) {
 +	    usage |= 0x400000000LL;
 +    }
++
      mBufferItemConsumer = new BLASTBufferItemConsumer(mConsumer,
 -                                                      GraphicBuffer::USAGE_HW_COMPOSER |
 -                                                              GraphicBuffer::USAGE_HW_TEXTURE,
-+							    usage,
++                                                      usage,
                                                        1, false);
      static int32_t id = 0;
      mName = name + "#" + std::to_string(id);
@@ -92,5 +94,5 @@ index 9dc9beb..f43083a 100644
      return NO_ERROR;
  }
 -- 
-2.37.0
+2.37.1
 

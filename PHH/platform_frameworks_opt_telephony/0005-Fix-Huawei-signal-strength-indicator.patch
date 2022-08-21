@@ -1,4 +1,4 @@
-From 106fb72e52a541a1696b4389fe0720c68ee6f9a4 Mon Sep 17 00:00:00 2001
+From 3e454b007cf75e342c9a7b3912df25add3c6a59e Mon Sep 17 00:00:00 2001
 From: Ryan Press <ryan@presslab.us>
 Date: Tue, 25 Jan 2022 11:29:41 -0800
 Subject: [PATCH 5/5] Fix Huawei signal strength indicator
@@ -180,5 +180,5 @@ index d18efdc..26c0f51 100644
              mRil.mSignalStrengthRegistrant.notifyRegistrant(new AsyncResult (null, ss, null));
          }
 -- 
-2.37.0
+2.37.1
 

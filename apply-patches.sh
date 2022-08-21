@@ -16,7 +16,7 @@ apply_patches() {
 
 #platform_bionic
 cp -r $PHH/platform_bionic $SOURCE_DIR/bionic/phh && cd $SOURCE_DIR/bionic
-for i in {0001..0001}
+for i in {0001..0002}
 do apply_patches bionic phh $i
 done
 
@@ -34,19 +34,19 @@ done
 
 #platform_frameworks_av
 cp -r $PHH/platform_frameworks_av $SOURCE_DIR/frameworks/av/phh && cd $SOURCE_DIR/frameworks/av
-for i in {0001..0019}
+for i in {0001..0023}
 do apply_patches frameworks/av phh $i
 done
 
 #platform_frameworks_base
 cp -r $PHH/platform_frameworks_base $SOURCE_DIR/frameworks/base/phh && cd $SOURCE_DIR/frameworks/base
-for i in {0001..0023}
+for i in {0001..0031}
 do apply_patches frameworks/base phh $i
 done
 
 #platform_frameworks_native
 cp -r $PHH/platform_frameworks_native $SOURCE_DIR/frameworks/native/phh && cd $SOURCE_DIR/frameworks/native
-for i in {0001..0013}
+for i in {0001..0016}
 do apply_patches frameworks/native phh $i
 done
 
@@ -76,7 +76,7 @@ done
 
 #platform_packages_apps_Settings
 cp -r $PHH/platform_packages_apps_Settings $SOURCE_DIR/packages/apps/Settings/phh && cd $SOURCE_DIR/packages/apps/Settings
-for i in {0001..0001}
+for i in {0001..0002}
 do apply_patches packages/apps/Settings phh $i
 done
 
@@ -100,7 +100,7 @@ done
 
 #platform_system_core
 cp -r $PHH/platform_system_core $SOURCE_DIR/system/core/phh && cd $SOURCE_DIR/system/core
-for i in {0001..0005}
+for i in {0001..0006}
 do apply_patches system/core phh $i
 done
 

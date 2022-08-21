@@ -1,7 +1,7 @@
-From ea0d3eaf7f07c05581a13c5d43408e482f196cf8 Mon Sep 17 00:00:00 2001
+From 46883b140e29c72796da2b29286b467a2858ea67 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 12 Dec 2021 08:45:36 -0500
-Subject: [PATCH 08/13] Mark accelerometer input as sensor exclusively if there
+Subject: [PATCH 08/15] Mark accelerometer input as sensor exclusively if there
  are ABS axis
 
 The reason this is needed is that on -fucked up- Xiami Mi A2 Lite and
@@ -34,5 +34,5 @@ index b19b419..7dd8eec 100644
  
      // Check whether this device has switches.
 -- 
-2.37.0
+2.37.1
 

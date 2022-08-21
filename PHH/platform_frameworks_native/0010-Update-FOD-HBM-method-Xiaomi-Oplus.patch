@@ -1,7 +1,7 @@
-From 8ec0fb68ed95d63d8f15ec8f09dc80ea18f3ddf5 Mon Sep 17 00:00:00 2001
+From 7a1add241809a1da6501e430e896e6d3d6cc9e29 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 19 Dec 2021 16:54:31 -0500
-Subject: [PATCH 10/13] Update FOD/HBM method Xiaomi/Oplus
+Subject: [PATCH 10/15] Update FOD/HBM method Xiaomi/Oplus
 
 Change-Id: If99362db18d8eace487e52716a138e15d1dcfab4
 ---
@@ -9,7 +9,7 @@ Change-Id: If99362db18d8eace487e52716a138e15d1dcfab4
  1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
-index e7dd87d..480dc53 100644
+index 996d190..45933dd 100644
 --- a/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
 +++ b/services/surfaceflinger/CompositionEngine/src/OutputLayer.cpp
 @@ -39,6 +39,7 @@
@@ -50,5 +50,5 @@ index e7dd87d..480dc53 100644
              z = 0x41000033;
          } else if(sXiaomiFod) {
 -- 
-2.37.0
+2.37.1
 

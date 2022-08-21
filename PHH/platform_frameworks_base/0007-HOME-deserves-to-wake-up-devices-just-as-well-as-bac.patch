@@ -1,7 +1,7 @@
-From 85642a95cccbfee79ebac945aee82e0e316b718d Mon Sep 17 00:00:00 2001
+From a9137e6886ac960be50d1923d44689be7d219987 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 6 Jun 2020 18:21:56 +0200
-Subject: [PATCH 07/23] HOME deserves to wake-up devices just as well as back
+Subject: [PATCH 07/31] HOME deserves to wake-up devices just as well as back
  and menu
 
 Change-Id: Ia562bafd8c620d00c17e8eb338e4701c6c4a3c3a
@@ -22,5 +22,5 @@ index cda9b233..bb35e317 100644
              case KeyEvent.KEYCODE_STEM_1:
              case KeyEvent.KEYCODE_STEM_2:
 -- 
-2.37.0
+2.37.1
 

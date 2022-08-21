@@ -1,7 +1,7 @@
-From 1ef5206c8eea76303c29ecff165939a2e69d511f Mon Sep 17 00:00:00 2001
+From cbd640469f11b259eaec7592e59129be4c1c6eb1 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 23 Mar 2021 19:43:26 +0100
-Subject: [PATCH 17/23] Catch broken mainBuiltInDisplayCutoutRectApproximation
+Subject: [PATCH 17/31] Catch broken mainBuiltInDisplayCutoutRectApproximation
 
 Some devices (Redmi Note 9T) have:
 mainBuiltInDisplayCutoutRectApproximation = @android:mainBuiltInDisplayCutout
@@ -18,7 +18,7 @@ Change-Id: I03b6e78bac2cc38f3a623c8add801405ad6ba7ba
  1 file changed, 11 insertions(+), 4 deletions(-)
 
 diff --git a/core/java/android/view/DisplayCutout.java b/core/java/android/view/DisplayCutout.java
-index e1a4402d..25282b50 100644
+index e1a4402d..58159aa4 100644
 --- a/core/java/android/view/DisplayCutout.java
 +++ b/core/java/android/view/DisplayCutout.java
 @@ -881,10 +881,17 @@ public final class DisplayCutout {
@@ -29,7 +29,7 @@ index e1a4402d..25282b50 100644
 -                res.getString(R.string.config_mainBuiltInDisplayCutoutRectApproximation),
 -                displayWidth, displayHeight, DENSITY_DEVICE_STABLE / (float) DENSITY_DEFAULT,
 -                loadWaterfallInset(res)).second;
-+        try  {
++        try {
 +            return pathAndDisplayCutoutFromSpec(res.getString(R.string.config_mainBuiltInDisplayCutout),
 +                    res.getString(R.string.config_mainBuiltInDisplayCutoutRectApproximation),
 +                    displayWidth, displayHeight, DENSITY_DEVICE_STABLE / (float) DENSITY_DEFAULT,
@@ -44,5 +44,5 @@ index e1a4402d..25282b50 100644
  
      /**
 -- 
-2.37.0
+2.37.1
 

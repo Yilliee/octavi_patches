@@ -1,4 +1,4 @@
-From 3b77f36d1a05b6d3ce532dd347b83dfb4d4e6012 Mon Sep 17 00:00:00 2001
+From db63485cec63c0bcc010e0f6446820cbaacd19fa Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 14 Oct 2021 15:32:19 -0400
 Subject: [PATCH] Boot wifi supplicant both with lazy-hal style and init style
@@ -23,5 +23,5 @@ index ed0c0cc..7fc59e0 100644
              } else {
                  Log.i(TAG, "Starting supplicant using init");
 -- 
-2.37.0
+2.37.1
 

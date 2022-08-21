@@ -1,4 +1,4 @@
-From 1a8f5e8a0092f246615ce5c68a852631b20a2abe Mon Sep 17 00:00:00 2001
+From 380ad257a0f951c7920347321ca0ed938cfa32f6 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Thu, 17 Jun 2021 15:48:53 +0100
 Subject: [PATCH 4/5] Add option to change eSCO Transport Unit Size
@@ -40,5 +40,5 @@ index e2a6eec..c553205 100644
    return default_esco_parameters[codec];
  }
 -- 
-2.37.0
+2.37.1
 

@@ -1,4 +1,4 @@
-From 5b110c2d563dc72beaf21330b90bada5fc444c53 Mon Sep 17 00:00:00 2001
+From 03398ccacca6f91b29edc1a3e8ac3851859df104 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 25 May 2020 21:25:12 +0200
 Subject: [PATCH 2/5] Add persist.sys.phh.disable_a2dp_offload property to
@@ -63,5 +63,5 @@ index a90c881..e95d358 100644
  
  A2dpCodecConfig* A2dpCodecs::findSourceCodecConfig(
 -- 
-2.37.0
+2.37.1
 

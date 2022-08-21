@@ -1,7 +1,7 @@
-From 51487fb9faf0ed06e8165370734edafa49918d2d Mon Sep 17 00:00:00 2001
+From 6f2845f8d94129910676d862d7ad994ee683e418 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 13 Mar 2021 14:20:03 -0500
-Subject: [PATCH 11/19] Support Samsung R multi-cams
+Subject: [PATCH 11/23] Support Samsung R multi-cams
 
 Change-Id: If46f385e8dd16185cbf37ab083e6a1242e1d1555
 ---
@@ -22,7 +22,7 @@ index a7393b9..dad28ad 100644
          "vendor.lineage.camera.motor@1.0",
      ],
 diff --git a/services/camera/libcameraservice/common/CameraProviderManager.cpp b/services/camera/libcameraservice/common/CameraProviderManager.cpp
-index fd00357..7814a0c 100644
+index 1d4dc06..5e3736a 100644
 --- a/services/camera/libcameraservice/common/CameraProviderManager.cpp
 +++ b/services/camera/libcameraservice/common/CameraProviderManager.cpp
 @@ -22,6 +22,7 @@
@@ -33,7 +33,7 @@ index fd00357..7814a0c 100644
  
  #include <algorithm>
  #include <chrono>
-@@ -1411,7 +1412,9 @@ status_t CameraProviderManager::ProviderInfo::initialize(
+@@ -1412,7 +1413,9 @@ status_t CameraProviderManager::ProviderInfo::initialize(
      }
  
      auto samsungCast = vendor::samsung::hardware::camera::provider::V3_0::ISehCameraProvider::castFrom(interface);
@@ -43,15 +43,15 @@ index fd00357..7814a0c 100644
  
      hardware::Return<bool> linked = interface->linkToDeath(this, /*cookie*/ mId);
      if (!linked.isOk()) {
-@@ -1449,6 +1452,7 @@ status_t CameraProviderManager::ProviderInfo::initialize(
+@@ -1450,6 +1453,7 @@ status_t CameraProviderManager::ProviderInfo::initialize(
          status = idStatus;
          if (status == Status::OK) {
              for (auto& name : cameraDeviceNames) {
-+                ALOGE("Listing camera ID %s", name.c_str());
++		    ALOGE("Listing camera ID %s", name.c_str());
                  uint16_t major, minor;
                  std::string type, id;
                  status_t res = parseDeviceName(name, &major, &minor, &type, &id);
-@@ -1462,7 +1466,9 @@ status_t CameraProviderManager::ProviderInfo::initialize(
+@@ -1463,7 +1467,9 @@ status_t CameraProviderManager::ProviderInfo::initialize(
              }
          } };
      hardware::Return<void> ret;
@@ -63,5 +63,5 @@ index fd00357..7814a0c 100644
      else
          ret = interface->getCameraIdList(cb);
 -- 
-2.37.0
+2.37.1
 
